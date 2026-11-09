@@ -98,7 +98,7 @@
     <!-- ========================================== -->
     <!-- TAB: HOME / EXPLORE HUB -->
     <!-- ========================================== -->
-    <section id="section-home" class="tab-content space-y-4">
+    <section id="section-home" class="tab-content hidden space-y-4">
       
       <!-- Native User Greeting Bar (Context-Aware Native Card) -->
       <div id="homeUserGreetingBar" class="hidden glass-panel p-3 sm:p-3.5 rounded-2xl flex items-center justify-between border-amber-200/70 bg-gradient-to-r from-amber-50/90 via-orange-50/40 to-white shadow-2xs">
@@ -481,9 +481,9 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- TAB: LIVE ASTROLOGERS DIRECTORY (29+ ASTROLOGERS) -->
+    <!-- TAB: LIVE ASTROLOGERS DIRECTORY / CHAT (DEFAULT SCREEN) -->
     <!-- ========================================== -->
-    <section id="section-consult" class="tab-content hidden space-y-6">
+    <section id="section-consult" class="tab-content space-y-5">
       <div class="glass-panel rounded-3xl p-5 md:p-7 border border-amber-300 space-y-5">
         
         <!-- Header Banner -->
@@ -575,6 +575,158 @@
         <h2 class="text-2xl font-bold font-mystic text-teal-900 text-center">राशि रत्न एवं वैदिक उपाय</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="gemstonesGrid"></div>
       </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: USER PROFILE & SETTINGS -->
+    <!-- ========================================== -->
+    <section id="section-profile" class="tab-content hidden space-y-4">
+      
+      <!-- User Profile Header Card -->
+      <div class="glass-panel p-4 sm:p-5 rounded-3xl border border-amber-300/80 bg-gradient-to-br from-amber-50/90 via-orange-50/50 to-white shadow-xs">
+        <div class="flex items-center space-x-3.5">
+          <div class="relative shrink-0">
+            <img id="profileUserAvatar" src="avatars/ast_1.jpg" alt="User Profile" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-amber-500 object-cover shadow-sm">
+            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white"></span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center space-x-1.5">
+              <h3 id="profileUserName" class="text-sm sm:text-base font-extrabold text-slate-900 truncate">नमस्ते, जातक 🙏</h3>
+              <span class="text-[9px] bg-emerald-100 text-emerald-800 font-extrabold px-2 py-0.5 rounded-full shrink-0">सत्यापित</span>
+            </div>
+            <p id="profileUserEmail" class="text-[11px] sm:text-xs text-slate-600 truncate mt-0.5">अतिथि खाता (Guest User)</p>
+            <div class="flex items-center space-x-2 mt-2">
+              <button onclick="FirebaseAuthEngine.openOnboardingModal()" class="px-2.5 py-1 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[10px] sm:text-[11px] font-bold shadow-2xs flex items-center space-x-1 transition-all active:scale-95">
+                <i data-lucide="edit-3" class="w-3 h-3"></i>
+                <span>जन्म विवरण बदलें</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wallet Balance & Recharge Card -->
+      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-amber-200 bg-white flex items-center justify-between shadow-2xs">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg sm:text-xl">
+            🪙
+          </div>
+          <div>
+            <p class="text-[9px] sm:text-[10px] text-slate-500 font-semibold uppercase tracking-wider">वॉलेट बैलेंस (Balance)</p>
+            <h4 class="text-base sm:text-lg font-black text-slate-900" id="profileWalletDisplay">₹ 150</h4>
+          </div>
+        </div>
+        <button onclick="openWalletModal()" class="px-3.5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold text-xs shadow-xs flex items-center space-x-1.5 transition-all active:scale-95">
+          <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+          <span>रिचार्ज करें</span>
+        </button>
+      </div>
+
+      <!-- Saved Vedic Kundli Details Card -->
+      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-slate-200 bg-white space-y-2.5 shadow-2xs">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+          <h4 class="text-xs font-bold text-slate-900 flex items-center space-x-1.5">
+            <i data-lucide="calendar" class="w-4 h-4 text-purple-600"></i>
+            <span>सहेजा गया जन्म विवरण (Saved Kundli)</span>
+          </h4>
+          <button onclick="switchTab('kundli')" class="text-[11px] text-amber-700 font-bold hover:underline">कुंडली देखें →</button>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="bg-slate-50 p-2 sm:p-2.5 rounded-xl border border-slate-100">
+            <p class="text-[9px] sm:text-[10px] text-slate-500">जन्म तिथि (DOB)</p>
+            <p id="profileSavedDob" class="font-bold text-slate-800 text-[11px] sm:text-xs mt-0.5">15 Aug 1995</p>
+          </div>
+          <div class="bg-slate-50 p-2 sm:p-2.5 rounded-xl border border-slate-100">
+            <p class="text-[9px] sm:text-[10px] text-slate-500">जन्म समय (Time)</p>
+            <p id="profileSavedTime" class="font-bold text-slate-800 text-[11px] sm:text-xs mt-0.5">14:30 IST</p>
+          </div>
+          <div class="col-span-2 bg-slate-50 p-2 sm:p-2.5 rounded-xl border border-slate-100">
+            <p class="text-[9px] sm:text-[10px] text-slate-500">जन्म स्थान (Place)</p>
+            <p id="profileSavedPlace" class="font-bold text-slate-800 text-[11px] sm:text-xs mt-0.5">New Delhi, India</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Shortcuts Menu -->
+      <div class="glass-panel rounded-2xl border border-slate-200 bg-white divide-y divide-slate-100 shadow-2xs overflow-hidden text-xs">
+        <div onclick="switchTab('kundli')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-base">📜</span>
+            <span class="font-bold text-slate-800 text-xs">मेरी जन्म कुंडली (Lagna & D9)</span>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        </div>
+        <div onclick="switchTab('milan')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-base">❤️</span>
+            <span class="font-bold text-slate-800 text-xs">36 गुण मिलान (Kundli Milan)</span>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        </div>
+        <div onclick="switchTab('panchang')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-base">📅</span>
+            <span class="font-bold text-slate-800 text-xs">आज का पंचांग व चौघड़िया</span>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        </div>
+        <div onclick="switchTab('horoscope')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-base">♈</span>
+            <span class="font-bold text-slate-800 text-xs">दैनिक राशिफल (12 राशियां)</span>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        </div>
+        <div onclick="switchTab('mala')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-base">📿</span>
+            <span class="font-bold text-slate-800 text-xs">डिजिटल 108 जाप माला</span>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        </div>
+      </div>
+
+      <!-- Settings & Audio Drone -->
+      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-slate-200 bg-white space-y-2.5 shadow-2xs">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2.5">
+            <i data-lucide="volume-2" class="w-4 h-4 text-purple-600"></i>
+            <div>
+              <p class="text-xs font-bold text-slate-800">432Hz Cosmic Om Drone</p>
+              <p class="text-[10px] text-slate-500">मेडिटेशन व शांति के लिए वैदिक नाद</p>
+            </div>
+          </div>
+          <button onclick="toggleDrone()" class="px-3 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 text-xs font-bold transition-all">
+            ऑन / ऑफ
+          </button>
+        </div>
+        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+          <div class="flex items-center space-x-2.5">
+            <i data-lucide="settings" class="w-4 h-4 text-amber-600"></i>
+            <div>
+              <p class="text-xs font-bold text-slate-800">वैदिक गणना व इंजन सेटिंग्स</p>
+              <p class="text-[10px] text-slate-500">शुद्ध पराशरी सिद्धांत व API कुंजी</p>
+            </div>
+          </div>
+          <button onclick="openSettingsModal()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 text-xs font-bold transition-all">
+            खोलें
+          </button>
+        </div>
+      </div>
+
+      <!-- Account / Google Sign-In or Sign-Out Button -->
+      <div id="profileAuthContainer" class="pt-1">
+        <button onclick="FirebaseAuthEngine.openLoginModal()" class="w-full py-2.5 rounded-2xl bg-white border border-slate-300 hover:border-amber-400 text-slate-800 font-bold text-xs flex items-center justify-center space-x-2 shadow-xs transition-all active:scale-98">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.03h3.88c2.27-2.09 3.66-5.17 3.66-9.12z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.03c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.13C3.25 21.36 7.35 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.26C.46 8.17 0 9.99 0 12s.46 3.83 1.26 5.42l4.02-3.13z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.25 2.64 1.26 6.58l4.02 3.13c.95-2.83 3.6-4.96 6.72-4.96z"/>
+          </svg>
+          <span id="profileAuthBtnText">Google से लॉगिन करें</span>
+        </button>
+      </div>
+
     </section>
 
   </main>
@@ -1089,28 +1241,20 @@
   <!-- BOTTOM FLOATING NAVIGATION (NATIVE ANDROID MATERIAL 3) -->
   <!-- ========================================== -->
   <div class="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none">
-    <div class="w-full max-w-[480px] bg-white/95 border-t border-slate-200 backdrop-blur-md px-2 py-1.5 shadow-lg pointer-events-auto">
-      <div class="w-full flex items-center justify-around text-[10px] font-bold">
-        <button onclick="switchTab('home')" class="nav-btn flex flex-col items-center space-y-1 text-amber-600 font-black p-1 transition-all active:scale-90">
-          <i data-lucide="home" class="w-4 h-4"></i>
+    <div class="w-full max-w-[480px] bg-white/95 border-t border-slate-200 backdrop-blur-md px-4 py-2 shadow-lg pointer-events-auto">
+      <div class="w-full flex items-center justify-around text-[11px] font-bold">
+        <button onclick="switchTab('home')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1.5 transition-all active:scale-90">
+          <i data-lucide="home" class="w-5 h-5"></i>
           <span>होम</span>
         </button>
-        <button onclick="switchTab('kundli')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1 transition-all active:scale-90">
-          <i data-lucide="compass" class="w-4 h-4"></i>
-          <span>कुंडली</span>
+        <button onclick="switchTab('consult')" class="nav-btn flex flex-col items-center space-y-1 text-amber-600 font-black relative p-1.5 transition-all active:scale-90">
+          <span class="absolute top-1 right-3 w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          <span>चैट</span>
         </button>
-        <button onclick="switchTab('consult')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 relative p-1 transition-all active:scale-90">
-          <span class="absolute top-0 right-2 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-          <i data-lucide="message-circle" class="w-4 h-4"></i>
-          <span>परामर्श (48)</span>
-        </button>
-        <button onclick="switchTab('panchang')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1 transition-all active:scale-90">
-          <i data-lucide="calendar" class="w-4 h-4"></i>
-          <span>पंचांग</span>
-        </button>
-        <button onclick="switchTab('milan')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1 transition-all active:scale-90">
-          <i data-lucide="heart" class="w-4 h-4"></i>
-          <span>मिलान</span>
+        <button onclick="switchTab('profile')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1.5 transition-all active:scale-90">
+          <i data-lucide="user" class="w-5 h-5"></i>
+          <span>प्रोफाइल</span>
         </button>
       </div>
     </div>
