@@ -306,49 +306,88 @@ function renderConsultAstrologers() {
     return;
   }
 
-  consultContainer.innerHTML = list.map(ast => `
-    <div class="p-3 sm:p-4 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 hover:border-amber-400 flex flex-col justify-between space-y-2.5 transition-all shadow-xs hover:shadow-md">
-      <div class="flex items-start space-x-3">
-        <div class="relative shrink-0">
-          <img src="${ast.avatar}" onerror="handleAvatarError(this)" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl object-cover border-2 border-amber-300 shadow-xs">
-          <div class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full animate-pulse" title="Online Now"></div>
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs sm:text-sm font-extrabold text-slate-900 truncate flex items-center space-x-1">
-              <span class="truncate">${ast.name}</span>
-              <span class="text-[10px] text-amber-800 font-medium shrink-0">(${ast.nameHindi})</span>
-              <i data-lucide="check-circle" class="w-3.5 h-3.5 text-blue-500 fill-blue-500/20 shrink-0"></i>
-            </h4>
-            <div class="flex items-center space-x-0.5 text-[11px] sm:text-xs text-amber-600 font-black shrink-0">
-              <span>★</span>
-              <span>${ast.rating}</span>
+  consultContainer.innerHTML = list.map(ast => {
+    const originalRate = Math.round((ast.ratePerMin || 15) * 2.2);
+    const skillsText = (ast.skills && Array.isArray(ast.skills)) ? ast.skills.join(", ") : "Vedic, Kundli";
+    const langsText = (ast.languages && Array.isArray(ast.languages)) ? ast.languages.join(", ") : "Hindi, English";
+    const expText = ast.experience ? (ast.experience.includes("Exp") ? ast.experience : `Exp- ${ast.experience}`) : "Exp- 12 Years";
+    const ordersText = ast.orders || "10k+ orders";
+
+    return `
+      <div class="p-3.5 sm:p-4 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 hover:border-amber-400 flex flex-col space-y-2.5 transition-all shadow-xs hover:shadow-md">
+        
+        <div class="flex items-start space-x-3.5">
+          <!-- Left Column: Circular Avatar with AstroTalk Golden Ring + 5 Stars + Orders -->
+          <div class="flex flex-col items-center shrink-0 w-18 sm:w-20">
+            <div class="relative w-16 h-16 sm:w-18 sm:h-18 rounded-full p-0.5 border-2 sm:border-[3px] border-amber-400 bg-white shadow-2xs">
+              <img src="${ast.avatar}" onerror="handleAvatarError(this)" class="w-full h-full rounded-full object-cover">
+              <span class="absolute bottom-0.5 right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full" title="Online"></span>
+            </div>
+            <!-- 5 Golden Stars directly under avatar -->
+            <div class="mt-1 flex items-center space-x-0.5 text-amber-500 text-xs">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="text-[9px] text-slate-400 font-semibold mt-0.5 text-center">${ordersText}</span>
+          </div>
+
+          <!-- Middle & Right Column: Details, Verified Checkmark, Pricing & Chat Button -->
+          <div class="flex-1 min-w-0 space-y-1">
+            <!-- Top Row: Name and Green Scalloped Verified Checkmark -->
+            <div class="flex items-center justify-between">
+              <h4 class="text-sm sm:text-base font-extrabold text-slate-900 truncate flex items-center space-x-1.5">
+                <span class="truncate">${ast.name}</span>
+                <span class="text-[10px] text-slate-500 font-normal shrink-0">(${ast.nameHindi})</span>
+              </h4>
+              <!-- AstroTalk Green Verified Badge -->
+              <div class="shrink-0 w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[10px] shadow-2xs ml-1" title="Verified Astrologer">
+                <svg class="w-3 h-3 stroke-white stroke-3" fill="none" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+
+            <!-- Speciality / Skills -->
+            <p class="text-xs text-slate-500 truncate">${skillsText}</p>
+
+            <!-- Languages -->
+            <p class="text-[11px] text-slate-400 truncate">${langsText}</p>
+
+            <!-- Experience -->
+            <p class="text-[11px] text-slate-400 font-medium">${expText}</p>
+
+            <!-- Pricing Row & Chat Button (Exact AstroTalk Structure) -->
+            <div class="pt-1.5 flex items-center justify-between">
+              <div class="flex items-baseline space-x-1.5">
+                <span class="text-xs text-slate-400 line-through font-medium">₹ ${originalRate}</span>
+                <span class="text-sm sm:text-base font-black text-rose-600">₹ ${ast.ratePerMin || 5}<span class="text-[10px] font-normal text-slate-500">/min</span></span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex items-center space-x-1.5">
+                <button onclick="startChatConsultation('${ast.id}')" class="px-5 py-1.5 rounded-xl border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-600 hover:text-white font-extrabold text-xs transition-all active:scale-95 shadow-2xs bg-white flex items-center space-x-1">
+                  <span>Chat</span>
+                </button>
+                <button onclick="startAudioCallConsultation('${ast.id}')" title="Call" class="p-1.5 rounded-xl border border-slate-200 text-slate-600 hover:text-emerald-700 hover:border-emerald-500 transition-all active:scale-95 bg-slate-50">
+                  <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
             </div>
           </div>
-          <p class="text-[10px] sm:text-[11px] text-amber-700 font-semibold truncate">${ast.title}</p>
-          <p class="text-[10px] text-slate-500 truncate">${ast.skills.join(" • ")}</p>
-          <p class="text-[9px] sm:text-[10px] text-slate-400">${ast.experience} • ${ast.orders || '10,000+'} consultations</p>
         </div>
-      </div>
 
-      <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-        <div>
-          <span class="text-[9px] text-slate-400">Fee</span>
-          <p class="font-black text-slate-900 text-xs sm:text-sm">₹ ${ast.ratePerMin}<span class="text-[9px] text-slate-500 font-normal">/min</span></p>
+        <!-- Footer Promo Banner (As seen in Screenshot) -->
+        <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+          <span class="flex items-center space-x-1 text-slate-500">
+            <span class="text-amber-500 text-xs">✨</span>
+            <span>Special offer for new users: प्रथम 5 मिनट 100% मुफ़्त</span>
+          </span>
+          <span class="text-emerald-600 font-bold flex items-center space-x-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Online</span>
+          </span>
         </div>
-        <div class="flex items-center space-x-1.5">
-          <button onclick="startChatConsultation('${ast.id}')" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold flex items-center space-x-1.5 transition-all active:scale-95 text-xs shadow-xs">
-            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-            <span>चैट करें (Chat)</span>
-          </button>
-          <button onclick="startAudioCallConsultation('${ast.id}')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold flex items-center space-x-1 transition-all active:scale-95 text-xs">
-            <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-600"></i>
-            <span>Call</span>
-          </button>
-        </div>
+
       </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   safeLucide();
 }

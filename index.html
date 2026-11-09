@@ -481,44 +481,49 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- TAB: LIVE ASTROLOGERS DIRECTORY / CHAT (DEFAULT SCREEN) -->
+    <!-- TAB: LIVE ASTROLOGERS DIRECTORY / CHAT (DEFAULT SCREEN - ASTROTALK PRO) -->
     <!-- ========================================== -->
-    <section id="section-consult" class="tab-content space-y-5">
-      <div class="glass-panel rounded-3xl p-5 md:p-7 border border-amber-300 space-y-5">
-        
-        <!-- Header Banner -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-3">
-          <div>
-            <div class="flex items-center space-x-2">
-              <h2 class="text-xl md:text-2xl font-bold font-mystic gold-gradient-text">विशेषज्ञ ज्योतिषी परामर्श</h2>
-              <span class="text-xs bg-amber-500 text-white font-extrabold px-2 py-0.5 rounded-full">48 ऑनलाइन</span>
-            </div>
-            <p class="text-xs text-slate-600 mt-0.5">भारत के शीर्ष वेदिक, टैरो, केपी, नाड़ी व लाल किताब आचार्य 24x7 उपलब्ध।</p>
+    <section id="section-consult" class="tab-content space-y-3.5">
+      
+      <!-- AstroTalk 100% Cashback Hero Card -->
+      <div class="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-100/90 via-orange-50/70 to-amber-100/90 border border-amber-300/80 p-4 sm:p-5 text-center shadow-xs">
+        <span class="absolute -left-2 -top-2 text-3xl select-none opacity-40">🪙</span>
+        <span class="absolute -right-2 -bottom-2 text-3xl select-none opacity-40">🪙</span>
+        <span class="absolute right-4 top-2 text-xl select-none opacity-30">✨</span>
+
+        <div class="relative z-10 space-y-1.5">
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">100% Cashback!</h2>
+          <div class="flex items-center justify-center space-x-2 text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-widest">
+            <span class="w-8 h-[1px] bg-slate-300"></span>
+            <span>ON FIRST RECHARGE</span>
+            <span class="w-8 h-[1px] bg-slate-300"></span>
           </div>
-          <div class="bg-amber-100 border border-amber-300 rounded-2xl px-3.5 py-1.5 flex items-center space-x-2">
-            <span class="text-base">🎁</span>
-            <p class="text-xs font-bold text-amber-900">प्रथम 5 मिनट 100% मुफ़्त</p>
+          <div class="pt-1.5">
+            <button onclick="openWalletModal()" class="px-7 py-2 rounded-full bg-[#FFD600] hover:bg-[#FFC400] text-slate-950 font-black text-xs uppercase tracking-wider shadow-sm transition-all active:scale-95">
+              RECHARGE NOW
+            </button>
           </div>
         </div>
-
-        <!-- Search Bar and Sort -->
-        <div class="flex flex-col sm:flex-row items-center gap-3">
-          <div class="relative flex-1 w-full">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-            <input type="text" id="astroSearchInput" oninput="handleAstroSearch()" placeholder="ज्योतिषी का नाम खोजें..." 
-              class="w-full bg-slate-50 border border-slate-200 focus:border-amber-500 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-800 outline-none transition-all">
-          </div>
-          <select id="astroSortSelect" onchange="handleAstroSort()" class="w-full sm:w-auto bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-semibold outline-none">
-            <option value="popular">लोकप्रियता (Popularity)</option>
-            <option value="rating">सर्वोच्च रेटिंग (4.9+ ★)</option>
-            <option value="exp">अधिकतम अनुभव (Years Exp)</option>
-            <option value="price_low">कम शुल्क (Price: Low to High)</option>
-          </select>
-        </div>
-
-        <!-- Astrologers Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="consultAstrologersDirectory"></div>
       </div>
+
+      <!-- Quick Search & Sort Bar -->
+      <div class="flex items-center gap-2">
+        <div class="relative flex-1">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+          <input type="text" id="astroSearchInput" oninput="handleAstroSearch()" placeholder="ज्योतिषी का नाम खोजें (Search)..." 
+            class="w-full bg-white border border-slate-200 focus:border-amber-500 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-800 outline-none transition-all shadow-2xs">
+        </div>
+        <select id="astroSortSelect" onchange="handleAstroSort()" class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-semibold outline-none shadow-2xs">
+          <option value="popular">लोकप्रियता (Popular)</option>
+          <option value="rating">रेटिंग (4.9+ ★)</option>
+          <option value="exp">अनुभव (Experience)</option>
+          <option value="price_low">कम शुल्क (Price: Low)</option>
+        </select>
+      </div>
+
+      <!-- Astrologers Directory List (AstroTalk Signature 1:1 Layout) -->
+      <div class="space-y-3" id="consultAstrologersDirectory"></div>
+
     </section>
 
     <!-- ========================================== -->
