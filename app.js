@@ -1832,38 +1832,10 @@ function orderRemedy(name) {
 }
 
 // -------------------------------------------------------------
-// LIVE STREAMING SIMULATION (ASTROTALK SIGNATURE)
+// LIVE STREAMING HELPER (LIGHTWEIGHT NO-OP)
 // -------------------------------------------------------------
 function startLiveStreamingSimulation() {
-  const container = document.getElementById("liveCommentsStream");
-  if (!container) return;
-
-  let index = 0;
-  setInterval(() => {
-    const c = SAMPLE_LIVE_COMMENTS[index % SAMPLE_LIVE_COMMENTS.length];
-    index++;
-
-    const div = document.createElement("div");
-    div.className = "comment-item flex items-center space-x-1.5 text-[11px] bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-200 text-slate-800 max-w-fit shadow-xs";
-    div.innerHTML = `
-      <span class="text-[9px] bg-amber-100 text-amber-800 px-1 rounded font-bold">${c.badge}</span>
-      <span class="font-bold text-slate-900">${c.user}:</span>
-      <span class="text-slate-700">${c.text}</span>
-    `;
-
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
-
-    while (container.children.length > 5) {
-      container.removeChild(container.firstChild);
-    }
-
-    const viewerEl = document.getElementById("liveViewerCount");
-    if (viewerEl) {
-      const v = 1420 + Math.floor(Math.random() * 40);
-      viewerEl.textContent = v.toLocaleString();
-    }
-  }, 2400);
+  // Disabled background interval to ensure 0% CPU usage and anti-lag performance
 }
 
 function sendLiveGift(emoji, giftName, cost) {
@@ -2038,10 +2010,7 @@ function initApp() {
   // 9. Default Kundli (Initial Non-blocking Render)
   safeRun(() => generateKundli(true), "generateKundli(true)");
 
-  // 10. Live streaming simulation
-  safeRun(startLiveStreamingSimulation, "startLiveStreamingSimulation");
-
-  // 11. Lucide Icons
+  // 10. Lucide Icons
   safeLucide();
 }
 
