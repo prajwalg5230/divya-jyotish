@@ -468,14 +468,41 @@ function switchTab(tabId) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  // Toggle Header: Home Screen has its own clean mockup header (IMG-20261109-WA0016.jpg)
+  const appHeader = document.getElementById("mainAppHeader");
+  if (appHeader) {
+    if (tabId === "home") {
+      appHeader.classList.add("hidden");
+    } else {
+      appHeader.classList.remove("hidden");
+    }
+  }
+
+  // Update dynamic name in Home screen header
+  if (tabId === "home") {
+    const homeTitle = document.getElementById("homeGreetingTitle");
+    if (homeTitle) {
+      let name = "Prajwal";
+      try {
+        const prof = JSON.parse(localStorage.getItem("divya_user_profile") || "{}");
+        if (prof.name) name = prof.name.split(" ")[0];
+      } catch (e) {}
+      if (typeof FirebaseAuthEngine !== "undefined" && FirebaseAuthEngine.isLoggedIn && FirebaseAuthEngine.isLoggedIn()) {
+        const u = FirebaseAuthEngine.getUser ? FirebaseAuthEngine.getUser() : null;
+        if (u && u.displayName) name = u.displayName.split(" ")[0];
+      }
+      homeTitle.textContent = `Namaste, ${name} 👋`;
+    }
+  }
+
   // Update Bottom Navigation button active styles
   document.querySelectorAll(".nav-btn").forEach(btn => {
     const isThisTab = btn.getAttribute("onclick")?.includes(`'${tabId}'`);
     if (isThisTab) {
-      btn.classList.add("text-amber-600", "font-black");
+      btn.classList.add("text-slate-900", "font-black");
       btn.classList.remove("text-slate-500");
     } else {
-      btn.classList.remove("text-amber-600", "font-black");
+      btn.classList.remove("text-slate-900", "font-black");
       btn.classList.add("text-slate-500");
     }
   });
