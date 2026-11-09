@@ -1,7 +1,7 @@
 /**
  * Divya Jyotish - Master Application Controller
  * Wires up AstroTalk-grade Light Mode UI, 32 Verified Astrologers,
- * Someday AI RAG Cognitive Engine, Gemini API Key Rotation, 3D Tarot,
+ * Vedic Planetary Ephemeris Engine, Gemini API Key Rotation, 3D Tarot,
  * Kundli calculations, Panchang, 36 Gun Milan, and 108 Jaap Mala.
  */
 
