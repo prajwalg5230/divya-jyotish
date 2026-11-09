@@ -265,6 +265,41 @@ function renderAstrologersDirectories() {
   safeLucide();
 }
 
+var activeFilterTab = "all";
+
+function handleAstroFilterTab(tab) {
+  activeFilterTab = tab;
+  
+  const pills = ["all", "new", "love", "career"];
+  pills.forEach(p => {
+    const el = document.getElementById(`pill-${p}`);
+    if (!el) return;
+    if (p === tab) {
+      el.className = "shrink-0 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border-2 border-[#FFD600] bg-amber-50/70 text-slate-900 shadow-2xs font-bold transition-all active:scale-95";
+    } else {
+      el.className = "shrink-0 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shadow-2xs font-bold transition-all active:scale-95";
+    }
+  });
+
+  renderConsultAstrologers();
+}
+
+function handleAstroFilterToggle() {
+  const wrapper = document.getElementById("astroSortWrapper");
+  if (wrapper) {
+    wrapper.classList.toggle("hidden");
+  }
+}
+
+function focusAstroSearch() {
+  switchTab('consult');
+  const input = document.getElementById('astroSearchInput');
+  if (input) {
+    input.focus();
+    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
 function renderConsultAstrologers() {
   const consultContainer = document.getElementById("consultAstrologersDirectory");
   if (!consultContainer) return;
@@ -275,7 +310,22 @@ function renderConsultAstrologers() {
 
   if (!list.length) return;
 
-  // Search Filter (All 48 Astrologers are universal consultants)
+  // Filter Pills Handling
+  if (activeFilterTab === "new") {
+    list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+  } else if (activeFilterTab === "love") {
+    list = list.filter(a => 
+      (a.skills && a.skills.some(s => /विवाह|relationship|love|soulmate|marri/i.test(s))) ||
+      (a.title && /love|soulmate|relationship|marriage/i.test(a.title))
+    );
+  } else if (activeFilterTab === "career") {
+    list = list.filter(a => 
+      (a.skills && a.skills.some(s => /करियर|career|job|vyapar|business/i.test(s))) ||
+      (a.title && /career|transformation|coach/i.test(a.title))
+    );
+  }
+
+  // Search Filter
   if (currentAstroSearch && currentAstroSearch.trim()) {
     const q = currentAstroSearch.toLowerCase().trim();
     list = list.filter(a =>
@@ -298,88 +348,98 @@ function renderConsultAstrologers() {
   if (list.length === 0) {
     consultContainer.innerHTML = `
       <div class="col-span-full py-12 text-center text-slate-500 bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
-        <p class="text-sm font-semibold text-slate-800">कोई ज्योतिषी नहीं मिला।</p>
-        <p class="text-xs mt-1 text-slate-500">कृपया दूसरा शब्द खोजें या फ़िल्टर बदलें।</p>
-        <button onclick="document.getElementById('astroSearchInput').value=''; currentAstroSearch=''; renderConsultAstrologers();" class="mt-3 px-4 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">सभी 48 ज्योतिषी देखें</button>
+        <p class="text-sm font-semibold text-slate-800">No astrologer found.</p>
+        <p class="text-xs mt-1 text-slate-500">Please try another name or clear filter.</p>
+        <button onclick="document.getElementById('astroSearchInput').value=''; currentAstroSearch=''; activeFilterTab='all'; handleAstroFilterTab('all');" class="mt-3 px-4 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">View All 48 Astrologers</button>
       </div>
     `;
     return;
   }
 
+  const englishSkillsMap = {
+    "वैदिक ज्योतिष": "Vedic",
+    "कुंडली": "Kundli",
+    "विवाह": "Marriage",
+    "करियर": "Career",
+    "उपाय": "Remedies",
+    "टैरो": "Tarot",
+    "अंकशास्त्र": "Numerology",
+    "केपी ज्योतिष": "KP Astrology",
+    "नाड़ी": "Nadi",
+    "लाल किताब": "Lal Kitab",
+    "हस्तरेखा": "Palmistry",
+    "वास्तु": "Vastu"
+  };
+
   consultContainer.innerHTML = list.map(ast => {
-    const originalRate = Math.round((ast.ratePerMin || 15) * 2.2);
-    const skillsText = (ast.skills && Array.isArray(ast.skills)) ? ast.skills.join(", ") : "Vedic, Kundli";
+    const originalRate = Math.round((ast.ratePerMin || 5) * 2.5);
+    let skillsList = (ast.skills && Array.isArray(ast.skills)) ? ast.skills.map(s => englishSkillsMap[s] || s) : ["Vedic", "Kundli"];
+    const skillsText = skillsList.slice(0, 3).join(", ");
     const langsText = (ast.languages && Array.isArray(ast.languages)) ? ast.languages.join(", ") : "Hindi, English";
-    const expText = ast.experience ? (ast.experience.includes("Exp") ? ast.experience : `Exp- ${ast.experience}`) : "Exp- 12 Years";
+    const expText = ast.experience ? (ast.experience.includes("Exp") ? ast.experience : `Exp- ${parseInt(ast.experience) || 12} Years`) : "Exp- 12 Years";
     const ordersText = ast.orders || "10k+ orders";
 
     return `
-      <div class="p-3.5 sm:p-4 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 hover:border-amber-400 flex flex-col space-y-2.5 transition-all shadow-xs hover:shadow-md">
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-amber-300 flex flex-col space-y-2.5 transition-all shadow-xs">
         
         <div class="flex items-start space-x-3.5">
-          <!-- Left Column: Circular Avatar with AstroTalk Golden Ring + 5 Stars + Orders -->
-          <div class="flex flex-col items-center shrink-0 w-18 sm:w-20">
-            <div class="relative w-16 h-16 sm:w-18 sm:h-18 rounded-full p-0.5 border-2 sm:border-[3px] border-amber-400 bg-white shadow-2xs">
+          <!-- Left Column: Circular Avatar with Bright Yellow Ring + 5 Stars + Orders -->
+          <div class="flex flex-col items-center shrink-0 w-16 sm:w-18">
+            <div class="relative w-16 h-16 rounded-full p-0.5 border-[2.5px] border-[#FFE600] bg-white shadow-2xs">
               <img src="${ast.avatar}" onerror="handleAvatarError(this)" class="w-full h-full rounded-full object-cover">
-              <span class="absolute bottom-0.5 right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full" title="Online"></span>
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
             </div>
-            <!-- 5 Golden Stars directly under avatar -->
-            <div class="mt-1 flex items-center space-x-0.5 text-amber-500 text-xs">
-              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            <!-- 5 Stars directly under avatar -->
+            <div class="mt-1 flex items-center space-x-0.5 text-xs">
+              <span class="text-amber-400">★</span><span class="text-amber-400">★</span><span class="text-amber-400">★</span><span class="text-amber-400">★</span><span class="text-slate-300">★</span>
             </div>
-            <span class="text-[9px] text-slate-400 font-semibold mt-0.5 text-center">${ordersText}</span>
+            <span class="text-[10px] text-slate-400 font-medium mt-0.5 text-center">${ordersText}</span>
           </div>
 
           <!-- Middle & Right Column: Details, Verified Checkmark, Pricing & Chat Button -->
           <div class="flex-1 min-w-0 space-y-1">
             <!-- Top Row: Name and Green Scalloped Verified Checkmark -->
             <div class="flex items-center justify-between">
-              <h4 class="text-sm sm:text-base font-extrabold text-slate-900 truncate flex items-center space-x-1.5">
-                <span class="truncate">${ast.name}</span>
-                <span class="text-[10px] text-slate-500 font-normal shrink-0">(${ast.nameHindi})</span>
+              <h4 class="text-base font-bold text-slate-900 truncate">
+                ${ast.name}
               </h4>
-              <!-- AstroTalk Green Verified Badge -->
-              <div class="shrink-0 w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[10px] shadow-2xs ml-1" title="Verified Astrologer">
+              <!-- AstroTalk Green Scalloped Verified Badge -->
+              <div class="shrink-0 w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white shadow-2xs ml-1" title="Verified Astrologer">
                 <svg class="w-3 h-3 stroke-white stroke-3" fill="none" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
             </div>
 
             <!-- Speciality / Skills -->
-            <p class="text-xs text-slate-500 truncate">${skillsText}</p>
+            <p class="text-xs text-slate-500 font-normal truncate">${skillsText}</p>
 
             <!-- Languages -->
-            <p class="text-[11px] text-slate-400 truncate">${langsText}</p>
+            <p class="text-xs text-slate-400 font-normal truncate">${langsText}</p>
 
             <!-- Experience -->
-            <p class="text-[11px] text-slate-400 font-medium">${expText}</p>
+            <p class="text-xs text-slate-400 font-normal">${expText}</p>
 
             <!-- Pricing Row & Chat Button (Exact AstroTalk Structure) -->
-            <div class="pt-1.5 flex items-center justify-between">
-              <div class="flex items-baseline space-x-1.5">
-                <span class="text-xs text-slate-400 line-through font-medium">₹ ${originalRate}</span>
-                <span class="text-sm sm:text-base font-black text-rose-600">₹ ${ast.ratePerMin || 5}<span class="text-[10px] font-normal text-slate-500">/min</span></span>
+            <div class="pt-1 flex items-center justify-between">
+              <div class="flex items-baseline space-x-1">
+                <span class="text-xs text-slate-400 line-through font-medium mr-1">₹ ${originalRate}</span>
+                <span class="text-sm sm:text-base font-black text-[#D92D20]">₹ ${ast.ratePerMin || 5}<span class="text-[11px] font-normal text-slate-500">/min</span></span>
               </div>
 
-              <!-- Action Buttons -->
-              <div class="flex items-center space-x-1.5">
-                <button onclick="startChatConsultation('${ast.id}')" class="px-5 py-1.5 rounded-xl border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-600 hover:text-white font-extrabold text-xs transition-all active:scale-95 shadow-2xs bg-white flex items-center space-x-1">
-                  <span>Chat</span>
-                </button>
-                <button onclick="startAudioCallConsultation('${ast.id}')" title="Call" class="p-1.5 rounded-xl border border-slate-200 text-slate-600 hover:text-emerald-700 hover:border-emerald-500 transition-all active:scale-95 bg-slate-50">
-                  <i data-lucide="phone" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
+              <!-- Clean Green Border [ Chat ] Button -->
+              <button onclick="startChatConsultation('${ast.id}')" class="px-6 py-1.5 rounded-xl border border-emerald-500 text-emerald-600 hover:bg-emerald-50 font-bold text-xs transition-all active:scale-95 bg-white shadow-2xs">
+                Chat
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Footer Promo Banner (As seen in Screenshot) -->
-        <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
-          <span class="flex items-center space-x-1 text-slate-500">
+        <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+          <div class="flex items-center space-x-1.5">
             <span class="text-amber-500 text-xs">✨</span>
-            <span>Special offer for new users: प्रथम 5 मिनट 100% मुफ़्त</span>
-          </span>
-          <span class="text-emerald-600 font-bold flex items-center space-x-1">
+            <span>Special offer for new users</span>
+          </div>
+          <span class="text-emerald-600 font-semibold text-[10px] flex items-center space-x-1">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>Online</span>
           </span>
@@ -537,15 +597,17 @@ function startChatConsultation(astId) {
 
   const chatNameEl = document.getElementById("chatAstName");
   if (chatNameEl) {
-    chatNameEl.innerHTML = `<span>${ast.name}</span> <span class="text-[10px] text-amber-800 font-normal">(${ast.nameHindi || ''})</span>`;
+    chatNameEl.innerHTML = `<span>${ast.name}</span>`;
   }
   const avatarEl = document.getElementById("chatAstAvatar");
   avatarEl.src = ast.avatar;
   avatarEl.onerror = () => { avatarEl.src = getFallbackAvatar(ast.name); };
-  document.getElementById("chatRate").textContent = ast.ratePerMin;
+  document.getElementById("chatRate").textContent = ast.ratePerMin || 5;
 
   const messagesBox = document.getElementById("chatMessages");
   messagesBox.innerHTML = "";
+
+  const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   // Render past history if available
   const pastHistory = AiAstrologerEngine.getChatHistory(ast.id);
@@ -557,7 +619,7 @@ function startChatConsultation(astId) {
             <div class="bg-amber-50 border border-amber-200 text-slate-900 rounded-2xl rounded-tr-none p-3 text-xs leading-relaxed max-w-[85%] shadow-sm">
               <p>${item.text}</p>
               <div class="flex items-center justify-end space-x-1 mt-1 text-[9px] text-slate-400">
-                <span>${item.timestamp || 'अभी'}</span>
+                <span>${item.timestamp || timeNow}</span>
                 <span class="text-blue-500 font-bold">✓✓</span>
               </div>
             </div>
@@ -570,21 +632,26 @@ function startChatConsultation(astId) {
             <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-3.5 text-xs text-slate-800 leading-relaxed max-w-[85%] shadow-sm space-y-1">
               <p class="font-bold text-amber-800 text-[11px]">${ast.name}</p>
               <div class="space-y-1">${item.text.replace(/\n\n/g, '<br><br>')}</div>
-              <span class="block text-[9px] text-slate-400 mt-1">${item.timestamp || 'अभी'}</span>
+              <span class="block text-[9px] text-slate-400 mt-1">${item.timestamp || timeNow}</span>
             </div>
           </div>
         `;
       }
     });
   } else {
-    // Welcome initial message
+    // Welcome initial message in Professional Hinglish
+    const isFemale = ast.gender === "female";
+    const welcomeText = isFemale
+      ? `Namaste! Main <strong>${ast.name}</strong> hoon. Aapki janam kundli aur 2026 planetary transits ko dekhkar accurate guidance dene ke liye online hoon. Career, marriage, relationships ya financial growth — poochiye aaj kis vishay par guidance chahiye.`
+      : `Namaste! Main <strong>${ast.name}</strong> hoon. Aapki janam kundli aur grah gochar ka analysis karke sahi disha aur accurate solutions batane ke liye online hoon. Career, marriage ya dhan labh — poochiye aaj kis vishay par guidance chahiye.`;
+
     messagesBox.innerHTML = `
       <div class="flex items-start space-x-2.5">
         <img src="${ast.avatar}" onerror="handleAvatarError(this)" class="w-8 h-8 rounded-full object-cover border border-amber-400 shrink-0">
         <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-none p-3.5 text-xs text-slate-800 leading-relaxed max-w-[85%] shadow-sm space-y-1">
           <p class="font-bold text-amber-800 text-[11px]">${ast.name}</p>
-          <p>प्रणाम प्रिय! मैं <strong>${ast.name}</strong>। आपकी जन्म कुंडली और 2026 गोचर ग्रहों की ऊर्जा को देखकर आपका मार्गदर्शन करने के लिए उपस्थित हूँ। अपने करियर, विवाह, प्रेम, धन या मानसिक शांति के विषय में निःसंकोच पूछें।</p>
-          <span class="block text-[9px] text-slate-400 mt-1">अभी</span>
+          <p>${welcomeText}</p>
+          <span class="block text-[9px] text-slate-400 mt-1">${timeNow}</span>
         </div>
       </div>
     `;
@@ -644,7 +711,7 @@ async function sendChatMessage(text) {
   box.innerHTML += `
     <div id="${typingId}" class="flex items-start space-x-2 text-xs text-slate-500 italic py-1">
       <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping shrink-0 mt-1"></span>
-      <span>${activeChatAstrologer.name} जन्म कुंडली और गोचर ग्रहों का सूक्ष्म अध्ययन कर रहे हैं...</span>
+      <span>${activeChatAstrologer.name} aapki janam kundli aur grah gochar dekh rahe hain...</span>
     </div>
   `;
   box.scrollTop = box.scrollHeight;

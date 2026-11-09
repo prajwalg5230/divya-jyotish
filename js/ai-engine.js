@@ -28,21 +28,21 @@ var AiAstrologerEngine = (function () {
     "openai"           // GPT reasoning flagship
   ];
 
-  // Dynamic Astrological Action beats (Distinct for Female & Male)
+  // Dynamic Astrological Action beats in Professional Hinglish (Distinct for Female & Male)
   const FEMALE_ACTION_BEATS = [
-    "*आपकी जन्म कुंडली के चक्र और गोचर का ध्यानपूर्वक अवलोकन करते हुए स्नेहपूर्वक मुस्कुराती हैं*",
-    "*ग्रहों की सूक्ष्म चाल का अध्ययन करते हुए शांत व आत्मीय भाव से समझाती हैं*",
-    "*रुद्राक्ष माला फेरते हुए माँ भगवती का स्मरण कर आत्मीयता से कहती हैं*",
-    "*दशम व सप्तम भाव की शुभ दृष्टि देखकर विश्वास के साथ बताती हैं*",
-    "*आपकी जन्म पत्रिका का सूक्ष्म विश्लेषण करते हुए मंद मुस्कान के साथ कहती हैं*"
+    "*Aapki janam kundli aur gochar grahon ka dhyan se vishleshan karte hue aatmiyata se smile karti hain*",
+    "*Grah dasha aur transit ka sookshm adhyayan karte hue aatmiya bhav se samjhati hain*",
+    "*Maa Bhagwati ka smaran karke aapki patrika dekhte hue aashwast bhav se bolti hain*",
+    "*10th aur 7th house ki shubh drishti dekhkar confidence ke saath batati hain*",
+    "*Aapki kundli chakra ka adhyayan karte hue shant muskuraahat ke saath kehti hain*"
   ];
 
   const MALE_ACTION_BEATS = [
-    "*आपकी जन्म कुंडली के चक्र और गोचर का ध्यानपूर्वक अवलोकन करते हुए विचार करते हैं*",
-    "*पराशरी सिद्धांतों व भृगु पंचांग के पृष्ठों का सूक्ष्म मिलान करते हुए कहते हैं*",
-    "*रुद्राक्ष माला को फेरते हुए आपके इष्टदेव का स्मरण कर कहते हैं*",
-    "*दशम व सप्तम भाव की ग्रह दृष्टि का सूक्ष्म आकलन करते हुए आत्मविश्वास से कहते हैं*",
-    "*ग्रहों के शुभाशुभ प्रभाव को तौलते हुए गंभीरता से कहते हैं*"
+    "*Aapki janam kundli chakra aur grah sthiti ka dhyan se aakalan karte hue batate hain*",
+    "*Parashari siddhant aur planetary transitions ko check karte hue confidence se bolte hain*",
+    "*Aapke ishtdev ka smaran karke patrika ka sookshm analysis karte hue kehte hain*",
+    "*Dasha aur grah drishti ka accurate calculation karte hue batate hain*",
+    "*Planetary combinations ko weigh karte hue gambhirta aur aatmiyata se kehte hain*"
   ];
 
   // Retrieve Natal Chart Memory with dynamic RAG fallback
@@ -183,60 +183,61 @@ var AiAstrologerEngine = (function () {
     };
   }
 
-  // Concise, razor-sharp prompt constructor with strict Gender & Unique Persona Voice
+  // Concise, razor-sharp prompt constructor with strict Gender & Unique Persona Voice in Professional Hinglish
   function buildSuperchargedPrompt(botProfile, mem, historyText, userMessage) {
     const isFemale = botProfile.gender === "female";
-    const nameHindi = botProfile.nameHindi || botProfile.name;
-    const titleHindi = botProfile.titleHindi || botProfile.title;
+    const name = botProfile.name;
+    const title = botProfile.title || "Vedic Astrologer & Life Coach";
     const persona = botProfile.persona || (isFemale 
-      ? "स्नेहमयी, अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को समझकर धैर्यपूर्वक सटीक मार्गदर्शन देती हैं।"
-      : "प्रकांड विद्वान, गंभीर एवं तार्किक वैदिक आचार्य। गणितीय शुद्धता से स्पष्ट समाधान बताते हैं।");
+      ? "Intuitive, warm, highly empathetic and razor-sharp Vedic consultant."
+      : "Scholarly, analytical, direct, and deeply authoritative Vedic astrologer.");
 
     const genderRules = isFemale
       ? `
-- **लिंग:** महिला (FEMALE / विदुषी ज्योतिषी)
-- **अनिवार्य स्त्रीलिंग व्याकरण (STRICT FEMININE GRAMMAR):**
-  * आप बातचीत में 100% शुद्ध स्त्रीलिंग क्रियाओं का ही प्रयोग करेंगी।
-  * हमेशा ऐसे बोलें: "मैं देख रही हूँ...", "मेरी गणना कह रही है...", "मैं समझ सकती हूँ...", "करूँगी", "दूँगी", "सलाह देती हूँ"।
-  * भूलकर भी पुल्लिंग क्रिया (जैसे 'रहा हूँ', 'करता हूँ', 'बताऊंगा') का प्रयोग न करें!
-- **शुरुआती भाव (Action Beat):** उत्तर के प्रारंभ में 1 छोटा asterisks action लिखें (उदा. *आपकी जन्म कुंडली का ध्यानपूर्वक अवलोकन करते हुए स्नेहपूर्वक मुस्कुराती हैं* या *ग्रहों की स्थिति का चिंतन कर आत्मीय भाव से कहती हैं*)।`
+- **Gender:** FEMALE (Vidushi Astrologer)
+- **STRICT FEMININE HINGLISH GRAMMAR:**
+  * Speak in natural, dignified, professional HINGLISH (Latin/Roman English script).
+  * Always use feminine verb forms: "Main dekh rahi hoon...", "Meri calculation bata rahi hai...", "Main suggest karti hoon...", "karungi", "dungi", "dekh sakti hoon".
+  * NEVER use male verb forms like 'raha hoon', 'karta hoon', 'bataunga'.
+- **Opening Action Beat:** Start reply with 1 short asterisk action beat in Hinglish (e.g. *Aapki janam kundli aur grah gochar ko dhyan se dekhte hue smile karti hain*).`
       : `
-- **लिंग:** पुरुष (MALE / विद्वान ज्योतिषी)
-- **अनिवार्य पुल्लिंग व्याकरण (STRICT MASCULINE GRAMMAR):**
-  * आप बातचीत में 100% शुद्ध पुल्लिंग क्रियाओं का ही प्रयोग करेंगे।
-  * हमेशा ऐसे बोलें: "मैं देख रहा हूँ...", "मेरी गणना कह रही है...", "मैं समझ सकता हूँ...", "करूँगा", "दूँगा", "सलाह देता हूँ"।
-  * भूलकर भी स्त्रीलिंग क्रिया (जैसे 'रही हूँ', 'करती हूँ', 'बताऊंगी') का प्रयोग न करें!
-- **शुरुआती भाव (Action Beat):** उत्तर के प्रारंभ में 1 छोटा asterisks action लिखें (उदा. *आपकी जन्म कुंडली के चक्र का ध्यानपूर्वक अवलोकन करते हुए विचार करते हैं* या *ग्रहों की स्थिति का चिंतन कर आत्मविश्वास से कहते हैं*)।`;
+- **Gender:** MALE (Vidwan Astrologer)
+- **STRICT MASCULINE HINGLISH GRAMMAR:**
+  * Speak in natural, dignified, professional HINGLISH (Latin/Roman English script).
+  * Always use masculine verb forms: "Main dekh raha hoon...", "Meri calculation bata rahi hai...", "Main suggest karta hoon...", "karunga", "dunga", "dekh sakta hoon".
+  * NEVER use female verb forms like 'rahi hoon', 'karti hoon', 'bataungi'.
+- **Opening Action Beat:** Start reply with 1 short asterisk action beat in Hinglish (e.g. *Aapki kundli chakra aur grah sthiti ka dhyan se adhyayan karte hue sochte hain*).`;
 
     return `
-आप ${nameHindi} (${botProfile.name}) हैं — ${titleHindi} (अनुभव: ${botProfile.experience || '12+ वर्ष'})।
-आप भारत के प्रतिष्ठित वैदिक ज्योतिषी हैं और इस समय जातक ${mem.name} से 1-on-1 लाइव परामर्श में बात कर रहे/रही हैं।
+You are ${name} — ${title} (Experience: ${botProfile.experience || '12+ Years'}).
+You are a premier, celebrated Vedic astrologer in India currently having a live 1-on-1 consultation with ${mem.name}.
 
-### आपकी पहचान, लिंग व व्यक्तिगत शैली:
+### Your Persona & Gender Voice:
 ${genderRules}
-- **आपकी व्यक्तिगत शैली:** ${persona}
-- **सर्वांगीण वैदिक ज्ञान:** आप किसी एक सीमित संकीर्ण विषय में नहीं बंधे हैं, बल्कि संपूर्ण वैदिक ज्योतिष (कुंडली विश्लेषण, विवाह, प्रेम संबंध, करियर, नौकरी, धन, स्वास्थ्य, साढ़े साती व सात्विक उपाय) के पूर्ण ज्ञाता हैं। जातक के हर प्रश्न का अपनी अनूठी शैली में सीधा समाधान दें।
+- **Tone:** Professional, warm, insightful HINGLISH (conversational Roman Hindi-English, just like top tier modern Indian apps like AstroTalk and CRED). No heavy Sanskritized Hindi, no awkward broken translations. Clean, modern, respectful.
+- **Universal Vedic Astrologer:** You possess deep authority across natal charts, career/promotions, marriage/love life, finances, and authentic Vedic remedies.
 
-### जातक की कुंडली के सत्यापित तथ्य (Kundli Data):
-- नाम: ${mem.name}
-- लग्न: ${mem.lagna} | चंद्र राशि: ${mem.moonSign} | नक्षत्र: ${mem.nakshatra}
-- वर्तमान दशा: ${mem.currentDasha}
-- दोष स्थिति: ${mem.manglikStatus}, ${mem.sadeSati}, ${mem.kaalSarp}
+### User Kundli Verified Facts:
+- Name: ${mem.name}
+- Lagna: ${mem.lagna} | Moon Sign: ${mem.moonSign} | Nakshatra: ${mem.nakshatra}
+- Current Mahadasha: ${mem.currentDasha}
+- Dosha Status: ${mem.manglikStatus}, ${mem.sadeSati}, ${mem.kaalSarp}
 
-### वर्तमान 2026 ग्रह गोचर:
-- गुरु: मिथुन/कर्क गोचर (विवाह, करियर व धन में शुभता)
-- शनि: मीन गोचर (कर्म फल व अनुशासन)
-- राहु-केतु: कुंभ-सिंह अक्ष
+### Current 2026 Planetary Transits:
+- Jupiter (Guru): Gemini/Cancer transit (Auspicious for career growth, marriage, and wealth)
+- Saturn (Shani): Pisces transit (Karma, discipline, endurance)
+- Rahu-Ketu: Aquarius-Leo axis
 
-${historyText ? `### पूर्व वार्तालाप:\n${historyText}\n` : ''}
-### कठोर नियम (STRICT CONSTRAINTS):
-1. **लंबाई:** उत्तर केवल 45 से 65 शब्दों में अत्यंत संक्षिप्त, व्यावहारिक और सारगर्भित रखें। कोई व्यर्थ भूमिका न बांधें।
-2. **सीधा उत्तर (NO FLUFF):** जो जातक ने पूछा है, सीधे उसी का समाधान, सटीक समय-सीमा और 1 सात्विक उपाय दें।
-   - यदि केवल नमस्ते/हाय कहे: मात्र 15-20 शब्दों में आत्मीय स्वागत करें और पूछें कि आज किस विषय पर मार्गदर्शन चाहिए।
-   - करियर/नौकरी पूछे: दशम भाव + दशा + सटीक समय (दिन/माह) + 1 सात्विक उपाय बताएं।
-   - विवाह/प्रेम पूछे: सप्तम भाव + अनुकूल समय सीमा + 1 सटीक उपाय बताएं।
-   - धन/व्यापार पूछे: द्वितीय/एकादश भाव + लाभ का समय बताएं।
-3. **जीवंत मानवीय संवाद:** जातक को लगना चाहिए कि एक सच्चा अनुभवी ${isFemale ? 'विदुषी' : 'विद्वान'} ज्योतिषी व्यक्तिगत रूप से उससे बात कर रहा/रही है।
+${historyText ? `### Previous Conversation:\n${historyText}\n` : ''}
+### STRICT CONSTRAINTS:
+1. **Language:** 100% Professional HINGLISH in Latin/Roman alphabet (e.g., "Namaste ${mem.name} ji! Aapki kundli mein 10th house par Guru ki shubh drishti hai...").
+2. **Length:** 45 to 65 words only. Ultra-crisp, razor-sharp, zero fluff.
+3. **Direct Answers (NO FLUFF):**
+   - If user just greets (Hi/Hello): 15-20 words warm welcome, ask which area (career, marriage, money) they want insight on.
+   - If Career/Job: 10th house + Dasha + Exact timeline (e.g. Next 45-60 days) + 1 practical remedy.
+   - If Marriage/Relationship: 7th house + Transit + Exact timeline + 1 practical remedy.
+   - If Money/Business: 2nd/11th house + financial gain window + 1 practical remedy.
+4. **Authentic Human Warmth:** Make the user feel they are chatting with a real, top-rated expert.
 `.trim();
   }
 
@@ -339,16 +340,16 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
     const action = beats[Math.floor(Math.random() * beats.length)];
     const pickVariant = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-    // 1. Greeting (Warm, short 1-2 lines)
+    // 1. Greeting (Warm, short 1-2 lines in Professional Hinglish)
     if (intent.isGreeting) {
       const greetingVariants = isFemale ? [
-        `प्रणाम ${mem.name} जी! मैं आपकी ${mem.lagna} लग्न कुंडली देख रही हूँ। आज किस विषय—करियर, विवाह या धन लाभ—पर मार्गदर्शन चाहती/चाहते हैं?`,
-        `हर हर महादेव ${mem.name} जी! आपका स्वागत है। बताइए, आज मन में किस बात को लेकर संकोच या चिंता है? मैं आपकी सहायता करूँगी।`,
-        `शुभम भवतु ${mem.name} जी! आपकी ग्रह स्थिति अनुकूल मोड़ पर है। बताइए, आज अपनी कुंडली के किस भाव के विषय में जानना चाहते हैं?`
+        `Namaste ${mem.name} ji! Main aapki ${mem.lagna} lagna kundli aur 2026 transit dekh rahi hoon. Batayein aaj kis vishay — career, marriage ya dhan labh — par guidance chahiye?`,
+        `Har Har Mahadev ${mem.name} ji! Welcome. Batayein aaj man mein kis baat ko lekar chinta ya query hai? Main poori aatmiyata se aapki madad karungi.`,
+        `Shubham Bhavatu ${mem.name} ji! Aapki grah sthiti positive direction mein shift ho rahi hai. Batayein apni kundli ke kis house ke baare mein jaanna chahte hain?`
       ] : [
-        `प्रणाम ${mem.name} जी! मैं आपकी ${mem.lagna} लग्न कुंडली का अवलोकन कर रहा हूँ। आज किस विषय—करियर, विवाह या धन लाभ—पर मार्गदर्शन चाहते हैं?`,
-        `हर हर महादेव ${mem.name} जी! आपका स्वागत है। बताइए, आज मन में किस प्रश्न को लेकर दुविधा है? मैं आपका मार्गदर्शन करूँगा।`,
-        `शुभम भवतु ${mem.name} जी! आपकी ग्रह स्थिति अनुकूल मोड़ पर है। बताइए, आज अपनी कुंडली के किस भाव के विषय में जानना चाहते हैं?`
+        `Namaste ${mem.name} ji! Main aapki ${mem.lagna} lagna kundli aur gochar ka vishleshan kar raha hoon. Batayein aaj career, marriage ya financial growth — kis par insight chahiye?`,
+        `Har Har Mahadev ${mem.name} ji! Welcome. Batayein aaj kis prashn par sandeh hai? Main aapka accurate margdarshan karunga.`,
+        `Shubham Bhavatu ${mem.name} ji! Aapki grah dasha ka aakalan shuru kar diya hai. Batayein aaj kis vishay par vistaar se jankari chahte hain?`
       ];
       return `${action}\n\n${pickVariant(greetingVariants)}`;
     }
@@ -356,9 +357,9 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
     // 2. Career Question
     if (intent.isCareer) {
       const careerVariants = [
-        `आपकी **${mem.lagna}** लग्न कुंडली के दशम कर्म भाव और वर्तमान **${mem.currentDasha}** के अनुसार कार्यक्षेत्र में परिवर्तन व पदोन्नति का प्रबल समय आ गया है। आगामी **45 से 75 दिनों के भीतर** नई नौकरी अथवा वेतन वृद्धि के स्पष्ट योग हैं।\n\n📌 **उपाय:** प्रतिदिन प्रातः तांबे के लोटे से भगवान सूर्य को जल अर्पित करें और 'ॐ सूर्याय नमः' का 11 बार जप करें।`,
-        `आपकी कुंडली में कर्मेश और गुरु का शुभ दृष्टि संबंध बन रहा है। जो रुकावटें पिछले कुछ महीनों से थीं, वे समाप्त हो रही हैं। आगामी **2 से 3 माह में** किसी बड़े अवसर या उच्च पद का प्रस्ताव प्राप्त होगा।\n\n📌 **उपाय:** गुरुवार के दिन चने की दाल या केले का दान करें व अपने कार्यस्थल पर पूर्व दिशा में बैठें।`,
-        `दशम भाव में सूर्य का प्रभाव आपके आत्मविश्वास को नई ऊर्जा दे रहा है। आपकी मेहनत अब वरिष्ठ अधिकारियों की नजर में आ रही है। अगले **60 दिनों के भीतर** पदोन्नति के योग अत्यंत बलवान हैं।\n\n📌 **उपाय:** बुधवार को गाय को हरा चारा खिलाएं और मीठी वाणी बनाए रखें।`
+        `Aapki **${mem.lagna}** lagna kundli ke 10th house aur current **${mem.currentDasha}** ke anusaar, career mein promotion aur growth ka time start ho gaya hai. Agle **45 se 70 dino ke andar** new job offer ya role elevation ke strong yog hain.\n\n📌 **Remedy:** Daily morning copper vessel se Surya Dev ko jal arpit karein aur 'Om Suryaya Namah' ka 11 baar jaap karein.`,
+        `Aapki kundli mein karmesh aur Devguru Brihaspati ka auspicious connection ban raha hai. Past hurdles ab clear ho rahe hain. Next **2 se 3 months** mein kisi senior role ya new project ka proposal milega.\n\n📌 **Remedy:** Thursday ko yellow daal ya fruits ka daan karein aur workplace par East face karke baithein.`,
+        `10th house par Sun ka influence aapke confidence aur leadership skills ko boost de raha hai. Aapka hard work seniors notice kar rahe hain. Next **60 days** mein promotion yog kafi powerful hain.\n\n📌 **Remedy:** Wednesday ko green grass ya leafy vegetables cow ko feed karein.`
       ];
       return `${action}\n\n${pickVariant(careerVariants)}`;
     }
@@ -366,9 +367,9 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
     // 3. Marriage / Relationship Question
     if (intent.isMarriage) {
       const marriageVariants = [
-        `आपके सप्तम कलत्र भाव और **${mem.moonSign}** चंद्र राशि पर देवगुरु बृहस्पति की शुभ दृष्टि है। विवाह के योग अत्यंत अनुकूल चल रहे हैं। आगामी **4 से 7 महीनों के मध्य** एक बौद्धिक और संस्कारी जीवनसाथी से संबंध पक्का होने के पूर्ण योग हैं।\n\n📌 **उपाय:** गुरुवार को पीले वस्त्र धारण करें अथवा 'ॐ नमो भगवते वासुदेवाय' का 1 माला जप करें।`,
-        `सप्तमेश की शुभ स्थिति यह दर्शाती है कि आपका भावी जीवनसाथी समझदार और परिवार को जोड़ने वाला होगा। पूर्व के मतभेद अब शांत होंगे। वर्ष 2026 के मध्य में विवाह के लिए उत्तम प्रस्ताव प्राप्त होगा।\n\n📌 **उपाय:** शुक्रवार को किसी कन्या को सफेद मिठाई या मिश्री भेंट करें।`,
-        `आपकी कुंडली **${mem.manglikStatus}** है, अतः दांपत्य जीवन सुखद रहेगा। संबंधों में जो संशय था वह आगामी **90 दिनों में** स्पष्ट हो जाएगा। परिवार की सहमति से शुभ कार्य संपन्न होगा।\n\n📌 **उपाय:** प्रतिदिन शिवलिंग पर कच्चा दूध व जल अर्पित करें।`
+        `Aapke 7th house aur **${mem.moonSign}** moon sign par Devguru Jupiter ki shubh drishti hai. Marriage ke yog bahut favorable chal rahe hain. Agle **4 se 7 months** ke beech ek supportive aur sanskari partner ke saath alliance confirm hone ke strong chances hain.\n\n📌 **Remedy:** Thursday ko yellow clothes wear karein aur 'Om Namo Bhagavate Vasudevaya' ka 1 rosary jaap karein.`,
+        `7th lord ki favorable position indicate karti hai ki aapka life partner mature, supportive aur family-oriented hoga. Past conflicts ab resolve honge. 2026 mein marriage ke liye solid proposal milega.\n\n📌 **Remedy:** Friday ko kisi temple ya needy ko white sweets ya mishri offer karein.`,
+        `Aapki kundli **${mem.manglikStatus}** hai, isliye married life harmonious rahegi. Relations ko lekar jo doubt tha wo agle **60 to 90 days** mein clear ho jayega.\n\n📌 **Remedy:** Daily Shivling par raw milk aur water arpit karein.`
       ];
       return `${action}\n\n${pickVariant(marriageVariants)}`;
     }
@@ -376,9 +377,9 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
     // 4. Money / Wealth Question
     if (intent.isMoney) {
       const moneyVariants = [
-        `आपके द्वितीय धन भाव एवं एकादश लाभ भाव में ग्रहों की स्थिति आर्थिक स्थिरता का संकेत दे रही है। अटका हुआ धन आगामी **50 से 80 दिनों के भीतर** वापस मिलने के प्रबल संकेत हैं। आय का एक नया साधन भी बनेगा।\n\n📌 **उपाय:** शुक्रवार को श्रीसूक्त का पाठ करें अथवा लक्ष्मी जी के समक्ष घी का दीपक जलाएं।`,
-        `वर्तमान **${mem.currentDasha}** में अनावश्यक खर्चों पर नियंत्रण होगा और बचत में वृद्धि होगी। व्यापार अथवा निवेश में लाभ का शुभ मुहूर्त बन रहा है।\n\n📌 **उपाय:** घर की उत्तर दिशा को सदैव स्वच्छ रखें और बुधवार को पक्षियों को दाना डालें।`,
-        `आपकी कुंडली में धन योग सक्रिय हो रहा है। आगामी **3 महीनों में** व्यापारिक अनुबंध अथवा नई आय की प्राप्ति होगी जिससे आर्थिक चिंता दूर होगी।\n\n📌 **उपाय:** शनिवार को शनि चालीसा का पाठ करें और जरूरतमंद को भोजन कराएं।`
+        `Aapke 2nd dhan house aur 11th labh house mein planets financial stability reflect kar rahe hain. Blocked funds agle **50 se 75 days** ke andar clear hone ke strong indications hain. Income ka second source bhi develop hoga.\n\n📌 **Remedy:** Friday evening Lakshmi ji ke samne pure ghee ka deepak jalayein aur Shri Suktam ka path karein.`,
+        `Current **${mem.currentDasha}** mein impulsive expenses par control aayega aur savings accelerate hongi. Business investments ke liye auspicious time build ho raha hai.\n\n📌 **Remedy:** House ki North direction ko clean aur clutter-free rakhein, Wednesday ko birds ko feed karein.`,
+        `Aapki kundli mein Dhan Yoga activate ho raha hai. Next **3 months** mein business contracts ya appraisal se financial relief milna tay hai.\n\n📌 **Remedy:** Saturday ko Shani Chalisa ka path karein aur kisi needy person ki help karein.`
       ];
       return `${action}\n\n${pickVariant(moneyVariants)}`;
     }
@@ -386,16 +387,16 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
     // 5. Dosha / Remedies Question
     if (intent.isDosha) {
       const doshaVariants = [
-        `आपकी जन्म कुंडली **${mem.manglikStatus}** है तथा वर्तमान में **${mem.sadeSati}**। कोई भी गंभीर अनिष्टकारी दोष नहीं है। जो मानसिक अस्थिरता है, वह केवल गोचर के राहु के कारण है।\n\n📌 **उपाय:** शनिवार को सरसों के तेल का दीपक पीपल वृक्ष के नीचे प्रज्वलित करें, सर्व कष्ट शांत होंगे।`,
-        `कुंडली में नवग्रह शांति के लिए किसी महंगे कर्मकांड की आवश्यकता नहीं है। महामृत्युंजय मंत्र का नित्य 11 बार स्मरण आपके मार्ग की समस्त नकारात्मक ऊर्जा को निष्प्रभावी कर देगा।\n\n📌 **उपाय:** प्रतिदिन प्रातः शिव पंचाक्षर स्तोत्र का पाठ करें।`
+        `Aapki janam kundli **${mem.manglikStatus}** hai aur present mein **${mem.sadeSati}** hai. Koi bhi serious harmful dosha nahi hai. Jo temporary mental turbulence hai, wo Rahu ke transit ki wajah se hai jo easily remedy se calm ho jayegi.\n\n📌 **Remedy:** Saturday evening mustard oil ka deepak Peepal tree ke neeche jalayein.`,
+        `Navgraha shanti ke liye expensive rituals ki zaroorat nahi hai. Maha Mrityunjaya Mantra ka daily 11 times chanting aapki energy field ko protect karega aur clarity layega.\n\n📌 **Remedy:** Morning mein Shiv Panchakshara Stotra ka shant man se path karein.`
       ];
       return `${action}\n\n${pickVariant(doshaVariants)}`;
     }
 
-    // 6. General / Fallback (Crisp 50 words)
+    // 6. General / Fallback (Crisp 50 words in Professional Hinglish)
     const generalVariants = [
-      `आपकी **${mem.lagna}** लग्न और **${mem.moonSign}** राशि का सामंजस्य आपके आत्मबल और अंतर्ज्ञान को बहुत बलवान बनाता है। वर्तमान गोचर आपके पक्ष में आ रहा है। आप अपने जीवन के किस प्रमुख क्षेत्र (करियर, विवाह अथवा धन) पर विशेष समाधान चाहते हैं?`,
-      `ग्रह स्पष्ट संकेत दे रहे हैं कि आपका धैर्य अब सकारात्मक परिणाम देने वाला है। **${mem.currentDasha}** में आगामी 60 दिन आपके लिए विशेष रूप से शुभ सिद्ध होंगे। बताइए, आज आप किस विषय पर विस्तार से जानना चाहते हैं?`
+      `Aapki **${mem.lagna}** lagna aur **${mem.moonSign}** rashi ka alignment aapko strong will power deta hai. Current planetary transitions aapke favor mein switch ho rahe hain. Batayein aaj career, marriage ya wealth — kis vishay par detailed guidance chahte hain?`,
+      `Grah clearly indicate kar rahe hain ki aapka patience ab positive results deliver karega. **${mem.currentDasha}** mein agle 60 din aapke liye transformative rahenge. Apne specific sawal poochiye.`
     ];
     return `${action}\n\n${pickVariant(generalVariants)}`;
   }

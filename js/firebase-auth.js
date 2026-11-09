@@ -282,85 +282,37 @@ const FirebaseAuthEngine = (function () {
   }
 
   function updateHeaderUI() {
-    const authContainer = document.getElementById("headerAuthContainer");
-    if (!authContainer) return;
+    const greetingEl = document.getElementById("headerUserGreeting");
+    const avatarEl = document.getElementById("headerUserAvatar");
+
+    let firstName = "Prajwal";
+    try {
+      const prof = JSON.parse(localStorage.getItem("divya_user_profile") || "{}");
+      if (prof.name) firstName = prof.name.split(" ")[0];
+    } catch (e) {}
 
     if (isLoggedIn() && currentUser) {
-      const firstName = currentUser.displayName.split(" ")[0] || "Seeker";
-      authContainer.innerHTML = `
-        <div class="relative" id="userProfileMenuContainer">
-          <button onclick="FirebaseAuthEngine.toggleProfileDropdown()" 
-            class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 border border-amber-300 text-slate-800 text-xs font-bold transition-all shadow-xs active:scale-95">
-            <div class="relative">
-              <img src="${currentUser.photoURL}" class="w-6 h-6 rounded-full border border-amber-500 object-cover" onerror="this.src='avatars/ast_1.jpg'">
-              <span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white"></span>
-            </div>
-            <span class="max-w-[70px] truncate text-[11px] font-extrabold text-slate-900">${firstName}</span>
-            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-500"></i>
+      firstName = currentUser.displayName.split(" ")[0] || firstName;
+      if (avatarEl && currentUser.photoURL) avatarEl.src = currentUser.photoURL;
+    }
+
+    if (greetingEl) greetingEl.textContent = `Hi ${firstName}`;
+
+    const authContainer = document.getElementById("headerAuthContainer");
+    if (authContainer) {
+      if (isLoggedIn() && currentUser) {
+        authContainer.innerHTML = `
+          <button onclick="switchTab('profile')" class="flex items-center space-x-1 px-2.5 py-1.5 rounded-full bg-amber-50 border border-amber-300 text-slate-800 text-xs font-bold transition-all shadow-xs active:scale-95">
+            <span class="text-[11px] font-extrabold text-slate-900">${firstName}</span>
           </button>
-
-          <!-- Dropdown Menu -->
-          <div id="userProfileDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white border border-slate-200 rounded-2xl shadow-2xl py-2 z-50 text-left bottom-sheet-anim">
-            <div class="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-amber-50 to-orange-50">
-              <div class="flex items-center space-x-2.5">
-                <img src="${currentUser.photoURL}" class="w-9 h-9 rounded-full border-2 border-amber-500 object-cover">
-                <div>
-                  <p class="text-xs font-bold text-slate-900">${currentUser.displayName}</p>
-                  <p class="text-[10px] text-slate-500 truncate">${currentUser.email}</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-1.5 mt-2">
-                <span class="text-[9px] bg-emerald-100 text-emerald-800 font-extrabold px-2 py-0.5 rounded-full">✓ Google Verified</span>
-                <span class="text-[9px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">Pro Member</span>
-              </div>
-            </div>
-
-            <div class="py-1.5 text-xs">
-              <button onclick="switchTab('kundli'); FirebaseAuthEngine.closeProfileDropdown();" 
-                class="w-full text-left px-4 py-2 text-slate-700 hover:bg-amber-50 flex items-center space-x-2.5 font-medium transition-colors">
-                <i data-lucide="compass" class="w-4 h-4 text-amber-600"></i>
-                <span>मेरी जन्म कुंडली (Birth Chart)</span>
-              </button>
-              <button onclick="switchTab('milan'); FirebaseAuthEngine.closeProfileDropdown();" 
-                class="w-full text-left px-4 py-2 text-slate-700 hover:bg-rose-50 flex items-center space-x-2.5 font-medium transition-colors">
-                <i data-lucide="heart" class="w-4 h-4 text-rose-500"></i>
-                <span>36 गुण मिलान (Kundli Milan)</span>
-              </button>
-              <button onclick="openWalletModal(); FirebaseAuthEngine.closeProfileDropdown();" 
-                class="w-full text-left px-4 py-2 text-slate-700 hover:bg-emerald-50 flex items-center space-x-2.5 font-medium transition-colors">
-                <i data-lucide="wallet" class="w-4 h-4 text-emerald-600"></i>
-                <span>वॉलेट बैलेंस (₹ 150)</span>
-              </button>
-              <button onclick="FirebaseAuthEngine.openOnboardingModal(); FirebaseAuthEngine.closeProfileDropdown();" 
-                class="w-full text-left px-4 py-2 text-slate-700 hover:bg-purple-50 flex items-center space-x-2.5 font-medium transition-colors">
-                <i data-lucide="user-check" class="w-4 h-4 text-purple-600"></i>
-                <span>जन्म विवरण अपडेट करें</span>
-              </button>
-            </div>
-
-            <div class="border-t border-slate-100 pt-1">
-              <button onclick="FirebaseAuthEngine.signOut()" 
-                class="w-full text-left px-4 py-2 text-xs text-rose-600 hover:bg-rose-50 flex items-center space-x-2.5 font-bold transition-colors">
-                <i data-lucide="log-out" class="w-4 h-4 text-rose-600"></i>
-                <span>लॉगआउट (Clear LocalStorage)</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-    } else {
-      authContainer.innerHTML = `
-        <button onclick="FirebaseAuthEngine.openLoginModal()" 
-          class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 border border-slate-300 hover:border-amber-400 text-slate-800 text-xs font-extrabold shadow-2xs transition-all active:scale-95">
-          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
-            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.03h3.88c2.27-2.09 3.66-5.17 3.66-9.12z"/>
-            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.03c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.13C3.25 21.36 7.35 24 12 24z"/>
-            <path fill="#FBBC05" d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.26C.46 8.17 0 9.99 0 12s.46 3.83 1.26 5.42l4.02-3.13z"/>
-            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.25 2.64 1.26 6.58l4.02 3.13c.95-2.83 3.6-4.96 6.72-4.96z"/>
-          </svg>
-          <span>लॉगिन</span>
-        </button>
-      `;
+        `;
+      } else {
+        authContainer.innerHTML = `
+          <button onclick="FirebaseAuthEngine.openLoginModal()" class="flex items-center space-x-1 px-2.5 py-1.5 rounded-full bg-white hover:bg-amber-50 border border-slate-300 hover:border-amber-400 text-slate-800 text-xs font-bold shadow-2xs transition-all active:scale-95">
+            <span>Login</span>
+          </button>
+        `;
+      }
     }
 
     updateHomeGreetingUI();
