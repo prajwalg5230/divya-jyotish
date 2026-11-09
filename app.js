@@ -1120,7 +1120,7 @@ function switchKundliChart(type) {
   }
   if (d1Btn && d9Btn) {
     if (isNav) {
-      d9Btn.className = "px-3 py-1.5 rounded-xl bg-purple-600 text-white font-extrabold text-xs shadow-xs transition-all";
+      d9Btn.className = "px-3 py-1.5 rounded-xl bg-amber-600 text-white font-extrabold text-xs shadow-xs transition-all";
       d1Btn.className = "px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all";
     } else {
       d1Btn.className = "px-3 py-1.5 rounded-xl bg-amber-500 text-white font-extrabold text-xs shadow-xs transition-all";
@@ -1168,9 +1168,9 @@ function renderKundliResult(data) {
         <p class="text-sm font-bold text-blue-700">${data.moonSign} (${moonPlanet ? moonPlanet.rashiSymbol : ''})</p>
         <p class="text-[10px] text-slate-500">${data.nakshatra} (चरण ${data.pada})</p>
       </div>
-      <div class="bg-purple-50/50 p-3 rounded-xl border border-purple-200/60">
+      <div class="bg-amber-50/50 p-3 rounded-xl border border-amber-200/60">
         <p class="text-[10px] text-slate-500 uppercase font-semibold">सूर्य राशि (Sun Sign)</p>
-        <p class="text-sm font-bold text-purple-700">${sunPlanet ? sunPlanet.rashi : 'सिंह'} (${sunPlanet ? sunPlanet.rashiSymbol : '♌'})</p>
+        <p class="text-sm font-bold text-amber-800">${sunPlanet ? sunPlanet.rashi : 'सिंह'} (${sunPlanet ? sunPlanet.rashiSymbol : '♌'})</p>
         <p class="text-[10px] text-slate-500">${sunPlanet ? sunPlanet.rashiDegreeStr : ''}</p>
       </div>
       <div class="bg-emerald-50/50 p-3 rounded-xl border border-emerald-200/60">
@@ -1199,7 +1199,7 @@ function renderKundliResult(data) {
               लग्न (D1)
             </button>
             <button id="chartD9Btn" onclick="switchKundliChart('D9')" 
-              class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${currentChartType === 'D9' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-700 hover:text-black'}">
+              class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${currentChartType === 'D9' ? 'bg-amber-600 text-white shadow-xs' : 'text-slate-700 hover:text-black'}">
               नवमांश (D9)
             </button>
           </div>
@@ -1223,7 +1223,7 @@ function renderKundliResult(data) {
       <!-- Planetary Positions Table -->
       <div class="space-y-4">
         <h4 class="text-sm font-bold text-slate-900 flex items-center space-x-1.5">
-          <i data-lucide="layers" class="w-4 h-4 text-purple-600"></i>
+          <i data-lucide="layers" class="w-4 h-4 text-amber-600"></i>
           <span>ग्रह स्थिति एवं नक्षत्र (Planetary Longitudes)</span>
         </h4>
         <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -1248,7 +1248,7 @@ function renderKundliResult(data) {
                   <td class="p-2.5 font-semibold text-amber-800">${p.rashi}</td>
                   <td class="p-2.5 text-slate-600 font-mono">${p.rashiDegreeStr}</td>
                   <td class="p-2.5 font-bold text-blue-700">भाव ${p.house}</td>
-                  <td class="p-2.5 text-purple-700">${p.nakshatra} (प ${p.pada})</td>
+                  <td class="p-2.5 text-slate-700 font-semibold">${p.nakshatra} (प ${p.pada})</td>
                 </tr>
               `).join("")}
             </tbody>
@@ -1259,13 +1259,13 @@ function renderKundliResult(data) {
     </div>
 
     <!-- Vimshottari Mahadasha Timeline -->
-    <div class="bg-white p-5 rounded-3xl border border-purple-200 space-y-4 shadow-sm">
+    <div class="bg-white p-5 rounded-3xl border border-amber-200 space-y-4 shadow-sm">
       <div class="flex items-center justify-between">
-        <h4 class="text-sm font-bold text-purple-900 flex items-center space-x-1.5">
-          <i data-lucide="clock" class="w-4 h-4 text-purple-600"></i>
+        <h4 class="text-sm font-bold text-amber-900 flex items-center space-x-1.5">
+          <i data-lucide="clock" class="w-4 h-4 text-amber-600"></i>
           <span>विंशोत्तरी महादशा चक्र (120 वर्ष क्रम)</span>
         </h4>
-        <span class="text-[10px] bg-purple-100 text-purple-800 font-extrabold px-2.5 py-0.5 rounded-full">
+        <span class="text-[10px] bg-amber-100 text-amber-900 font-extrabold px-2.5 py-0.5 rounded-full">
           सक्रिय: ${currentDasha.lord} महादशा (${currentDasha.startYear} - ${currentDasha.endYear})
         </span>
       </div>
@@ -1274,13 +1274,13 @@ function renderKundliResult(data) {
         ${data.dashaTimeline.map(d => `
           <div class="p-2.5 rounded-2xl text-center border transition-all ${
             d.isCurrent 
-              ? 'bg-gradient-to-b from-purple-50 to-amber-50 border-purple-500 shadow-md ring-2 ring-purple-400/40' 
+              ? 'bg-gradient-to-b from-amber-50 to-orange-50 border-amber-500 shadow-md ring-2 ring-amber-400/40' 
               : 'bg-slate-50 border-slate-200 hover:border-slate-300'
           }">
-            <p class="text-xs font-bold ${d.isCurrent ? 'text-purple-900 font-black' : 'text-slate-800'}">${d.lord}</p>
+            <p class="text-xs font-bold ${d.isCurrent ? 'text-amber-950 font-black' : 'text-slate-800'}">${d.lord}</p>
             <p class="text-[10px] text-slate-500 font-mono mt-0.5">${d.startYear} - ${d.endYear}</p>
             <span class="inline-block mt-1 text-[9px] px-1.5 py-0.2 rounded-full font-bold ${
-              d.isCurrent ? 'bg-purple-600 text-white animate-pulse' : 'bg-slate-200 text-slate-600'
+              d.isCurrent ? 'bg-amber-600 text-white animate-pulse' : 'bg-slate-200 text-slate-600'
             }">
               ${d.isCurrent ? 'वर्तमान (Active)' : `${d.years} वर्ष`}
             </span>
@@ -1325,14 +1325,14 @@ function renderKundliResult(data) {
       </div>
 
       <!-- Kaal Sarp Dosha -->
-      <div class="bg-white p-4.5 rounded-3xl border ${data.doshas.kaalSarp.status ? 'border-purple-300' : 'border-emerald-300'} space-y-2 shadow-sm">
+      <div class="bg-white p-4.5 rounded-3xl border ${data.doshas.kaalSarp.status ? 'border-amber-400' : 'border-emerald-300'} space-y-2 shadow-sm">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-slate-900 flex items-center space-x-1">
-            <i data-lucide="disc" class="w-3.5 h-3.5 text-purple-600"></i>
+            <i data-lucide="disc" class="w-3.5 h-3.5 text-amber-600"></i>
             <span>कालसर्प योग (Kaal Sarp)</span>
           </span>
           <span class="text-[10px] px-2 py-0.5 rounded-full font-extrabold ${
-            data.doshas.kaalSarp.status ? 'bg-purple-100 text-purple-800' : 'bg-emerald-100 text-emerald-800'
+            data.doshas.kaalSarp.status ? 'bg-amber-100 text-amber-900' : 'bg-emerald-100 text-emerald-800'
           }">
             ${data.doshas.kaalSarp.status ? `सक्रिय (${data.doshas.kaalSarp.type})` : 'दोष मुक्त'}
           </span>
@@ -1598,7 +1598,7 @@ function renderPanchang() {
 
         <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 shadow-xs">
           <p class="text-[10px] text-slate-500 uppercase font-semibold">नक्षत्र (Nakshatra)</p>
-          <p class="text-xs font-bold text-purple-700 mt-1">${panchang.nakshatra}</p>
+          <p class="text-xs font-bold text-amber-800 mt-1">${panchang.nakshatra}</p>
           <p class="text-[10px] text-slate-500 mt-1">स्वामी: ${panchang.nakshatraLord} • देव: ${panchang.nakshatraDeity}</p>
         </div>
 
@@ -1708,10 +1708,10 @@ function drawTarotSpread(isInitial = false) {
 
   container.innerHTML = cards.map((card, idx) => `
     <div class="space-y-3">
-      <span class="text-xs font-bold text-indigo-900">${titles[idx]}</span>
+      <span class="text-xs font-bold text-amber-900">${titles[idx]}</span>
       <div class="relative w-full aspect-[2/3] max-w-[260px] mx-auto perspective-1000 cursor-pointer" onclick="flipTarotCard(this)">
         <div class="tarot-card-inner w-full h-full relative rounded-3xl shadow-xl transition-transform duration-700">
-          <div class="card-face absolute inset-0 rounded-3xl bg-gradient-to-tr from-amber-600 to-indigo-900 border-2 border-amber-300 p-4 flex flex-col items-center justify-between text-white">
+          <div class="card-face absolute inset-0 rounded-3xl bg-gradient-to-tr from-amber-600 via-amber-700 to-amber-900 border-2 border-amber-300 p-4 flex flex-col items-center justify-between text-white">
             <div class="text-[10px] uppercase tracking-widest text-amber-200 font-bold">दिव्य टैरो</div>
             <div class="text-4xl">🔮</div>
             <p class="text-[11px] text-amber-100">टैप कर कार्ड खोलें</p>
@@ -1789,20 +1789,20 @@ function calculateNumerologyUI(isInitial = false) {
         <p class="text-[11px] text-slate-500">स्वामी ग्रह: <b>${data.mulank.planet}</b> • तत्व: ${data.mulank.element}</p>
       </div>
 
-      <div class="bg-white p-5 rounded-3xl border border-purple-300 text-center space-y-2 shadow-sm">
-        <span class="text-[10px] uppercase text-purple-700 font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-purple-50 border border-purple-200 inline-block">
+      <div class="bg-white p-5 rounded-3xl border border-amber-300 text-center space-y-2 shadow-sm">
+        <span class="text-[10px] uppercase text-amber-800 font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 inline-block">
           भाग्यांक (Destiny / Life Path)
         </span>
-        <div class="text-5xl font-black text-purple-600 font-mystic">${data.bhagyank.number}</div>
+        <div class="text-5xl font-black text-amber-600 font-mystic">${data.bhagyank.number}</div>
         <p class="text-xs font-bold text-slate-900">${data.bhagyank.name}</p>
         <p class="text-[11px] text-slate-500">स्वामी ग्रह: <b>${data.bhagyank.planet}</b> • तत्व: ${data.bhagyank.element}</p>
       </div>
 
-      <div class="bg-white p-5 rounded-3xl border border-cyan-300 text-center space-y-2 shadow-sm">
-        <span class="text-[10px] uppercase text-cyan-700 font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 inline-block">
+      <div class="bg-white p-5 rounded-3xl border border-amber-300 text-center space-y-2 shadow-sm">
+        <span class="text-[10px] uppercase text-amber-800 font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 inline-block">
           नामांक (Name Vibration - Chaldean)
         </span>
-        <div class="text-5xl font-black text-cyan-600 font-mystic">${data.namank.number}</div>
+        <div class="text-5xl font-black text-amber-600 font-mystic">${data.namank.number}</div>
         <p class="text-xs font-bold text-slate-900">${data.namank.name}</p>
         <p class="text-[11px] text-slate-500">स्वामी ग्रह: <b>${data.namank.planet}</b></p>
       </div>
@@ -2005,7 +2005,7 @@ function renderRashiDetail(idx) {
       <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200"><span class="text-slate-500">शुभ अंक</span><p class="text-amber-800 font-bold mt-1">${r.luckyNumber}</p></div>
       <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200"><span class="text-slate-500">शुभ रंग</span><p class="text-slate-800 font-bold mt-1">${r.luckyColor}</p></div>
       <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200"><span class="text-slate-500">शुभ समय</span><p class="text-slate-800 font-bold mt-1">${r.luckyTime}</p></div>
-      <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200"><span class="text-slate-500">मंत्र</span><p class="text-purple-700 font-bold mt-1 font-sanskrit truncate">${r.mantra}</p></div>
+      <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200"><span class="text-slate-500">मंत्र</span><p class="text-amber-800 font-bold mt-1 font-sanskrit truncate">${r.mantra}</p></div>
     </div>
   `;
 }
@@ -2114,7 +2114,7 @@ function toggleDrone() {
   JaapAudio.toggleOmDrone(!isPlaying);
   const btn = document.getElementById("omDroneBtn");
   if (btn) {
-    btn.classList.toggle("bg-purple-600", !isPlaying);
+    btn.classList.toggle("bg-amber-600", !isPlaying);
     btn.classList.toggle("text-white", !isPlaying);
   }
 }
