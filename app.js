@@ -275,7 +275,7 @@ function handleAstroFilterTab(tab) {
     const el = document.getElementById(`pill-${p}`);
     if (!el) return;
     if (p === tab) {
-      el.className = "shrink-0 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border-2 border-[#FFD600] bg-amber-50/70 text-slate-900 shadow-2xs font-bold transition-all active:scale-95";
+      el.className = "shrink-0 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border-2 border-[#A87935] bg-[#FAF6EE] text-[#A87935] shadow-2xs font-bold transition-all active:scale-95";
     } else {
       el.className = "shrink-0 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shadow-2xs font-bold transition-all active:scale-95";
     }
@@ -385,13 +385,13 @@ function renderConsultAstrologers() {
         <div class="flex items-start space-x-3.5">
           <!-- Left Column: Circular Avatar with Bright Yellow Ring + 5 Stars + Orders -->
           <div class="flex flex-col items-center shrink-0 w-16 sm:w-18">
-            <div class="relative w-16 h-16 rounded-full p-0.5 border-[2.5px] border-[#FFE600] bg-white shadow-2xs">
+            <div class="relative w-16 h-16 rounded-full p-0.5 border-[2px] border-[#A87935] bg-white shadow-2xs">
               <img src="${ast.avatar}" onerror="handleAvatarError(this)" class="w-full h-full rounded-full object-cover">
               <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
             </div>
             <!-- 5 Stars directly under avatar -->
             <div class="mt-1 flex items-center space-x-0.5 text-xs">
-              <span class="text-amber-400">★</span><span class="text-amber-400">★</span><span class="text-amber-400">★</span><span class="text-amber-400">★</span><span class="text-slate-300">★</span>
+              <span class="text-[#A87935]">★</span><span class="text-[#A87935]">★</span><span class="text-[#A87935]">★</span><span class="text-[#A87935]">★</span><span class="text-slate-300">★</span>
             </div>
             <span class="text-[10px] text-slate-400 font-medium mt-0.5 text-center">${ordersText}</span>
           </div>
@@ -499,10 +499,10 @@ function switchTab(tabId) {
   document.querySelectorAll(".nav-btn").forEach(btn => {
     const isThisTab = btn.getAttribute("onclick")?.includes(`'${tabId}'`);
     if (isThisTab) {
-      btn.classList.add("text-slate-900", "font-black");
-      btn.classList.remove("text-slate-500");
+      btn.classList.add("text-[#A87935]", "font-black");
+      btn.classList.remove("text-slate-500", "text-slate-900");
     } else {
-      btn.classList.remove("text-slate-900", "font-black");
+      btn.classList.remove("text-[#A87935]", "font-black", "text-slate-900");
       btn.classList.add("text-slate-500");
     }
   });
@@ -1120,10 +1120,10 @@ function switchKundliChart(type) {
   }
   if (d1Btn && d9Btn) {
     if (isNav) {
-      d9Btn.className = "px-3 py-1.5 rounded-xl bg-amber-600 text-white font-extrabold text-xs shadow-xs transition-all";
+      d9Btn.className = "px-3 py-1.5 rounded-xl bg-[#A87935] text-white font-extrabold text-xs shadow-xs transition-all";
       d1Btn.className = "px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all";
     } else {
-      d1Btn.className = "px-3 py-1.5 rounded-xl bg-amber-500 text-white font-extrabold text-xs shadow-xs transition-all";
+      d1Btn.className = "px-3 py-1.5 rounded-xl bg-[#A87935] text-white font-extrabold text-xs shadow-xs transition-all";
       d9Btn.className = "px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all";
     }
   }
@@ -1195,11 +1195,11 @@ function renderKundliResult(data) {
           <!-- Chart Switcher Tabs -->
           <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl">
             <button id="chartD1Btn" onclick="switchKundliChart('D1')" 
-              class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${currentChartType === 'D1' ? 'bg-amber-500 text-white shadow-xs' : 'text-slate-700 hover:text-black'}">
+              class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${currentChartType === 'D1' ? 'bg-[#A87935] text-white shadow-xs' : 'text-slate-700 hover:text-black'}">
               लग्न (D1)
             </button>
             <button id="chartD9Btn" onclick="switchKundliChart('D9')" 
-              class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${currentChartType === 'D9' ? 'bg-amber-600 text-white shadow-xs' : 'text-slate-700 hover:text-black'}">
+              class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${currentChartType === 'D9' ? 'bg-[#A87935] text-white shadow-xs' : 'text-slate-700 hover:text-black'}">
               नवमांश (D9)
             </button>
           </div>
@@ -1274,13 +1274,13 @@ function renderKundliResult(data) {
         ${data.dashaTimeline.map(d => `
           <div class="p-2.5 rounded-2xl text-center border transition-all ${
             d.isCurrent 
-              ? 'bg-gradient-to-b from-amber-50 to-orange-50 border-amber-500 shadow-md ring-2 ring-amber-400/40' 
+              ? 'bg-[#FAF6EE] border-[#A87935] shadow-md ring-2 ring-[#A87935]/40' 
               : 'bg-slate-50 border-slate-200 hover:border-slate-300'
           }">
-            <p class="text-xs font-bold ${d.isCurrent ? 'text-amber-950 font-black' : 'text-slate-800'}">${d.lord}</p>
+            <p class="text-xs font-bold ${d.isCurrent ? 'text-[#A87935] font-black' : 'text-slate-800'}">${d.lord}</p>
             <p class="text-[10px] text-slate-500 font-mono mt-0.5">${d.startYear} - ${d.endYear}</p>
             <span class="inline-block mt-1 text-[9px] px-1.5 py-0.2 rounded-full font-bold ${
-              d.isCurrent ? 'bg-amber-600 text-white animate-pulse' : 'bg-slate-200 text-slate-600'
+              d.isCurrent ? 'bg-[#A87935] text-white animate-pulse' : 'bg-slate-200 text-slate-600'
             }">
               ${d.isCurrent ? 'वर्तमान (Active)' : `${d.years} वर्ष`}
             </span>
@@ -1343,7 +1343,7 @@ function renderKundliResult(data) {
     </div>
 
     <!-- Favorable Recommendations & Vedic Remedies -->
-    <div class="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border border-amber-300/80 rounded-3xl p-5 space-y-4 shadow-sm">
+    <div class="bg-[#FAF6EE] border border-[#ECE6D8] rounded-3xl p-5 space-y-4 shadow-sm">
       <h4 class="text-sm font-bold text-amber-900 flex items-center space-x-1.5">
         <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
         <span>शुभ कारक एवं वैदिक अनुकूलता (Auspicious Elements & Remedies)</span>
@@ -1711,12 +1711,12 @@ function drawTarotSpread(isInitial = false) {
       <span class="text-xs font-bold text-amber-900">${titles[idx]}</span>
       <div class="relative w-full aspect-[2/3] max-w-[260px] mx-auto perspective-1000 cursor-pointer" onclick="flipTarotCard(this)">
         <div class="tarot-card-inner w-full h-full relative rounded-3xl shadow-xl transition-transform duration-700">
-          <div class="card-face absolute inset-0 rounded-3xl bg-gradient-to-tr from-amber-600 via-amber-700 to-amber-900 border-2 border-amber-300 p-4 flex flex-col items-center justify-between text-white">
-            <div class="text-[10px] uppercase tracking-widest text-amber-200 font-bold">दिव्य टैरो</div>
+          <div class="card-face absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#7A531A] via-[#A87935] to-[#C49852] border-2 border-[#A87935] p-4 flex flex-col items-center justify-between text-white">
+            <div class="text-[10px] uppercase tracking-widest text-[#FAF6EE] font-bold">दिव्य टैरो</div>
             <div class="text-4xl">🔮</div>
-            <p class="text-[11px] text-amber-100">टैप कर कार्ड खोलें</p>
+            <p class="text-[11px] text-[#FAF6EE]">टैप कर कार्ड खोलें</p>
           </div>
-          <div class="card-face card-back absolute inset-0 rounded-3xl bg-white border-2 border-amber-400 p-4 flex flex-col justify-between shadow-md text-left">
+          <div class="card-face card-back absolute inset-0 rounded-3xl bg-white border-2 border-[#A87935] p-4 flex flex-col justify-between shadow-md text-left">
             <div>
               <span class="text-[10px] uppercase tracking-widest text-amber-700 font-bold">${card.arcana || 'Major'} Arcana</span>
               <h4 class="text-sm font-bold text-slate-900 mt-1">${card.name}</h4>
@@ -1780,29 +1780,29 @@ function calculateNumerologyUI(isInitial = false) {
     <!-- Top 3 Numbers Hero Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       
-      <div class="bg-white p-5 rounded-3xl border border-amber-300 text-center space-y-2 shadow-sm">
-        <span class="text-[10px] uppercase text-amber-700 font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 inline-block">
+      <div class="bg-white p-5 rounded-3xl border border-[#ECE6D8] text-center space-y-2 shadow-sm">
+        <span class="text-[10px] uppercase text-[#A87935] font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-[#FAF6EE] border border-[#ECE6D8] inline-block">
           मूलांक (Birth / Root Number)
         </span>
-        <div class="text-5xl font-black text-amber-600 font-mystic">${data.mulank.number}</div>
+        <div class="text-5xl font-black text-[#A87935] font-mystic">${data.mulank.number}</div>
         <p class="text-xs font-bold text-slate-900">${data.mulank.name}</p>
         <p class="text-[11px] text-slate-500">स्वामी ग्रह: <b>${data.mulank.planet}</b> • तत्व: ${data.mulank.element}</p>
       </div>
 
-      <div class="bg-white p-5 rounded-3xl border border-amber-300 text-center space-y-2 shadow-sm">
-        <span class="text-[10px] uppercase text-amber-800 font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 inline-block">
+      <div class="bg-white p-5 rounded-3xl border border-[#ECE6D8] text-center space-y-2 shadow-sm">
+        <span class="text-[10px] uppercase text-[#A87935] font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-[#FAF6EE] border border-[#ECE6D8] inline-block">
           भाग्यांक (Destiny / Life Path)
         </span>
-        <div class="text-5xl font-black text-amber-600 font-mystic">${data.bhagyank.number}</div>
+        <div class="text-5xl font-black text-[#A87935] font-mystic">${data.bhagyank.number}</div>
         <p class="text-xs font-bold text-slate-900">${data.bhagyank.name}</p>
         <p class="text-[11px] text-slate-500">स्वामी ग्रह: <b>${data.bhagyank.planet}</b> • तत्व: ${data.bhagyank.element}</p>
       </div>
 
-      <div class="bg-white p-5 rounded-3xl border border-amber-300 text-center space-y-2 shadow-sm">
-        <span class="text-[10px] uppercase text-amber-800 font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 inline-block">
+      <div class="bg-white p-5 rounded-3xl border border-[#ECE6D8] text-center space-y-2 shadow-sm">
+        <span class="text-[10px] uppercase text-[#A87935] font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-[#FAF6EE] border border-[#ECE6D8] inline-block">
           नामांक (Name Vibration - Chaldean)
         </span>
-        <div class="text-5xl font-black text-amber-600 font-mystic">${data.namank.number}</div>
+        <div class="text-5xl font-black text-[#A87935] font-mystic">${data.namank.number}</div>
         <p class="text-xs font-bold text-slate-900">${data.namank.name}</p>
         <p class="text-[11px] text-slate-500">स्वामी ग्रह: <b>${data.namank.planet}</b></p>
       </div>
@@ -1967,7 +1967,7 @@ function renderRashiGrid() {
       <button onclick="selectRashi(${idx})" 
         class="p-3 rounded-2xl border text-center transition-all flex flex-col items-center justify-center space-y-1 ${
           isActive 
-            ? "bg-gradient-to-tr from-amber-500 to-orange-500 text-white border-amber-600 shadow-md shadow-amber-500/20 scale-105" 
+            ? "bg-[#A87935] text-white border-[#966427] shadow-md shadow-[#A87935]/25 scale-105" 
             : "bg-white hover:bg-amber-50/60 border-slate-200 text-slate-800"
         }">
         <span class="text-2xl">${item.symbol}</span>
@@ -2025,7 +2025,7 @@ function renderGemstonesGrid() {
         <p class="text-xs text-slate-600 leading-relaxed">${g.benefit}</p>
         <p class="text-[11px] text-amber-800 font-medium pt-1">राशि: ${g.rashi} • धातु: ${g.metal}</p>
       </div>
-      <button onclick="orderRemedy('${g.name}')" class="w-full mt-3 py-2 px-3 bg-amber-50 hover:bg-amber-500 text-amber-800 hover:text-white border border-amber-300 font-bold text-xs rounded-xl transition-all shadow-2xs active:scale-95">
+      <button onclick="orderRemedy('${g.name}')" class="w-full mt-3 py-2 px-3 bg-[#A87935] hover:bg-[#966427] text-white font-bold text-xs rounded-xl transition-all shadow-2xs active:scale-95">
         अभिमंत्रित कराएं (Order)
       </button>
     </div>
