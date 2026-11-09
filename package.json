@@ -1,0 +1,19 @@
+{
+  "name": "divya-jyotish",
+  "version": "1.0.0",
+  "description": "Divya Jyotish - Ultimate Vedic Astrologer Native Web App",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 server.py",
+    "deploy": "bash deploy.sh"
+  },
+  "keywords": [
+    "astrology",
+    "vedic",
+    "kundli",
+    "horoscope",
+    "cloudflare-pages"
+  ],
+  "author": "prajwalg5230",
+  "license": "MIT"
+}
