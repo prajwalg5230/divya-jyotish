@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>दिव्य ज्योतिष | Divya Jyotish - Ultimate Vedic Astrologer App</title>
+  
+  <!-- Tailwind CSS (Local Fast Offline + Fallback) -->
+  <script src="js/tailwind.min.js"></script>
+  <script>if (!window.tailwind) document.write('<script src="https://cdn.tailwindcss.com"><\/script>');</script>
+
+  <!-- Lucide Icons (Local Fast Offline + Fallback) -->
+  <script src="js/lucide.min.js"></script>
+  <script>if (!window.lucide) document.write('<script src="https://unpkg.com/lucide@latest"><\/script>');</script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen text-slate-800 bg-slate-900 flex justify-center selection:bg-amber-500 selection:text-white">
+
+  <!-- ========================================== -->
+  <!-- NATIVE ANDROID MOBILE APP VIEWPORT -->
+  <!-- ========================================== -->
+  <div class="native-app-viewport w-full max-w-[480px] bg-slate-50 min-h-screen relative flex flex-col justify-between shadow-2xl">
+
+    <!-- ========================================== -->
+    <!-- TOP APP BAR (LIGHT MODE) -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-amber-500/20 px-3.5 py-2 shadow-xs w-full">
+      <div class="w-full flex items-center justify-between">
+        
+        <!-- Logo & Status -->
+        <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchTab('home')">
+          <div class="relative w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20">
+            <span class="text-lg font-bold font-sanskrit text-white select-none">ॐ</span>
+          </div>
+          <div>
+            <div class="flex items-center space-x-1.5">
+              <h1 class="text-sm sm:text-base font-extrabold font-mystic tracking-wider gold-gradient-text">DIVYA JYOTISH</h1>
+              <span class="text-[8px] bg-amber-500 text-white px-1.5 py-0.2 rounded-full font-extrabold uppercase">PRO</span>
+            </div>
+            <div class="flex items-center space-x-1 text-[9px] text-emerald-600 font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+              <span>⚡ Someday RAG 2.0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions: 432Hz Sound, AI Settings & Wallet -->
+        <div class="flex items-center space-x-1.5">
+          
+          <!-- 432Hz Om Sound -->
+          <button id="omDroneBtn" onclick="toggleDrone()" title="432Hz Cosmic Om Drone"
+            class="flex items-center space-x-1 px-2 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-xs text-purple-700 font-semibold transition-all active:scale-95">
+            <i data-lucide="volume-2" class="w-3.5 h-3.5 text-purple-600"></i>
+            <span class="hidden xs:inline text-[10px]">432Hz</span>
+          </button>
+
+          <!-- AI Settings Modal Button -->
+          <button onclick="openSettingsModal()" title="AI & Memory Settings"
+            class="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 transition-all active:scale-95">
+            <i data-lucide="settings" class="w-3.5 h-3.5 text-amber-600"></i>
+          </button>
+
+          <!-- Wallet Recharge Pill -->
+          <button onclick="openWalletModal()" 
+            class="flex items-center space-x-1 px-2.5 py-1.5 rounded-xl bg-amber-50 border border-amber-300 hover:border-amber-400 text-amber-800 text-[11px] font-bold shadow-2xs transition-all active:scale-95">
+            <i data-lucide="wallet" class="w-3 h-3 text-amber-600"></i>
+            <span id="walletHeaderAmount">₹ 150</span>
+            <span class="text-[8px] bg-amber-500 text-white px-1 py-0.2 rounded-full font-black ml-0.5">+</span>
+          </button>
+
+          <!-- Firebase Google Auth / Profile Container -->
+          <div id="headerAuthContainer">
+            <button onclick="FirebaseAuthEngine.openLoginModal()" 
+              class="flex items-center space-x-1 px-2.5 py-1.5 rounded-xl bg-white hover:bg-amber-50 border border-slate-300 hover:border-amber-400 text-slate-800 text-[11px] font-bold shadow-2xs transition-all active:scale-95">
+              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.03h3.88c2.27-2.09 3.66-5.17 3.66-9.12z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.03c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.13C3.25 21.36 7.35 24 12 24z"/>
+                <path fill="#FBBC05" d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.26C.46 8.17 0 9.99 0 12s.46 3.83 1.26 5.42l4.02-3.13z"/>
+                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.25 2.64 1.26 6.58l4.02 3.13c.95-2.83 3.6-4.96 6.72-4.96z"/>
+              </svg>
+              <span>लॉगिन</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+  <!-- ========================================== -->
+  <!-- STORIES BAR (COMPACT MOBILE NATIVE) -->
+  <!-- ========================================== -->
+  <section class="bg-white/95 border-b border-slate-200 py-2 sm:py-2.5 overflow-x-auto no-scrollbar shadow-xs sticky top-12 z-30 backdrop-blur-md">
+    <div class="w-full px-3 flex items-center space-x-3.5 text-center">
+      
+      <div class="flex flex-col items-center space-y-0.5 cursor-pointer shrink-0" onclick="openStoryModal('live')">
+        <div class="story-ring rounded-full">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white p-0.5 overflow-hidden">
+            <img src="avatars/ast_3.jpg" onerror="this.src='avatars/ast_1.jpg'" class="w-full h-full object-cover rounded-full">
+          </div>
+        </div>
+        <span class="text-[9px] font-bold text-rose-600 flex items-center space-x-0.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+          <span>लाइव पूजा</span>
+        </span>
+      </div>
+
+      <div class="flex flex-col items-center space-y-0.5 cursor-pointer shrink-0" onclick="switchTab('horoscope')">
+        <div class="story-ring rounded-full">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-amber-50 flex items-center justify-center text-lg text-amber-600 font-bold">
+            ♈
+          </div>
+        </div>
+        <span class="text-[9px] font-semibold text-slate-700">राशिफल</span>
+      </div>
+
+      <div class="flex flex-col items-center space-y-0.5 cursor-pointer shrink-0" onclick="openStoryModal('rahu')">
+        <div class="story-ring rounded-full">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-rose-50 flex items-center justify-center text-base text-rose-600">
+            ⏳
+          </div>
+        </div>
+        <span class="text-[9px] font-semibold text-slate-700">राहुकाल</span>
+      </div>
+
+      <div class="flex flex-col items-center space-y-0.5 cursor-pointer shrink-0" onclick="openStoryModal('marriage')">
+        <div class="story-ring rounded-full">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-purple-50 flex items-center justify-center text-base text-purple-600">
+            💍
+          </div>
+        </div>
+        <span class="text-[9px] font-semibold text-slate-700">विवाह योग</span>
+      </div>
+
+      <div class="flex flex-col items-center space-y-0.5 cursor-pointer shrink-0" onclick="switchTab('tarot')">
+        <div class="story-ring rounded-full">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-indigo-50 flex items-center justify-center text-base text-indigo-600">
+            🔮
+          </div>
+        </div>
+        <span class="text-[9px] font-semibold text-slate-700">दैनिक टैरो</span>
+      </div>
+
+      <div class="flex flex-col items-center space-y-0.5 cursor-pointer shrink-0" onclick="switchTab('mala')">
+        <div class="story-ring rounded-full">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-50 flex items-center justify-center text-base text-emerald-600">
+            🪔
+          </div>
+        </div>
+        <span class="text-[9px] font-semibold text-slate-700">108 जाप</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- MAIN CONTENT CONTAINER -->
+  <!-- ========================================== -->
+  <main class="w-full px-3.5 py-4 pb-nav flex-1 space-y-5">
+
+    <!-- ========================================== -->
+    <!-- TAB: HOME / EXPLORE HUB -->
+    <!-- ========================================== -->
+    <section id="section-home" class="tab-content space-y-4">
+      
+      <!-- Native User Greeting Bar (Context-Aware Native Card) -->
+      <div id="homeUserGreetingBar" class="hidden glass-panel p-3 sm:p-3.5 rounded-2xl flex items-center justify-between border-amber-200/70 bg-gradient-to-r from-amber-50/90 via-orange-50/40 to-white shadow-2xs">
+        <div class="flex items-center space-x-2.5 min-w-0">
+          <div class="relative shrink-0">
+            <img id="greetingUserAvatar" src="avatars/ast_1.jpg" class="w-10 h-10 rounded-full border-2 border-amber-500 object-cover shadow-2xs">
+            <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"></span>
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center space-x-1.5">
+              <h3 id="greetingUserName" class="text-xs sm:text-sm font-black text-slate-900 truncate">नमस्ते, जातक 🙏</h3>
+              <span class="text-[9px] bg-amber-100 text-amber-800 font-extrabold px-1.5 py-0.2 rounded-full shrink-0">सत्यापित</span>
+            </div>
+            <p id="greetingUserSubtitle" class="text-[10px] text-slate-600 font-medium truncate">आज का दिन आपके कर्म भाव के लिए विशेष फलदायी है</p>
+          </div>
+        </div>
+        <button onclick="switchTab('kundli')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[10px] sm:text-xs font-extrabold shadow-2xs shrink-0 flex items-center space-x-1 transition-all active:scale-95 ml-2">
+          <span>कुंडली</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Hero Promotional Banner (Compact Native Light Theme) -->
+      <div class="relative overflow-hidden rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 md:p-6 bg-gradient-to-r from-amber-50 via-orange-50/70 to-amber-100 border border-amber-200/80 shadow-xs flex items-center justify-between gap-3">
+        <div class="space-y-1.5 sm:space-y-2 z-10 flex-1">
+          <div class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-300 text-amber-900 text-[10px] sm:text-xs font-bold">
+            <span>✨</span>
+            <span>प्रथम परामर्श 100% मुफ़्त (First Chat Free)</span>
+          </div>
+          <h2 class="text-base sm:text-xl md:text-2xl font-extrabold gold-gradient-text leading-tight">
+            शीर्ष वेरिफ़ाइड वैदिक ज्योतिषी
+          </h2>
+          <p class="text-[11px] sm:text-xs text-slate-600 max-w-md line-clamp-2">
+            विवाह, करियर व कुंडली दोष का 100% सटीक विश्लेषण। 5 लाख+ संतुष्ट जातक।
+          </p>
+          <div class="pt-1 flex flex-wrap items-center gap-2">
+            <button onclick="switchTab('consult')" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold text-[11px] sm:text-xs shadow-xs flex items-center space-x-1 transition-all">
+              <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+              <span>मुफ़्त चैट करें</span>
+            </button>
+            <button onclick="switchTab('kundli')" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-[11px] sm:text-xs flex items-center space-x-1 transition-all shadow-xs">
+              <i data-lucide="compass" class="w-3.5 h-3.5 text-purple-600"></i>
+              <span>कुंडली</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="relative shrink-0 w-20 h-20 sm:w-28 sm:h-28 flex items-center justify-center">
+          <div class="w-18 h-18 sm:w-24 sm:h-24 rounded-full border border-amber-400/50 p-1.5 animate-spin-slow">
+            <div class="w-full h-full rounded-full border border-dashed border-amber-400 flex items-center justify-center text-3xl sm:text-4xl">
+              🔯
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 Services Grid (Ultra High Density 4-col Mobile Layout) -->
+      <div>
+        <div class="flex items-center justify-between mb-2.5">
+          <h3 class="text-xs sm:text-sm font-extrabold text-slate-900 flex items-center space-x-1.5">
+            <i data-lucide="grid" class="w-3.5 h-3.5 text-amber-600"></i>
+            <span>प्रमुख वैदिक सेवाएं (Services)</span>
+          </h3>
+          <span class="text-[10px] sm:text-xs text-amber-700 font-bold">12 उपलब्ध ✓</span>
+        </div>
+
+        <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-2.5">
+          
+          <div onclick="switchTab('kundli')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-amber-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">📜</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">जन्म कुंडली</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">Lagna & D9</span>
+          </div>
+
+          <div onclick="switchTab('milan')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-rose-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">❤️</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">गुण मिलान</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">36 गुण</span>
+          </div>
+
+          <div onclick="switchTab('horoscope')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-amber-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">♈</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">दैनिक राशिफल</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">12 राशियां</span>
+          </div>
+
+          <div onclick="switchTab('consult')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-emerald-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">💬</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">चैट व कॉल</p>
+            <span class="text-[8px] text-emerald-600 font-semibold hidden sm:block">मुफ़्त 1st</span>
+          </div>
+
+          <div onclick="switchTab('tarot')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-indigo-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">🃏</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">3D टैरो</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">कार्ड रीडिंग</span>
+          </div>
+
+          <div onclick="switchTab('numerology')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-teal-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">🔢</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">अंक ज्योतिष</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">मूलांक</span>
+          </div>
+
+          <div onclick="switchTab('panchang')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-orange-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">📅</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">पंचांग</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">चौघड़िया</span>
+          </div>
+
+          <div onclick="switchTab('mala')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-cyan-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">📿</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">108 माला</p>
+            <span class="text-[8px] text-cyan-600 font-semibold hidden sm:block">जाप</span>
+          </div>
+
+          <div onclick="switchTab('remedies')" class="glass-panel p-2 sm:p-2.5 rounded-xl text-center cursor-pointer hover:border-yellow-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-yellow-50 text-yellow-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">💎</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">रत्न व उपाय</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">सिद्ध रत्न</span>
+          </div>
+
+          <div onclick="openDoshaModal()" class="glass-panel p-2 sm:p-2.5 rounded-2xl text-center cursor-pointer hover:border-rose-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">🛡️</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">दोष शांति</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">साढ़े साती</span>
+          </div>
+
+          <div onclick="openTransitRadarModal()" class="glass-panel p-2 sm:p-2.5 rounded-2xl text-center cursor-pointer hover:border-indigo-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">🪐</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">ग्रह गोचर</p>
+            <span class="text-[8px] text-indigo-600 font-semibold hidden sm:block">2026 रडार</span>
+          </div>
+
+          <div onclick="showToast('काशी व उज्जैन ई-पूजा संकल्प शीघ्र आरंभ होगा!')" class="glass-panel p-2 sm:p-2.5 rounded-2xl text-center cursor-pointer hover:border-amber-400 transition-all flex flex-col items-center space-y-1 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-base sm:text-lg group-hover:scale-105 transition-transform">🔱</div>
+            <p class="text-[10px] sm:text-xs font-bold text-slate-900 truncate w-full">ई-पूजा</p>
+            <span class="text-[8px] text-slate-500 hidden sm:block">संकल्प</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LIVE STREAMING HUB -->
+      <div class="glass-panel-glow rounded-3xl p-6 border border-rose-300 space-y-5">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+          <div class="flex items-center space-x-2.5">
+            <div class="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-extrabold uppercase animate-pulse-live">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span>LIVE NOW</span>
+            </div>
+            <h3 class="text-sm md:text-base font-bold text-slate-900">लाइव ज्योतिष दर्शन व प्रश्नोत्तरी</h3>
+          </div>
+          <div class="flex items-center space-x-1 text-xs text-rose-600 font-bold">
+            <i data-lucide="eye" class="w-4 h-4"></i>
+            <span id="liveViewerCount">1,428</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
+          <div class="md:col-span-2 relative aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-md">
+            <img src="avatars/ast_1.jpg" class="w-full h-full object-cover opacity-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+            
+            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 flex items-center space-x-2 text-slate-900">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span class="text-xs font-bold">आचार्य देविका शर्मा (Live)</span>
+            </div>
+
+            <div id="floatingGiftsContainer" class="absolute bottom-16 right-4 pointer-events-none w-20 h-44 overflow-hidden"></div>
+
+            <div class="absolute bottom-3 left-3 right-3 max-h-24 overflow-y-auto no-scrollbar space-y-1.5" id="liveCommentsStream"></div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+              <p class="text-xs font-bold text-amber-800">गुरु दक्षिणा एवं उपहार भेजें (Send Gifts):</p>
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <button onclick="sendLiveGift('🌹', 'गुलाब', 11)" class="p-2 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 flex items-center justify-between shadow-sm">
+                  <span>🌹 गुलाब</span>
+                  <span class="font-bold text-amber-600">₹ 11</span>
+                </button>
+                <button onclick="sendLiveGift('🪔', 'दीपक', 21)" class="p-2 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 flex items-center justify-between shadow-sm">
+                  <span>🪔 दीपक</span>
+                  <span class="font-bold text-amber-600">₹ 21</span>
+                </button>
+                <button onclick="sendLiveGift('🥥', 'नारियल', 51)" class="p-2 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 flex items-center justify-between shadow-sm">
+                  <span>🥥 नारियल</span>
+                  <span class="font-bold text-amber-600">₹ 51</span>
+                </button>
+                <button onclick="sendLiveGift('👑', 'मुकुट', 101)" class="p-2 rounded-xl bg-amber-100 hover:bg-amber-200 border border-amber-300 flex items-center justify-between text-amber-900 font-bold shadow-sm">
+                  <span>👑 मुकुट</span>
+                  <span class="font-bold text-amber-700">₹ 101</span>
+                </button>
+              </div>
+
+              <button onclick="joinLiveQueue()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-amber-600 text-white font-extrabold text-xs shadow-md flex items-center justify-center space-x-1.5">
+                <i data-lucide="mic" class="w-4 h-4"></i>
+                <span>कतार में जुड़ें / प्रश्न पूछें</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASTROLOGERS DIRECTORY -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-extrabold text-slate-900 flex items-center space-x-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
+              <span>विशेषज्ञ ज्योतिषी (Verified Acharyas)</span>
+            </h3>
+            <p class="text-xs text-slate-500">तत्काल 1-on-1 चैट एवं कॉल परामर्श</p>
+          </div>
+          <button onclick="switchTab('consult')" class="text-xs text-amber-700 font-bold hover:underline">सभी देखें</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="homeAstrologersDirectory"></div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: DAILY HOROSCOPE -->
+    <!-- ========================================== -->
+    <section id="section-horoscope" class="tab-content hidden space-y-6">
+      <div class="glass-panel-glow rounded-3xl p-6 text-center space-y-2 border border-amber-300">
+        <span class="text-xs uppercase tracking-widest text-amber-700 font-semibold px-3 py-1 rounded-full bg-amber-100 border border-amber-300 inline-block">
+          ✨ दैनिक गोचर व ग्रह स्थिति
+        </span>
+        <h2 class="text-2xl font-bold font-mystic gold-gradient-text">आज का संपूर्ण राशिफल</h2>
+        <p class="text-xs text-slate-600">अपनी राशि चुनें और जानें आज के ग्रह-नक्षत्र, प्रेम, करियर, स्वास्थ्य व शुभ अंक।</p>
+      </div>
+
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5" id="rashiGrid"></div>
+      <div id="rashiDetailCard" class="glass-panel rounded-3xl p-6 md:p-8 space-y-6 border border-amber-300"></div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: JANAM KUNDLI STUDIO -->
+    <!-- ========================================== -->
+    <section id="section-kundli" class="tab-content hidden space-y-6">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 border border-purple-300 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-200 gap-4">
+          <div>
+            <h2 class="text-2xl font-bold font-mystic purple-gradient-text flex items-center space-x-2">
+              <i data-lucide="compass" class="w-6 h-6 text-purple-600"></i>
+              <span>वैदिक जन्म कुंडली स्टूडियो (Birth Chart)</span>
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">लाहिरी अयनांश, लग्न कुंडली, नवमांश (D9), 27 नक्षत्र एवं विंशोत्तरी महादशा।</p>
+          </div>
+          <button onclick="fillSampleKundli()" class="px-3.5 py-1.5 text-xs bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-xl border border-purple-200 font-semibold">
+            ✨ उदाहरण डेटा भरें
+          </button>
+        </div>
+
+        <form id="kundliForm" onsubmit="event.preventDefault(); generateKundli();" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">पूरा नाम (Full Name)</label>
+            <input type="text" id="kName" required value="Prajwal" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">लिंग (Gender)</label>
+            <select id="kGender" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
+              <option value="Male">पुरुष (Male)</option>
+              <option value="Female">स्त्री (Female)</option>
+              <option value="Other">अन्य (Other)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">जन्म तिथि (Date of Birth)</label>
+            <input type="date" id="kDob" required value="1998-07-21" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">जन्म समय (Time of Birth)</label>
+            <input type="time" id="kTob" required value="10:30" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">जन्म स्थान (Place)</label>
+            <select id="kCity" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
+              <option value="28.6139,77.2090,New Delhi">New Delhi (दिल्ली)</option>
+              <option value="19.0760,72.8777,Mumbai">Mumbai (मुंबई)</option>
+              <option value="12.9716,77.5946,Bengaluru">Bengaluru (बेंगलुरु)</option>
+              <option value="18.5204,73.8567,Pune">Pune (पुणे)</option>
+              <option value="25.3176,82.9739,Varanasi">Varanasi (वाराणसी)</option>
+              <option value="26.9124,75.7873,Jaipur">Jaipur (जयपुर)</option>
+              <option value="22.5726,88.3639,Kolkata">Kolkata (कोलकाता)</option>
+              <option value="13.0827,80.2707,Chennai">Chennai (चेन्नई)</option>
+              <option value="17.3850,78.4867,Hyderabad">Hyderabad (हैदराबाद)</option>
+              <option value="23.0225,72.5714,Ahmedabad">Ahmedabad (अहमदाबाद)</option>
+              <option value="26.8467,80.9462,Lucknow">Lucknow (लखनऊ)</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2 md:col-span-5 flex justify-end pt-2">
+            <button type="submit" class="w-full sm:w-auto px-8 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center space-x-2">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              <span>कुंडली बनाएं (Generate Kundli)</span>
+            </button>
+          </div>
+        </form>
+
+        <div id="kundliResult" class="mt-8 space-y-8"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: 36 GUN MILAN -->
+    <!-- ========================================== -->
+    <section id="section-milan" class="tab-content hidden space-y-6">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 border border-rose-300 space-y-6">
+        <div class="text-center max-w-xl mx-auto space-y-1 mb-6">
+          <span class="text-xs uppercase tracking-widest text-rose-700 font-semibold px-3 py-1 rounded-full bg-rose-100 border border-rose-300 inline-block">
+            ❤️ Ashtakoot Vivah Milan
+          </span>
+          <h2 class="text-2xl font-bold font-mystic text-rose-800">36 गुण मिलान एवं विवाह अनुकूलता</h2>
+          <p class="text-xs text-slate-600">अष्टकूट गुण मिलान, नाड़ी दोष एवं मांगलिक सामंजस्य।</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl p-5 border border-blue-200 space-y-3 shadow-sm">
+            <span class="text-xs font-bold text-blue-700 flex items-center space-x-1"><i data-lucide="user" class="w-4 h-4"></i><span>वर (Groom)</span></span>
+            <input type="text" id="mGroomName" value="Rahul Sharma" onchange="saveMilanInputToStorage()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-blue-500 outline-none">
+            <div class="grid grid-cols-2 gap-2">
+              <select id="mGroomRashi" onchange="saveMilanInputToStorage()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-blue-500 outline-none"></select>
+              <select id="mGroomNak" onchange="saveMilanInputToStorage()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-blue-500 outline-none"></select>
+            </div>
+            <label class="flex items-center space-x-2 text-xs text-slate-700 pt-1 cursor-pointer select-none">
+              <input type="checkbox" id="mGroomManglik" onchange="saveMilanInputToStorage()" class="rounded text-amber-600 focus:ring-0">
+              <span>मांगलिक हैं? (Manglik)</span>
+            </label>
+          </div>
+
+          <div class="bg-white rounded-2xl p-5 border border-rose-200 space-y-3 shadow-sm">
+            <span class="text-xs font-bold text-rose-700 flex items-center space-x-1"><i data-lucide="heart" class="w-4 h-4"></i><span>वधू (Bride)</span></span>
+            <input type="text" id="mBrideName" value="Pooja Verma" onchange="saveMilanInputToStorage()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-rose-500 outline-none">
+            <div class="grid grid-cols-2 gap-2">
+              <select id="mBrideRashi" onchange="saveMilanInputToStorage()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-rose-500 outline-none"></select>
+              <select id="mBrideNak" onchange="saveMilanInputToStorage()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-rose-500 outline-none"></select>
+            </div>
+            <label class="flex items-center space-x-2 text-xs text-slate-700 pt-1 cursor-pointer select-none">
+              <input type="checkbox" id="mBrideManglik" onchange="saveMilanInputToStorage()" class="rounded text-rose-600 focus:ring-0">
+              <span>मांगलिक हैं? (Manglik)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <button onclick="calculateGunMilan()" class="px-8 py-3 rounded-2xl bg-gradient-to-r from-rose-500 to-amber-600 hover:from-rose-600 hover:to-amber-700 text-white font-bold text-sm shadow-md transition-all active:scale-95 flex items-center space-x-2">
+            <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+            <span>गुण मिलान करें (Match Kundli)</span>
+          </button>
+        </div>
+
+        <div id="milanResult" class="mt-6 space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: AAJ KA PANCHANG -->
+    <!-- ========================================== -->
+    <section id="section-panchang" class="tab-content hidden space-y-6">
+      <div class="glass-panel rounded-3xl p-5 md:p-6 border border-orange-300 space-y-4 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-3">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold font-mystic gold-gradient-text flex items-center space-x-2">
+              <i data-lucide="sun" class="w-6 h-6 text-amber-600"></i>
+              <span>दैनिक वैदिक पंचांग एवं चौघड़िया</span>
+            </h2>
+            <p class="text-xs text-slate-500">तिथि, नक्षत्र, योग, करण, राहु काल, अभिजीत मुहूर्त एवं शुभ-अशुभ काल।</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="date" id="panchangDatePicker" onchange="onPanchangDateChange()" 
+              class="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-800 font-bold focus:border-amber-500 outline-none shadow-xs">
+            <select id="panchangCitySelect" onchange="onPanchangCityChange()" 
+              class="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-800 font-bold focus:border-amber-500 outline-none shadow-xs">
+              <option value="New Delhi">New Delhi</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Varanasi">Varanasi</option>
+              <option value="Jaipur">Jaipur</option>
+              <option value="Kolkata">Kolkata</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Pune">Pune</option>
+            </select>
+          </div>
+        </div>
+        <div id="panchangContainer" class="space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: 3D TAROT ORACLE -->
+    <!-- ========================================== -->
+    <section id="section-tarot" class="tab-content hidden space-y-6">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 border border-indigo-200 text-center space-y-6">
+        <h2 class="text-2xl font-bold font-mystic text-indigo-900">रहस्यमयी 3-कार्ड टैरो रीडिंग</h2>
+        <p class="text-xs text-slate-600">कार्ड पर टैप करके 3D फ्लिप देखें।</p>
+        <div>
+          <button onclick="drawTarotSpread()" class="px-8 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-sm shadow-md transition-all active:scale-95 flex items-center space-x-2 mx-auto">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>नया स्प्रेड निकालें (Draw 3 Cards)</span>
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4" id="tarotCardsContainer"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: NUMEROLOGY -->
+    <!-- ========================================== -->
+    <section id="section-numerology" class="tab-content hidden space-y-6">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 border border-emerald-200 space-y-6 shadow-sm">
+        <div>
+          <h2 class="text-2xl font-bold font-mystic text-emerald-900 flex items-center space-x-2">
+            <i data-lucide="hash" class="w-6 h-6 text-emerald-600"></i>
+            <span>मूलांक, भाग्यांक एवं नामांक कैल्क्युलेटर</span>
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">कीरो व कैल्डियन अंकज्योतिष अनुसार आपका स्वभाव, भाग्य, मित्र अंक व 2026 भविष्यफल।</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">अंग्रेजी में पूरा नाम (Full Name)</label>
+            <input type="text" id="numName" value="Prajwal" placeholder="नाम (Name)" onchange="saveNumerologyInputToStorage()" 
+              class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-emerald-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">जन्म तिथि (Date of Birth)</label>
+            <input type="date" id="numDob" value="1998-07-21" onchange="saveNumerologyInputToStorage()" 
+              class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-emerald-500 outline-none">
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <button onclick="calculateNumerologyUI()" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all active:scale-95 flex items-center space-x-1.5">
+            <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+            <span>अंकफल देखें (Calculate Numerology)</span>
+          </button>
+        </div>
+        <div id="numerologyResult" class="pt-4 space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: LIVE ASTROLOGERS DIRECTORY (29+ ASTROLOGERS) -->
+    <!-- ========================================== -->
+    <section id="section-consult" class="tab-content hidden space-y-6">
+      <div class="glass-panel rounded-3xl p-5 md:p-7 border border-amber-300 space-y-5">
+        
+        <!-- Header Banner -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-3">
+          <div>
+            <div class="flex items-center space-x-2">
+              <h2 class="text-xl md:text-2xl font-bold font-mystic gold-gradient-text">विशेषज्ञ ज्योतिषी परामर्श</h2>
+              <span class="text-xs bg-amber-500 text-white font-extrabold px-2 py-0.5 rounded-full">48 ऑनलाइन</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">भारत के शीर्ष वेदिक, टैरो, केपी, नाड़ी व लाल किताब आचार्य 24x7 उपलब्ध।</p>
+          </div>
+          <div class="bg-amber-100 border border-amber-300 rounded-2xl px-3.5 py-1.5 flex items-center space-x-2">
+            <span class="text-base">🎁</span>
+            <p class="text-xs font-bold text-amber-900">प्रथम 5 मिनट 100% मुफ़्त</p>
+          </div>
+        </div>
+
+        <!-- Search Bar and Sort -->
+        <div class="flex flex-col sm:flex-row items-center gap-3">
+          <div class="relative flex-1 w-full">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="astroSearchInput" oninput="handleAstroSearch()" placeholder="ज्योतिषी का नाम या विशेषता खोजें (उदा: विवाह, केपी, करियर)..." 
+              class="w-full bg-slate-50 border border-slate-200 focus:border-amber-500 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-800 outline-none transition-all">
+          </div>
+          <select id="astroSortSelect" onchange="handleAstroSort()" class="w-full sm:w-auto bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-semibold outline-none">
+            <option value="popular">लोकप्रियता (Popularity)</option>
+            <option value="rating">सर्वोच्च रेटिंग (4.9+ ★)</option>
+            <option value="exp">अधिकतम अनुभव (Years Exp)</option>
+            <option value="price_low">कम शुल्क (Price: Low to High)</option>
+          </select>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-1 text-xs whitespace-nowrap">
+          <button onclick="filterAstroCategory('all', this)" class="astro-cat-pill active px-3.5 py-1.5 rounded-full bg-amber-500 text-white font-bold transition-all shadow-sm">सभी (48)</button>
+          <button onclick="filterAstroCategory('vedic', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">वैदिक ज्योतिषी (14)</button>
+          <button onclick="filterAstroCategory('tarot', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">टैरो व ऑरेकल (6)</button>
+          <button onclick="filterAstroCategory('love', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">प्रेम व विवाह (5)</button>
+          <button onclick="filterAstroCategory('career', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">करियर व धन (4)</button>
+          <button onclick="filterAstroCategory('kp', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">केपी व नाड़ी (3)</button>
+        </div>
+
+        <!-- Astrologers Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="consultAstrologersDirectory"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: 108 JAAP MALA -->
+    <!-- ========================================== -->
+    <section id="section-mala" class="tab-content hidden space-y-6">
+      <div class="glass-panel-glow rounded-3xl p-6 md:p-8 border border-cyan-300 text-center space-y-6 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold font-mystic text-cyan-900">डिजिटल 108 जाप माला</h2>
+        <select id="malaMantraSelect" onchange="updateMantraDisplay()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2 text-xs text-slate-900 text-center font-semibold">
+          <option value="om_namah_shivaya">ॐ नमः शिवाय</option>
+          <option value="gayatri">ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥</option>
+          <option value="mahamrityunjaya">ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥</option>
+          <option value="ganesh">ॐ गं गणपतये नमः</option>
+        </select>
+        <div class="p-4 rounded-2xl bg-cyan-50 border border-cyan-200">
+          <p id="activeMantraText" class="text-base font-sanskrit text-cyan-800 font-bold">ॐ नमः शिवाय</p>
+        </div>
+        <div class="relative w-64 h-64 mx-auto flex items-center justify-center">
+          <svg class="w-full h-full -rotate-90" viewBox="0 0 240 240">
+            <circle cx="120" cy="120" r="108" fill="none" stroke="#E2E8F0" stroke-width="12" />
+            <circle id="malaProgressCircle" cx="120" cy="120" r="108" fill="none" stroke="#0284C7" stroke-width="12" stroke-linecap="round" class="bead-circle-progress" />
+          </svg>
+          <button onclick="incrementBead()" class="absolute w-44 h-44 rounded-full bg-white border-4 border-cyan-500 flex flex-col items-center justify-center active:scale-95 shadow-lg transition-all">
+            <span class="text-3xl font-bold text-cyan-900 font-mystic" id="beadCount">0</span>
+            <span class="text-[11px] uppercase tracking-wider text-cyan-700">/ 108 मनके</span>
+            <span class="text-[10px] text-slate-500 mt-1">टैप करें (Tap)</span>
+          </button>
+        </div>
+        <div class="flex items-center justify-center space-x-6 text-xs">
+          <div class="bg-white px-4 py-2 rounded-xl border border-slate-200">
+            <span class="text-slate-600">पूर्ण मालाएं: </span>
+            <span id="malaRounds" class="font-bold text-cyan-700 text-sm">0</span>
+          </div>
+          <button onclick="resetMala()" class="text-rose-600 font-semibold hover:underline">रीसेट करें</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB: ASTRO MALL & REMEDIES -->
+    <!-- ========================================== -->
+    <section id="section-remedies" class="tab-content hidden space-y-6">
+      <div class="glass-panel rounded-3xl p-6 md:p-8 border border-teal-200 space-y-6">
+        <h2 class="text-2xl font-bold font-mystic text-teal-900 text-center">राशि रत्न एवं वैदिक उपाय</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="gemstonesGrid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL: ASTROLOGER 1-ON-1 CHAT (LIGHT MODE) -->
+  <!-- ========================================== -->
+  <div id="liveChatModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white border border-slate-300 rounded-3xl w-full max-w-lg h-[92vh] flex flex-col overflow-hidden shadow-2xl">
+      
+      <!-- Chat Header -->
+      <div class="bg-slate-50 border-b border-slate-200 p-3.5 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <img id="chatAstAvatar" src="" class="w-10 h-10 rounded-full object-cover border-2 border-amber-500">
+            <div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></div>
+          </div>
+          <div>
+            <div class="flex items-center space-x-1.5">
+              <h4 id="chatAstName" class="text-sm font-bold text-slate-900">आचार्य</h4>
+              <i data-lucide="check-circle" class="w-3.5 h-3.5 text-blue-500 fill-blue-500/20"></i>
+            </div>
+            <p class="text-[11px] text-amber-700 flex items-center space-x-1.5 font-medium">
+              <span id="chatTimer" class="font-mono">00:00</span>
+              <span class="text-slate-400">• ₹ <span id="chatRate">25</span>/min</span>
+              <span class="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 rounded font-bold">Someday RAG Active</span>
+            </p>
+          </div>
+        </div>
+        <button onclick="closeChatModal()" class="w-8 h-8 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center text-slate-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Messages Stream -->
+      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50"></div>
+
+      <!-- Quick Chips -->
+      <div class="p-2 border-t border-slate-200 bg-white flex gap-2 overflow-x-auto no-scrollbar text-[11px]">
+        <button onclick="sendQuickChatMessage('Meri naukri me promotion kab hoga aur kaunse upay karu?')" class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full whitespace-nowrap border border-slate-300 hover:border-amber-500">💼 प्रमोशन कब होगा?</button>
+        <button onclick="sendQuickChatMessage('Meri shaadi ka sahi samay aur partner kaisa hoga?')" class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full whitespace-nowrap border border-slate-300 hover:border-amber-500">💍 शादी कब होगी?</button>
+        <button onclick="sendQuickChatMessage('Dhan labh aur financial growth ke liye kaunsa ratna pehnu?')" class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full whitespace-nowrap border border-slate-300 hover:border-amber-500">💰 धन लाभ के उपाय?</button>
+        <button onclick="sendQuickChatMessage('Kya meri kundli me koi dosh ya sade sati chal rahi he?')" class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full whitespace-nowrap border border-slate-300 hover:border-amber-500">🛡️ दोष व साढ़े साती?</button>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form onsubmit="event.preventDefault(); submitChatMessage();" class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2">
+        <input type="text" id="chatInput" placeholder="अपना प्रश्न लिखें (उदा: शादी कब होगी?)..." 
+          class="flex-1 bg-slate-100 border border-slate-300 focus:border-amber-500 rounded-xl px-4 py-2.5 text-xs text-slate-900 outline-none">
+        <button type="submit" class="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-xs rounded-xl flex items-center space-x-1 shadow-sm">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          <span>भेजें</span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: AUDIO CALL SCREEN (INTERACTIVE HD VOICE CONSULTATION) -->
+  <!-- ========================================== -->
+  <div id="audioCallModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-gradient-to-b from-white via-amber-50/50 to-white border border-amber-300 rounded-3xl w-full max-w-sm p-5 text-center flex flex-col items-center justify-between min-h-[510px] shadow-2xl relative overflow-hidden">
+      
+      <!-- Subtle Golden Glow -->
+      <div class="absolute -top-16 -right-16 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -left-16 w-32 h-32 bg-orange-400/20 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Call Status Header -->
+      <div class="w-full space-y-1 z-10">
+        <div class="flex items-center justify-between px-2">
+          <span class="text-[10px] uppercase tracking-wider text-emerald-800 font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-300 flex items-center space-x-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span>HD Voice Live</span>
+          </span>
+          <p id="callDuration" class="text-xs font-mono font-black text-amber-800 bg-amber-100/90 px-2.5 py-0.5 rounded-full border border-amber-300">00:00</p>
+        </div>
+        
+        <h3 id="callAstName" class="text-base sm:text-lg font-extrabold text-slate-900 pt-1 flex items-center justify-center space-x-1">
+          <span>पं. आर.के. शास्त्री</span>
+          <i data-lucide="check-circle" class="w-4 h-4 text-blue-500 fill-blue-500/20 shrink-0"></i>
+        </h3>
+        <p id="callStatusText" class="text-[11px] text-amber-700 font-semibold">कॉल जुड़ रही है...</p>
+      </div>
+
+      <!-- Astrologer Avatar with Pulsing Radar Rings -->
+      <div class="relative my-2 sm:my-3 flex items-center justify-center">
+        <div class="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-full border-2 border-amber-400/60 radar-ring"></div>
+        <div class="w-22 h-22 sm:w-26 sm:h-26 rounded-full overflow-hidden border-3 border-amber-500 shadow-xl relative z-10 bg-amber-100">
+          <img id="callAstAvatar" src="avatars/ast_2.jpg" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+      <!-- Real-time Spoken Subtitle & Wave Visualizer -->
+      <div class="w-full space-y-1.5 z-10 px-1">
+        <!-- Live Audio Wave Bars -->
+        <div id="callWaveContainer" class="flex items-center justify-center space-x-1.5 h-6">
+          <div class="w-1 bg-amber-500 rounded-full wave-bar" style="animation-delay: 0.1s; height: 14px;"></div>
+          <div class="w-1 bg-amber-500 rounded-full wave-bar" style="animation-delay: 0.3s; height: 24px;"></div>
+          <div class="w-1 bg-amber-600 rounded-full wave-bar" style="animation-delay: 0.5s; height: 18px;"></div>
+          <div class="w-1 bg-amber-500 rounded-full wave-bar" style="animation-delay: 0.2s; height: 26px;"></div>
+          <div class="w-1 bg-amber-600 rounded-full wave-bar" style="animation-delay: 0.4s; height: 16px;"></div>
+        </div>
+
+        <!-- Real-time Speech Subtitle Bubble -->
+        <div class="bg-white/95 border border-amber-200/90 rounded-2xl p-2.5 shadow-xs min-h-[62px] flex items-center justify-center text-center">
+          <p id="callSubtitleText" class="text-xs text-slate-800 font-medium leading-relaxed">
+            "कॉल जुड़ रही है, कृपया प्रतीक्षा करें..."
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Voice Question Chips (One-Tap Speaking Queries) -->
+      <div class="w-full space-y-1 z-10 my-1">
+        <p class="text-[9px] text-slate-500 font-bold uppercase tracking-wider">🎙️ एक टैप में पूछें (Tap to Ask Voice Query):</p>
+        <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+          <button onclick="askCallQuestion('career')" class="px-2 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 font-bold flex items-center justify-center space-x-1 transition-all active:scale-95">
+            <span>💼</span>
+            <span>करियर व जॉब योग</span>
+          </button>
+          <button onclick="askCallQuestion('marriage')" class="px-2 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-900 font-bold flex items-center justify-center space-x-1 transition-all active:scale-95">
+            <span>💍</span>
+            <span>विवाह व जीवनसाथी</span>
+          </button>
+          <button onclick="askCallQuestion('money')" class="px-2 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-900 font-bold flex items-center justify-center space-x-1 transition-all active:scale-95">
+            <span>💰</span>
+            <span>धन लाभ व कर्ज</span>
+          </button>
+          <button onclick="askCallQuestion('dosha')" class="px-2 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-900 font-bold flex items-center justify-center space-x-1 transition-all active:scale-95">
+            <span>🛡️</span>
+            <span>दोष शांति व उपाय</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Call Controls (Mute, End Call, Speaker) -->
+      <div class="flex items-center justify-center space-x-6 w-full pt-1 z-10">
+        <button id="callMuteBtn" onclick="toggleCallMute(this)" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center shadow-xs transition-all" title="Mute/Unmute Mic">
+          <i data-lucide="mic" class="w-4 h-4"></i>
+        </button>
+        <button onclick="endAudioCall()" class="w-13 h-13 px-4 py-3 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-bold shadow-lg flex items-center justify-center transition-all group scale-105" title="End Call">
+          <i data-lucide="phone-off" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+        </button>
+        <button id="callSpeakerBtn" onclick="toggleCallSpeaker(this)" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center shadow-xs transition-all" title="Speaker On/Off">
+          <i data-lucide="volume-2" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: SETTINGS & GEMINI AI CONFIG -->
+  <!-- ========================================== -->
+  <div id="settingsModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-300 rounded-3xl w-full max-w-md p-6 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="cpu" class="w-5 h-5 text-amber-600"></i>
+          <h4 class="text-base font-bold text-slate-900">⚡ AI व जेमिनी सेटिंग्स (RAG Engine)</h4>
+        </div>
+        <button onclick="closeSettingsModal()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:text-black flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-wider text-emerald-700 font-bold">Someday AI + RAG Architecture</span>
+            <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">सक्रिय (Active)</span>
+          </div>
+          <p class="text-xs font-bold text-slate-800">Parashari Vedic Ephemeris + Multi-Key Gemini Rotation</p>
+          <p class="text-[10px] text-slate-500">आपकी सटीक लग्न, चंद्र राशि, जन्म नक्षत्र, सक्रिय महादशा व 2026 गोचर के आधार पर 100% प्रामाणिक उत्तर।</p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">आपकी निजी Google Gemini API Key (Optional):</label>
+          <input type="password" id="customApiKeyInput" placeholder="AIzaSy..." 
+            class="w-full bg-slate-50 border border-slate-300 focus:border-amber-500 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 outline-none">
+          <p class="text-[10px] text-slate-400 mt-1">💡 5 बिल्ट-इन जेमिनी कीज़ पहले से रोटेशन में सक्रिय हैं। अपनी की डालने पर उसे सर्वोच्च प्राथमिकता मिलेगी।</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-100">
+        <button onclick="closeSettingsModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200">
+          रद्द करें
+        </button>
+        <button onclick="saveApiKeySettings()" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs shadow-sm">
+          सहेजें (Save Settings)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: WALLET RECHARGE -->
+  <!-- ========================================== -->
+  <div id="walletModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-300 rounded-3xl w-full max-w-md p-6 space-y-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="wallet" class="w-5 h-5 text-amber-600"></i>
+          <h4 class="text-sm font-bold text-slate-900">वॉलेट रिचार्ज (शेष: ₹ <span id="modalWalletBalance">150</span>)</h4>
+        </div>
+        <button onclick="closeWalletModal()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:text-black flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3">
+        <button onclick="addBalance(99)" class="p-3 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center">
+          <p class="text-xs text-slate-500">स्टार्टर</p>
+          <p class="text-base font-extrabold text-amber-600 mt-1">₹ 99</p>
+        </button>
+        <button onclick="addBalance(299)" class="p-3 rounded-2xl bg-amber-50 border-2 border-amber-500 text-center">
+          <span class="text-[9px] bg-amber-500 text-white px-1.5 py-0.2 rounded font-bold">100% FREE</span>
+          <p class="text-base font-extrabold text-slate-900 mt-1">₹ 299</p>
+        </button>
+        <button onclick="addBalance(599)" class="p-3 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center">
+          <p class="text-xs text-slate-500">गुरु दक्षिणा</p>
+          <p class="text-base font-extrabold text-purple-600 mt-1">₹ 599</p>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: STORY VIEWER -->
+  <!-- ========================================== -->
+  <div id="storyViewerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-sm aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-tr from-amber-50 via-white to-orange-50 border border-amber-300 p-6 flex flex-col justify-between shadow-2xl">
+      <div class="space-y-3">
+        <div class="w-full bg-slate-200 h-1 rounded-full overflow-hidden">
+          <div class="bg-amber-500 h-full w-3/4 animate-pulse"></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <span id="storyTitle" class="text-xs font-bold text-slate-800">दैनिक स्टोरी</span>
+          <button onclick="closeStoryModal()" class="w-7 h-7 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-center my-auto">
+        <div id="storyIcon" class="text-5xl">🔱</div>
+        <h3 id="storyHeading" class="text-xl font-bold font-mystic text-amber-800">आज का विशेष मार्गदर्शन</h3>
+        <p id="storyBody" class="text-xs text-slate-700 leading-relaxed max-w-xs mx-auto"></p>
+      </div>
+
+      <button onclick="closeStoryModal()" class="w-full py-2.5 rounded-xl bg-amber-500 text-white font-bold text-xs">
+        समझ गया (Close)
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: KUNDLI HOUSE EXPLORER DRAWER -->
+  <!-- ========================================== -->
+  <div id="houseDrawerModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white border border-slate-300 rounded-t-3xl sm:rounded-3xl w-full max-w-md p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <h4 id="houseDrawerTitle" class="text-base font-bold text-amber-800">भाव 1</h4>
+        <button onclick="closeHouseDrawer()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:text-black flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <p id="houseDrawerBody" class="text-xs text-slate-700 leading-relaxed"></p>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: GOOGLE LOGIN & SIGNUP GATEKEEPER (FIREBASE AUTH) -->
+  <!-- ========================================== -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white border border-amber-300 rounded-3xl w-full max-w-md p-6 sm:p-7 space-y-5 shadow-2xl relative overflow-hidden text-center">
+      
+      <!-- Top Decorative Glow -->
+      <div class="absolute -top-12 -right-12 w-28 h-28 bg-amber-400/20 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-12 -left-12 w-28 h-28 bg-orange-400/20 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Close Button -->
+      <button onclick="FirebaseAuthEngine.closeLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-all">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <!-- App Logo & Header -->
+      <div class="space-y-2 pt-2">
+        <div class="w-14 h-14 mx-auto rounded-full bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/30">
+          <span class="text-2xl font-bold font-sanskrit text-white select-none">ॐ</span>
+        </div>
+        <h3 class="text-xl font-extrabold font-mystic text-slate-900">
+          Google से लॉगिन करें
+        </h3>
+        <p class="text-xs text-slate-600 max-w-xs mx-auto leading-relaxed">
+          दिव्य ज्योतिष के सभी फीचर्स (सटीक जन्म कुंडली, 36 गुण मिलान, लाइव कॉल/चैट, अंकफल, टैरो) का उपयोग करने हेतु 1-क्लिक लॉगिन करें।
+        </p>
+      </div>
+
+      <!-- Benefits Box -->
+      <div class="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-3.5 text-left space-y-1.5 text-xs text-slate-800">
+        <div class="flex items-center space-x-2">
+          <span class="text-emerald-600 font-bold">✓</span>
+          <span><b>100% सटीक वैदिक कुंडली</b> (लाहिरी अयनांश व महादशा)</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-emerald-600 font-bold">✓</span>
+          <span><b>36 गुण मिलान</b> व मांगलिक दोष सामंजस्य</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-emerald-600 font-bold">✓</span>
+          <span><b>पहली ज्योतिषी चैट व कॉल</b> पूर्णतः निःशुल्क (₹150 बोनस)</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-emerald-600 font-bold">✓</span>
+          <span><b>LocalStorage ऑटो-सेव:</b> बार-बार जन्म विवरण भरने से मुक्ति</span>
+        </div>
+      </div>
+
+      <!-- Official Google Sign In Button -->
+      <div class="space-y-2.5 pt-1">
+        <button id="googleSignInBtn" onclick="FirebaseAuthEngine.signInWithGoogle()" 
+          class="w-full py-3.5 px-4 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm rounded-2xl border-2 border-slate-300 hover:border-amber-500 shadow-md flex items-center justify-center space-x-3 transition-all active:scale-95 group">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.03h3.88c2.27-2.09 3.66-5.17 3.66-9.12z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.03c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.13C3.25 21.36 7.35 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.26C.46 8.17 0 9.99 0 12s.46 3.83 1.26 5.42l4.02-3.13z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.25 2.64 1.26 6.58l4.02 3.13c.95-2.83 3.6-4.96 6.72-4.96z"/>
+          </svg>
+          <span class="group-hover:text-amber-800 transition-colors">Google खाते से जारी रखें (Continue with Google)</span>
+        </button>
+
+        <!-- Optional Custom Account Accordion -->
+        <details class="text-[11px] text-slate-500 text-left pt-1">
+          <summary class="cursor-pointer hover:text-amber-700 font-semibold select-none">
+            💡 किसी अन्य नाम / Google ईमेल से लॉगिन करना चाहते हैं?
+          </summary>
+          <div class="mt-2 p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+            <input type="text" id="customAuthName" placeholder="आपका पूरा नाम (उदा: Prajwal Sharma)" 
+              class="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none">
+            <input type="email" id="customAuthEmail" placeholder="आपका Google ईमेल (उदा: prajwal@gmail.com)" 
+              class="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none">
+            <button onclick="FirebaseAuthEngine.signInWithGoogle(document.getElementById('customAuthName').value, document.getElementById('customAuthEmail').value)" 
+              class="w-full py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-lg transition-all">
+              कस्टम खाते से लॉगिन करें
+            </button>
+          </div>
+        </details>
+      </div>
+
+      <!-- Guest Note -->
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+        <span>🔒 100% सुरक्षित एवं गोपनीय</span>
+        <button onclick="FirebaseAuthEngine.closeLoginModal()" class="text-amber-700 font-bold hover:underline">
+          अतिथि के रूप में केवल देखें (Browse)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: BIRTH PROFILE ONBOARDING SHEET (NATIVE ANDROID UX) -->
+  <!-- ========================================== -->
+  <div id="onboardingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white border border-amber-300 rounded-t-3xl sm:rounded-3xl w-full max-w-md p-5 sm:p-6 space-y-4 shadow-2xl relative overflow-hidden bottom-sheet-anim">
+      
+      <!-- Drag handle -->
+      <div class="sheet-drag-handle"></div>
+
+      <!-- Header -->
+      <div class="text-center space-y-1">
+        <div class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-sanskrit text-xl shadow-md">
+          ॐ
+        </div>
+        <h3 class="text-lg font-black font-mystic text-slate-900">वैदिक जन्म विवरण दर्ज करें</h3>
+        <p class="text-xs text-slate-500">100% सटीक कुंडली, 120 वर्षीय महादशा एवं अनुकूल सलाह हेतु अपना विवरण भरें:</p>
+      </div>
+
+      <!-- Form Inputs -->
+      <form onsubmit="event.preventDefault(); FirebaseAuthEngine.submitOnboardingForm();" class="space-y-3 pt-1 text-left">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">पूरा नाम (Full Name)</label>
+          <input type="text" id="onboardName" required placeholder="उदा: Prajwal Sharma"
+            class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">लिंग (Gender)</label>
+            <select id="onboardGender" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
+              <option value="Male">पुरुष (Male)</option>
+              <option value="Female">स्त्री (Female)</option>
+              <option value="Other">अन्य (Other)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">जन्म स्थान (City)</label>
+            <select id="onboardCity" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
+              <option value="28.6139,77.2090,New Delhi">New Delhi</option>
+              <option value="19.0760,72.8777,Mumbai">Mumbai</option>
+              <option value="12.9716,77.5946,Bengaluru">Bengaluru</option>
+              <option value="25.3176,82.9739,Varanasi">Varanasi</option>
+              <option value="26.9124,75.7873,Jaipur">Jaipur</option>
+              <option value="18.5204,73.8567,Pune">Pune</option>
+              <option value="22.5726,88.3639,Kolkata">Kolkata</option>
+              <option value="13.0827,80.2707,Chennai">Chennai</option>
+              <option value="17.3850,78.4867,Hyderabad">Hyderabad</option>
+              <option value="23.0225,72.5714,Ahmedabad">Ahmedabad</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">जन्म तिथि (DOB)</label>
+            <input type="date" id="onboardDob" required value="1998-07-21"
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">जन्म समय (TOB)</label>
+            <input type="time" id="onboardTob" required value="10:30"
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">मुख्य प्रश्न / चिंता का विषय (Primary Focus)</label>
+          <select id="onboardFocus" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
+            <option value="career">💼 करियर, नौकरी व पदोन्नति (Career & Promotion)</option>
+            <option value="marriage">💍 विवाह, जीवनसाथी व प्रेम (Marriage & Love)</option>
+            <option value="wealth">💰 धन लाभ, व्यापार व कर्ज मुक्ति (Wealth & Business)</option>
+            <option value="health">🛡️ स्वास्थ्य, मानसिक शांति व दोष (Health & Peace)</option>
+          </select>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold text-xs shadow-md transition-all active:scale-95 flex items-center justify-center space-x-2">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>सहेजें एवं संपूर्ण कुंडली बनाएं (Save & Build Kundli)</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: PLANETARY TRANSIT RADAR 2026 -->
+  <!-- ========================================== -->
+  <div id="transitRadarModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white border border-indigo-300 rounded-3xl w-full max-w-md p-5 sm:p-6 space-y-4 shadow-2xl relative overflow-hidden bottom-sheet-anim max-h-[90vh] overflow-y-auto no-scrollbar">
+      
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <div class="flex items-center space-x-2">
+          <span class="text-xl">🪐</span>
+          <h3 class="text-base font-bold text-slate-900">2026 ग्रह गोचर रडार (Planetary Transits)</h3>
+        </div>
+        <button onclick="closeTransitRadarModal()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:text-black flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-amber-900 flex items-center space-x-1.5">
+              <span>🌟</span>
+              <span>देवगुरु बृहस्पति गोचर (Guru Transit)</span>
+            </span>
+            <span class="text-[9px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">मिथुन ➔ कर्क</span>
+          </div>
+          <p class="text-slate-700 leading-relaxed">
+            गुरु का मिथुन व कर्क (उच्च राशि) में संचरण ज्ञान, विवाह, संतान एवं आर्थिक उन्नति के महायोग बना रहा है।
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-200 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-blue-900 flex items-center space-x-1.5">
+              <span>🪐</span>
+              <span>कर्मफलदाता शनि गोचर (Saturn in Pisces)</span>
+            </span>
+            <span class="text-[9px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-bold">मीन राशि</span>
+          </div>
+          <p class="text-slate-700 leading-relaxed">
+            शनि देव का मीन राशि में भ्रमण कुंभ राशि (उतरती साढ़े साती), मीन राशि (मध्य चरण) एवं मेष राशि (चढ़ती साढ़े साती) को प्रभावित कर रहा है।
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-purple-50/70 border border-purple-200 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-purple-900 flex items-center space-x-1.5">
+              <span>🐉</span>
+              <span>राहु-केतु धुरी गोचर (Kumbh - Simha Axis)</span>
+            </span>
+            <span class="text-[9px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full font-bold">कुंभ ➔ सिंह</span>
+          </div>
+          <p class="text-slate-700 leading-relaxed">
+            राहु का कुंभ एवं केतु का सिंह राशि में संचार तकनीक, विदेश यात्रा, स्टार्टअप एवं अप्रत्याशित करियर बदलाव के अवसर ला रहा है।
+          </p>
+        </div>
+      </div>
+
+      <button onclick="closeTransitRadarModal()" class="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs shadow-sm">
+        समझ गया (Close)
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- BOTTOM FLOATING NAVIGATION (NATIVE ANDROID MATERIAL 3) -->
+  <!-- ========================================== -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none">
+    <div class="w-full max-w-[480px] bg-white/95 border-t border-slate-200 backdrop-blur-md px-2 py-1.5 shadow-lg pointer-events-auto">
+      <div class="w-full flex items-center justify-around text-[10px] font-bold">
+        <button onclick="switchTab('home')" class="nav-btn flex flex-col items-center space-y-1 text-amber-600 font-black p-1 transition-all active:scale-90">
+          <i data-lucide="home" class="w-4 h-4"></i>
+          <span>होम</span>
+        </button>
+        <button onclick="switchTab('kundli')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1 transition-all active:scale-90">
+          <i data-lucide="compass" class="w-4 h-4"></i>
+          <span>कुंडली</span>
+        </button>
+        <button onclick="switchTab('consult')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 relative p-1 transition-all active:scale-90">
+          <span class="absolute top-0 right-2 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>परामर्श (48)</span>
+        </button>
+        <button onclick="switchTab('panchang')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1 transition-all active:scale-90">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>पंचांग</span>
+        </button>
+        <button onclick="switchTab('milan')" class="nav-btn flex flex-col items-center space-y-1 text-slate-500 hover:text-slate-900 p-1 transition-all active:scale-90">
+          <i data-lucide="heart" class="w-4 h-4"></i>
+          <span>मिलान</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  </div> <!-- end native-app-viewport -->
+
+  <!-- Firebase SDK Compat -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-auth.js"></script>
+
+  <!-- Scripts -->
+  <script src="js/astrologers-data.js"></script>
+  <script src="js/astro-engine.js"></script>
+  <script src="js/kundli-milan.js"></script>
+  <script src="js/panchang.js"></script>
+  <script src="js/tarot.js"></script>
+  <script src="js/numerology.js"></script>
+  <script src="js/jaap-audio.js"></script>
+  <script src="js/consultation.js"></script>
+  <script src="js/ai-engine.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
