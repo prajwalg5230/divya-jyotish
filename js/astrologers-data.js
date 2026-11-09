@@ -1,6 +1,6 @@
 /**
- * Divya Jyotish - 48 Verified Modern Astrologers Database (AstroTalk / InstaAstro Standard)
- * Modern consultants, zero old-school pandit stereotypes, zero font-break bugs.
+ * Divya Jyotish - 48 Verified Modern Astrologers Database
+ * All-Round Vedic Astrologers with Distinct Gender & Persona Voice
  */
 
 var ASTROLOGERS_DATABASE = [
@@ -12,9 +12,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "टैरो कार्ड एवं रिलेशनशिप कोच",
     "avatar": "avatars/ast_1.jpg",
     "skills": [
-      "Tarot",
-      "Soulmates",
-      "Reconciliation"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -26,7 +28,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "54,200+",
     "ratePerMin": 25,
     "isOnline": true,
-    "bio": "Deep intuitive guidance on relationship crossroads, soulmate timing, and emotional healing."
+    "bio": "Deep intuitive guidance on relationship crossroads, soulmate timing, and emotional healing.",
+    "gender": "female",
+    "persona": "स्नेहमयी, आत्मीय व अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को भांपकर धैर्यपूर्वक व सांत्वनापूर्ण शैली में मार्गदर्शन देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_2",
@@ -36,9 +41,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक ज्योतिष एवं लाइफ कोच",
     "avatar": "avatars/ast_2.jpg",
     "skills": [
-      "Vedic",
-      "Career Growth",
-      "Life Path"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -50,7 +57,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "68,400+",
     "ratePerMin": 30,
     "isOnline": true,
-    "bio": "Bridging ancient Vedic wisdom with modern career strategies and psychological alignment."
+    "bio": "Bridging ancient Vedic wisdom with modern career strategies and psychological alignment.",
+    "gender": "male",
+    "persona": "अनुभवी, शांत एवं आत्मविश्वास से भरे ज्योतिषी। करियर, व्यापार और जीवन के बड़े निर्णयों में अचूक रणनीति सुझाते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_3",
@@ -60,9 +70,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "फाइनेंशियल एवं वेल्थ एस्ट्रोलॉजर",
     "avatar": "avatars/ast_3.jpg",
     "skills": [
-      "Career",
-      "Wealth Cycle",
-      "Investments"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -75,7 +87,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "42,900+",
     "ratePerMin": 28,
     "isOnline": true,
-    "bio": "Specialist in career shifts, salary growth timeframes, startup timing, and property investments."
+    "bio": "Specialist in career shifts, salary growth timeframes, startup timing, and property investments.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_4",
@@ -85,9 +100,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "प्रेम एवं मैरिज काउंसलर",
     "avatar": "avatars/ast_4.jpg",
     "skills": [
-      "Love",
-      "Marriage",
-      "Compatibility"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "love",
     "languages": [
@@ -99,7 +116,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "49,100+",
     "ratePerMin": 22,
     "isOnline": true,
-    "bio": "Helping couples navigate misunderstandings, family approval, and marriage readiness."
+    "bio": "Helping couples navigate misunderstandings, family approval, and marriage readiness.",
+    "gender": "female",
+    "persona": "प्रसन्नचित्त, सकारात्मक व उत्साहवर्धक शैली। जातक के मन से भय व चिंता दूर कर जीवन में शुभता का संचार करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_5",
@@ -109,9 +129,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "केपी एवं सब-लॉर्ड विशेषज्ञ",
     "avatar": "avatars/ast_5.jpg",
     "skills": [
-      "KP System",
-      "Prashna",
-      "Timing"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "kp",
     "languages": [
@@ -123,7 +145,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "57,300+",
     "ratePerMin": 32,
     "isOnline": true,
-    "bio": "Pinpoint timing for job offers, overseas opportunities, and decisive business moves."
+    "bio": "Pinpoint timing for job offers, overseas opportunities, and decisive business moves.",
+    "gender": "male",
+    "persona": "दूरदर्शी, विश्लेषणात्मक एवं व्यावहारिक आचार्य। जातक की कुंडली के गुप्त योगों और भाग्योदय के सटीक समय को उजागर करते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_6",
@@ -133,9 +158,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "कॉरपोरेट अंकशास्त्री एवं जेमोलॉजिस्ट",
     "avatar": "avatars/ast_6.jpg",
     "skills": [
-      "Numerology",
-      "Gemology",
-      "Name Correction"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -148,7 +175,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "61,800+",
     "ratePerMin": 35,
     "isOnline": true,
-    "bio": "Harmonizing personal & business brand names with life path numbers for breakthrough momentum."
+    "bio": "Harmonizing personal & business brand names with life path numbers for breakthrough momentum.",
+    "gender": "female",
+    "persona": "स्नेहमयी, आत्मीय व अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को भांपकर धैर्यपूर्वक व सांत्वनापूर्ण शैली में मार्गदर्शन देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_7",
@@ -158,9 +188,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "साइकिक एवं एंजेल कार्ड रीडर",
     "avatar": "avatars/ast_7.jpg",
     "skills": [
-      "Tarot",
-      "Angel Guidance",
-      "Aura Healing"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -172,7 +204,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "31,400+",
     "ratePerMin": 19,
     "isOnline": true,
-    "bio": "Tuning into partner subconscious feelings, clearing emotional blocks, and divine timing signs."
+    "bio": "Tuning into partner subconscious feelings, clearing emotional blocks, and divine timing signs.",
+    "gender": "female",
+    "persona": "सौम्य, गंभीर और गहरी आध्यात्मिक दृष्टि वाली विदुषी। ग्रहों की सूक्ष्म चाल व नक्षत्रों से सटीक समाधान प्रदान करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_8",
@@ -182,9 +217,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "बिजनेस ग्रोथ एवं एग्जीक्यूटिव मेंटर",
     "avatar": "avatars/ast_8.jpg",
     "skills": [
-      "Career",
-      "Business",
-      "Corporate Vastu"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -197,7 +234,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "71,200+",
     "ratePerMin": 34,
     "isOnline": true,
-    "bio": "Strategic astrological timing for partnerships, capital raising, and enterprise scaling."
+    "bio": "Strategic astrological timing for partnerships, capital raising, and enterprise scaling.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_9",
@@ -207,9 +247,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "ट्विन फ्लेम एवं मेनिफेस्टेशन मेंटर",
     "avatar": "avatars/ast_9.jpg",
     "skills": [
-      "Love",
-      "Twin Flame",
-      "Law of Attraction"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "love",
     "languages": [
@@ -222,7 +264,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "36,500+",
     "ratePerMin": 21,
     "isOnline": true,
-    "bio": "Unraveling karmic ties, twin flame separation dynamics, and magnetic manifestation."
+    "bio": "Unraveling karmic ties, twin flame separation dynamics, and magnetic manifestation.",
+    "gender": "female",
+    "persona": "प्रसन्नचित्त, सकारात्मक व उत्साहवर्धक शैली। जातक के मन से भय व चिंता दूर कर जीवन में शुभता का संचार करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_10",
@@ -232,9 +277,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक ज्योतिषी एवं डिसीजन स्ट्रैटेजिस्ट",
     "avatar": "avatars/ast_10.jpg",
     "skills": [
-      "Vedic",
-      "Kundli",
-      "Remedies"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -247,7 +294,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "65,900+",
     "ratePerMin": 31,
     "isOnline": true,
-    "bio": "Clarity during major life dilemmas, Dasha transitions, and practical remedial guidance."
+    "bio": "Clarity during major life dilemmas, Dasha transitions, and practical remedial guidance.",
+    "gender": "male",
+    "persona": "दूरदर्शी, विश्लेषणात्मक एवं व्यावहारिक आचार्य। जातक की कुंडली के गुप्त योगों और भाग्योदय के सटीक समय को उजागर करते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_11",
@@ -257,9 +307,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "औरा रीडर एवं माइंडसेट कोच",
     "avatar": "avatars/ast_1.jpg",
     "skills": [
-      "Tarot",
-      "Aura",
-      "Dream Analysis"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -271,7 +323,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "28,200+",
     "ratePerMin": 20,
     "isOnline": true,
-    "bio": "Identifying energetic blockages, subconscious thought patterns, and restorative chakra work."
+    "bio": "Identifying energetic blockages, subconscious thought patterns, and restorative chakra work.",
+    "gender": "male",
+    "persona": "प्रकांड विद्वान, गंभीर एवं तार्किक वैदिक आचार्य। गणितीय शुद्धता और पराशरी सिद्धांतों के आधार पर स्पष्ट समय-सीमा बताते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_12",
@@ -281,9 +336,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक काउंसलर एवं वास्तु एक्सपर्ट",
     "avatar": "avatars/ast_2.jpg",
     "skills": [
-      "Vedic",
-      "Vastu",
-      "Family Peace"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -296,7 +353,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "44,600+",
     "ratePerMin": 26,
     "isOnline": true,
-    "bio": "Harmonizing living spaces, domestic tranquility, and natal chart alignment."
+    "bio": "Harmonizing living spaces, domestic tranquility, and natal chart alignment.",
+    "gender": "female",
+    "persona": "सौम्य, गंभीर और गहरी आध्यात्मिक दृष्टि वाली विदुषी। ग्रहों की सूक्ष्म चाल व नक्षत्रों से सटीक समाधान प्रदान करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_13",
@@ -306,9 +366,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "केपी सिस्टम एवं ग्लोबल करियर एडवाइजर",
     "avatar": "avatars/ast_3.jpg",
     "skills": [
-      "KP System",
-      "Abroad Relocation",
-      "Career"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "kp",
     "languages": [
@@ -321,7 +383,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "52,800+",
     "ratePerMin": 29,
     "isOnline": true,
-    "bio": "Visa approvals, global assignments, PR timeframes, and career elevation milestones."
+    "bio": "Visa approvals, global assignments, PR timeframes, and career elevation milestones.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_14",
@@ -331,9 +396,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "टैरो एवं पास्ट लाइफ रीडर",
     "avatar": "avatars/ast_4.jpg",
     "skills": [
-      "Tarot",
-      "Past Life",
-      "Soul Contract"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -346,7 +413,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "39,700+",
     "ratePerMin": 24,
     "isOnline": true,
-    "bio": "Revealing repetitive relationship loops, past life karma contracts, and divine soul lessons."
+    "bio": "Revealing repetitive relationship loops, past life karma contracts, and divine soul lessons.",
+    "gender": "female",
+    "persona": "प्रसन्नचित्त, सकारात्मक व उत्साहवर्धक शैली। जातक के मन से भय व चिंता दूर कर जीवन में शुभता का संचार करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_15",
@@ -356,9 +426,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "मैरिज टाइमिंग एवं मैचमेकर",
     "avatar": "avatars/ast_5.jpg",
     "skills": [
-      "Love",
-      "Marriage",
-      "Gun Milan"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "love",
     "languages": [
@@ -370,7 +442,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "33,100+",
     "ratePerMin": 21,
     "isOnline": true,
-    "bio": "Accurate prediction of meeting spouse, courtship timeline, and marital happiness."
+    "bio": "Accurate prediction of meeting spouse, courtship timeline, and marital happiness.",
+    "gender": "female",
+    "persona": "शास्त्रों में पारंगत एवं मातृत्व भाव से परिपूर्ण। जातक के वैवाहिक, पारिवारिक व आर्थिक प्रश्नों का वात्सल्यपूर्ण समाधान देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_16",
@@ -380,9 +455,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक ज्योतिषी एवं लाइफ स्ट्रैटेजिस्ट",
     "avatar": "avatars/ast_6.jpg",
     "skills": [
-      "Vedic",
-      "Kundli",
-      "Mahadasha"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -395,7 +472,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "59,400+",
     "ratePerMin": 30,
     "isOnline": true,
-    "bio": "Empowering seekers through Mahadasha clarity, Sade Sati navigation, and holistic remedies."
+    "bio": "Empowering seekers through Mahadasha clarity, Sade Sati navigation, and holistic remedies.",
+    "gender": "male",
+    "persona": "प्रकांड विद्वान, गंभीर एवं तार्किक वैदिक आचार्य। गणितीय शुद्धता और पराशरी सिद्धांतों के आधार पर स्पष्ट समय-सीमा बताते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_17",
@@ -405,9 +485,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "क्रिस्टल एवं एनर्जी अलाइनमेंट कोच",
     "avatar": "avatars/ast_7.jpg",
     "skills": [
-      "Tarot",
-      "Crystals",
-      "Chakra"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -420,7 +502,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "35,200+",
     "ratePerMin": 22,
     "isOnline": true,
-    "bio": "Activating personal energy resonance using calibrated crystal grids and tarot guidance."
+    "bio": "Activating personal energy resonance using calibrated crystal grids and tarot guidance.",
+    "gender": "female",
+    "persona": "सौम्य, गंभीर और गहरी आध्यात्मिक दृष्टि वाली विदुषी। ग्रहों की सूक्ष्म चाल व नक्षत्रों से सटीक समाधान प्रदान करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_18",
@@ -430,9 +515,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "कॉरपोरेट एस्ट्रोलॉजर एवं मुहूर्त एक्सपर्ट",
     "avatar": "avatars/ast_8.jpg",
     "skills": [
-      "Career",
-      "Auspicious Timing",
-      "Wealth"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -445,7 +532,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "48,900+",
     "ratePerMin": 27,
     "isOnline": true,
-    "bio": "Product launch timing, incorporation charts, and corporate turnaround strategies."
+    "bio": "Product launch timing, incorporation charts, and corporate turnaround strategies.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_19",
@@ -455,9 +545,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "मॉडर्न अंकशास्त्री एवं नेम एनालिस्ट",
     "avatar": "avatars/ast_9.jpg",
     "skills": [
-      "Numerology",
-      "Mobile Numerology",
-      "Signature"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -470,7 +562,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "37,800+",
     "ratePerMin": 23,
     "isOnline": true,
-    "bio": "Synchronizing mobile numbers, digital handles, and signatures for effortless luck."
+    "bio": "Synchronizing mobile numbers, digital handles, and signatures for effortless luck.",
+    "gender": "female",
+    "persona": "प्रसन्नचित्त, सकारात्मक व उत्साहवर्धक शैली। जातक के मन से भय व चिंता दूर कर जीवन में शुभता का संचार करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_20",
@@ -480,9 +575,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "इक्विटी एवं मार्केट एस्ट्रोलॉजर",
     "avatar": "avatars/ast_10.jpg",
     "skills": [
-      "Career",
-      "Market Timing",
-      "Wealth"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -494,7 +591,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "46,100+",
     "ratePerMin": 33,
     "isOnline": true,
-    "bio": "Planetary cycle correlation with financial markets, trading psychology, and wealth preservation."
+    "bio": "Planetary cycle correlation with financial markets, trading psychology, and wealth preservation.",
+    "gender": "male",
+    "persona": "दूरदर्शी, विश्लेषणात्मक एवं व्यावहारिक आचार्य। जातक की कुंडली के गुप्त योगों और भाग्योदय के सटीक समय को उजागर करते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_21",
@@ -504,9 +604,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वेलनेस एवं मेडिकल एस्ट्रोलॉजर",
     "avatar": "avatars/ast_1.jpg",
     "skills": [
-      "Vedic",
-      "Wellness",
-      "Ayurveda"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -519,7 +621,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "63,500+",
     "ratePerMin": 36,
     "isOnline": true,
-    "bio": "Holistic mind-body equilibrium based on planetary constitutions and biorhythms."
+    "bio": "Holistic mind-body equilibrium based on planetary constitutions and biorhythms.",
+    "gender": "female",
+    "persona": "स्नेहमयी, आत्मीय व अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को भांपकर धैर्यपूर्वक व सांत्वनापूर्ण शैली में मार्गदर्शन देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_22",
@@ -529,9 +634,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "टैरो एवं रिलेशनशिप अल्केमिस्ट",
     "avatar": "avatars/ast_2.jpg",
     "skills": [
-      "Tarot",
-      "Love",
-      "Soulmates"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "love",
     "languages": [
@@ -543,7 +650,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "32,400+",
     "ratePerMin": 20,
     "isOnline": true,
-    "bio": "Empathetic tarot consultations for deep emotional clarity, trust recovery, and love."
+    "bio": "Empathetic tarot consultations for deep emotional clarity, trust recovery, and love.",
+    "gender": "female",
+    "persona": "सौम्य, गंभीर और गहरी आध्यात्मिक दृष्टि वाली विदुषी। ग्रहों की सूक्ष्म चाल व नक्षत्रों से सटीक समाधान प्रदान करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_23",
@@ -553,9 +663,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "केपी सब-लॉर्ड इवेंट टाइमिंग एक्सपर्ट",
     "avatar": "avatars/ast_3.jpg",
     "skills": [
-      "KP System",
-      "Prashna",
-      "Career"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "kp",
     "languages": [
@@ -567,7 +679,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "47,800+",
     "ratePerMin": 28,
     "isOnline": true,
-    "bio": "Zero-ambiguity event forecasting: job joining, exam outcomes, and real estate purchases."
+    "bio": "Zero-ambiguity event forecasting: job joining, exam outcomes, and real estate purchases.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_24",
@@ -577,9 +692,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "खाल्डियन अंकशास्त्री एवं लाइफ कोच",
     "avatar": "avatars/ast_4.jpg",
     "skills": [
-      "Numerology",
-      "Gemology",
-      "Destiny"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -592,7 +709,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "38,900+",
     "ratePerMin": 25,
     "isOnline": true,
-    "bio": "Aligning your compound name vibration with your birth destiny for professional breakthroughs."
+    "bio": "Aligning your compound name vibration with your birth destiny for professional breakthroughs.",
+    "gender": "female",
+    "persona": "प्रसन्नचित्त, सकारात्मक व उत्साहवर्धक शैली। जातक के मन से भय व चिंता दूर कर जीवन में शुभता का संचार करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_25",
@@ -602,9 +722,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "सबकॉन्शस माइंड एवं टैरो एनालिस्ट",
     "avatar": "avatars/ast_5.jpg",
     "skills": [
-      "Tarot",
-      "Mindset",
-      "Dream Analysis"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -616,7 +738,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "26,800+",
     "ratePerMin": 19,
     "isOnline": true,
-    "bio": "Breaking self-sabotaging mental barriers, dream decoding, and conscious pathfinding."
+    "bio": "Breaking self-sabotaging mental barriers, dream decoding, and conscious pathfinding.",
+    "gender": "male",
+    "persona": "दूरदर्शी, विश्लेषणात्मक एवं व्यावहारिक आचार्य। जातक की कुंडली के गुप्त योगों और भाग्योदय के सटीक समय को उजागर करते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_26",
@@ -626,9 +751,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "मैरिटल हार्मनी एवं डिवोर्स प्रिवेंशन",
     "avatar": "avatars/ast_6.jpg",
     "skills": [
-      "Love",
-      "Marriage",
-      "Healing"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "love",
     "languages": [
@@ -640,7 +767,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "41,300+",
     "ratePerMin": 24,
     "isOnline": true,
-    "bio": "Mediation and astrological conflict resolution for rekindling affection and companionship."
+    "bio": "Mediation and astrological conflict resolution for rekindling affection and companionship.",
+    "gender": "female",
+    "persona": "स्नेहमयी, आत्मीय व अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को भांपकर धैर्यपूर्वक व सांत्वनापूर्ण शैली में मार्गदर्शन देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_27",
@@ -650,9 +780,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "सरकारी परीक्षा एवं करियर मेंटर",
     "avatar": "avatars/ast_7.jpg",
     "skills": [
-      "Career",
-      "Govt Exam",
-      "Sun Rajyoga"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -664,7 +796,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "50,600+",
     "ratePerMin": 27,
     "isOnline": true,
-    "bio": "Analyzing 10th and 6th houses for success in civil services, banking, and judiciary exams."
+    "bio": "Analyzing 10th and 6th houses for success in civil services, banking, and judiciary exams.",
+    "gender": "male",
+    "persona": "अनुभवी, शांत एवं आत्मविश्वास से भरे ज्योतिषी। करियर, व्यापार और जीवन के बड़े निर्णयों में अचूक रणनीति सुझाते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_28",
@@ -674,9 +809,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक ज्योतिषी एवं कुंडली मिलान",
     "avatar": "avatars/ast_8.jpg",
     "skills": [
-      "Vedic",
-      "Kundli Milan",
-      "Prashna"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -689,7 +826,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "43,500+",
     "ratePerMin": 23,
     "isOnline": true,
-    "bio": "In-depth Ashtakoot matching and Manglik dosha exceptions for lifelong marital harmony."
+    "bio": "In-depth Ashtakoot matching and Manglik dosha exceptions for lifelong marital harmony.",
+    "gender": "female",
+    "persona": "आधुनिक एवं तार्किक वैदिक विदुषी। स्पष्टवादी, व्यावहारिक और सीधे उपाय सुझाने वाली संवेदनशील सलाहकार।",
+    "isUniversal": true
   },
   {
     "id": "ast_29",
@@ -699,9 +839,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "विदेश सेटलमेंट एवं प्रॉपर्टी विशेषज्ञ",
     "avatar": "avatars/ast_9.jpg",
     "skills": [
-      "KP System",
-      "Abroad PR",
-      "Property"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "kp",
     "languages": [
@@ -714,7 +856,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "56,200+",
     "ratePerMin": 32,
     "isOnline": true,
-    "bio": "4th and 12th house synergy for property investments, home construction, and permanent immigration."
+    "bio": "4th and 12th house synergy for property investments, home construction, and permanent immigration.",
+    "gender": "male",
+    "persona": "पारंपरिक भृगु व पराशर परंपरा के ज्ञाता। दोष शांति, ग्रह गोचर एवं सरल सात्विक उपायों के विशेषज्ञ।",
+    "isUniversal": true
   },
   {
     "id": "ast_30",
@@ -724,9 +869,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक एवं टैरो ड्यूल मास्टर",
     "avatar": "avatars/ast_10.jpg",
     "skills": [
-      "Vedic",
-      "Tarot",
-      "Soul Purpose"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -739,7 +886,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "49,800+",
     "ratePerMin": 28,
     "isOnline": true,
-    "bio": "Cross-verifying natal chart planetary transits with Celtic Cross tarot spreads for 360-degree clarity."
+    "bio": "Cross-verifying natal chart planetary transits with Celtic Cross tarot spreads for 360-degree clarity.",
+    "gender": "female",
+    "persona": "शास्त्रों में पारंगत एवं मातृत्व भाव से परिपूर्ण। जातक के वैवाहिक, पारिवारिक व आर्थिक प्रश्नों का वात्सल्यपूर्ण समाधान देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_31",
@@ -749,9 +899,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "स्टार्टअप एवं टेक करियर मेंटर",
     "avatar": "avatars/ast_1.jpg",
     "skills": [
-      "Career",
-      "Startup",
-      "Tech Transitions"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -763,7 +915,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "39,400+",
     "ratePerMin": 26,
     "isOnline": true,
-    "bio": "Timing tech pivots, appraisal negotiations, equity grants, and founder funding rounds."
+    "bio": "Timing tech pivots, appraisal negotiations, equity grants, and founder funding rounds.",
+    "gender": "male",
+    "persona": "प्रकांड विद्वान, गंभीर एवं तार्किक वैदिक आचार्य। गणितीय शुद्धता और पराशरी सिद्धांतों के आधार पर स्पष्ट समय-सीमा बताते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_32",
@@ -773,9 +928,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "औरा एवं एनर्जी हीलर",
     "avatar": "avatars/ast_2.jpg",
     "skills": [
-      "Tarot",
-      "Energy Healing",
-      "Chakra"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -788,7 +945,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "34,800+",
     "ratePerMin": 21,
     "isOnline": true,
-    "bio": "Dispelling toxic energy ties, cord cutting, and emotional empowerment consultations."
+    "bio": "Dispelling toxic energy ties, cord cutting, and emotional empowerment consultations.",
+    "gender": "female",
+    "persona": "सौम्य, गंभीर और गहरी आध्यात्मिक दृष्टि वाली विदुषी। ग्रहों की सूक्ष्म चाल व नक्षत्रों से सटीक समाधान प्रदान करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_33",
@@ -798,9 +958,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "लाल किताब एवं प्रैक्टिकल रेमेडीज",
     "avatar": "avatars/ast_3.jpg",
     "skills": [
-      "Vedic",
-      "Lal Kitab",
-      "Simple Remedies"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -812,7 +974,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "58,100+",
     "ratePerMin": 29,
     "isOnline": true,
-    "bio": "Zero-cost, highly effective lifestyle and environmental adjustments to clear planetary bottlenecks."
+    "bio": "Zero-cost, highly effective lifestyle and environmental adjustments to clear planetary bottlenecks.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_34",
@@ -822,9 +987,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "नक्षत्र एवं प्रश्न कुंडली विशेषज्ञ",
     "avatar": "avatars/ast_4.jpg",
     "skills": [
-      "Prashna",
-      "Nakshatras",
-      "Vedic"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "kp",
     "languages": [
@@ -837,7 +1004,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "64,200+",
     "ratePerMin": 33,
     "isOnline": true,
-    "bio": "Micro-nakshatra pada analysis for unearthing exact root causes of repeated life challenges."
+    "bio": "Micro-nakshatra pada analysis for unearthing exact root causes of repeated life challenges.",
+    "gender": "female",
+    "persona": "प्रसन्नचित्त, सकारात्मक व उत्साहवर्धक शैली। जातक के मन से भय व चिंता दूर कर जीवन में शुभता का संचार करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_35",
@@ -847,9 +1017,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "पारिवारिक संपत्ति एवं विरासत विशेषज्ञ",
     "avatar": "avatars/ast_5.jpg",
     "skills": [
-      "Vedic",
-      "Property",
-      "Family Legacy"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -861,7 +1033,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "70,300+",
     "ratePerMin": 35,
     "isOnline": true,
-    "bio": "8th and 9th house inheritance resolutions, family business continuity, and legacy preservation."
+    "bio": "8th and 9th house inheritance resolutions, family business continuity, and legacy preservation.",
+    "gender": "male",
+    "persona": "दूरदर्शी, विश्लेषणात्मक एवं व्यावहारिक आचार्य। जातक की कुंडली के गुप्त योगों और भाग्योदय के सटीक समय को उजागर करते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_36",
@@ -871,9 +1046,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वेंचर एवं फंडिंग एस्ट्रोलॉजर",
     "avatar": "avatars/ast_6.jpg",
     "skills": [
-      "Career",
-      "Funding",
-      "Business Scaling"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -886,7 +1063,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "37,100+",
     "ratePerMin": 30,
     "isOnline": true,
-    "bio": "Aligning co-founder horoscopes and picking auspicious incorporation dates for startups."
+    "bio": "Aligning co-founder horoscopes and picking auspicious incorporation dates for startups.",
+    "gender": "male",
+    "persona": "प्रकांड विद्वान, गंभीर एवं तार्किक वैदिक आचार्य। गणितीय शुद्धता और पराशरी सिद्धांतों के आधार पर स्पष्ट समय-सीमा बताते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_37",
@@ -896,9 +1076,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "सेलिब्रिटी टैरो एवं सोल अलकेमिस्ट",
     "avatar": "avatars/ast_7.jpg",
     "skills": [
-      "Tarot",
-      "Love",
-      "Soul Path"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -910,7 +1092,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "33,600+",
     "ratePerMin": 22,
     "isOnline": true,
-    "bio": "Guiding prominent artists, influencers, and executives through personal transitions."
+    "bio": "Guiding prominent artists, influencers, and executives through personal transitions.",
+    "gender": "female",
+    "persona": "सौम्य, गंभीर और गहरी आध्यात्मिक दृष्टि वाली विदुषी। ग्रहों की सूक्ष्म चाल व नक्षत्रों से सटीक समाधान प्रदान करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_38",
@@ -920,9 +1105,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "केरल प्रश्न एवं लाइफ कंसल्टेंट",
     "avatar": "avatars/ast_8.jpg",
     "skills": [
-      "KP System",
-      "Prashna",
-      "Nadi"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "kp",
     "languages": [
@@ -935,7 +1122,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "48,400+",
     "ratePerMin": 28,
     "isOnline": true,
-    "bio": "Immediate clarity on pressing questions using authentic Kerala horary astrological mathematics."
+    "bio": "Immediate clarity on pressing questions using authentic Kerala horary astrological mathematics.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_39",
@@ -945,9 +1135,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "लव कंपैटिबिलिटी एवं हीलर",
     "avatar": "avatars/ast_9.jpg",
     "skills": [
-      "Love",
-      "Relationships",
-      "Tarot"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "love",
     "languages": [
@@ -959,7 +1151,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "27,900+",
     "ratePerMin": 18,
     "isOnline": true,
-    "bio": "Gentle, non-judgmental guidance for young adults dealing with heartbreak and self-worth."
+    "bio": "Gentle, non-judgmental guidance for young adults dealing with heartbreak and self-worth.",
+    "gender": "female",
+    "persona": "प्रसन्नचित्त, सकारात्मक व उत्साहवर्धक शैली। जातक के मन से भय व चिंता दूर कर जीवन में शुभता का संचार करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_40",
@@ -969,9 +1164,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक होरारी एवं करियर नेविगेटर",
     "avatar": "avatars/ast_10.jpg",
     "skills": [
-      "Vedic",
-      "Career",
-      "Kundli"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -983,7 +1180,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "67,500+",
     "ratePerMin": 32,
     "isOnline": true,
-    "bio": "Over 2 decades of empowering professionals through corporate restructuring and career shifts."
+    "bio": "Over 2 decades of empowering professionals through corporate restructuring and career shifts.",
+    "gender": "male",
+    "persona": "दूरदर्शी, विश्लेषणात्मक एवं व्यावहारिक आचार्य। जातक की कुंडली के गुप्त योगों और भाग्योदय के सटीक समय को उजागर करते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_41",
@@ -993,9 +1193,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक काउंसलर एवं मैचमेकिंग स्कॉलर",
     "avatar": "avatars/ast_1.jpg",
     "skills": [
-      "Love",
-      "Marriage",
-      "Kundli Milan"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "love",
     "languages": [
@@ -1008,7 +1210,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "41,200+",
     "ratePerMin": 24,
     "isOnline": true,
-    "bio": "Balancing marital horoscopes, Manglik dosha harmony, and emotional synchronicity."
+    "bio": "Balancing marital horoscopes, Manglik dosha harmony, and emotional synchronicity.",
+    "gender": "female",
+    "persona": "स्नेहमयी, आत्मीय व अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को भांपकर धैर्यपूर्वक व सांत्वनापूर्ण शैली में मार्गदर्शन देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_42",
@@ -1018,9 +1223,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "कॉरपोरेट स्ट्रैटेजिस्ट एवं वेल्थ एडवाइजर",
     "avatar": "avatars/ast_2.jpg",
     "skills": [
-      "Career",
-      "Wealth",
-      "Investments"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -1032,7 +1239,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "50,100+",
     "ratePerMin": 29,
     "isOnline": true,
-    "bio": "Financial turnaround formulas, auspicious contract signings, and capital protection."
+    "bio": "Financial turnaround formulas, auspicious contract signings, and capital protection.",
+    "gender": "male",
+    "persona": "अनुभवी, शांत एवं आत्मविश्वास से भरे ज्योतिषी। करियर, व्यापार और जीवन के बड़े निर्णयों में अचूक रणनीति सुझाते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_43",
@@ -1042,9 +1252,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "टैरो एवं इमोशनल रेजिलिएंस कोच",
     "avatar": "avatars/ast_3.jpg",
     "skills": [
-      "Tarot",
-      "Mindset",
-      "Love"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -1057,7 +1269,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "29,400+",
     "ratePerMin": 20,
     "isOnline": true,
-    "bio": "Empowering women through relationship transitions, career confidence, and intuitive tarot."
+    "bio": "Empowering women through relationship transitions, career confidence, and intuitive tarot.",
+    "gender": "female",
+    "persona": "आधुनिक एवं तार्किक वैदिक विदुषी। स्पष्टवादी, व्यावहारिक और सीधे उपाय सुझाने वाली संवेदनशील सलाहकार।",
+    "isUniversal": true
   },
   {
     "id": "ast_44",
@@ -1067,9 +1282,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "केपी करियर टाइमिंग एवं प्रमोशन एक्सपर्ट",
     "avatar": "avatars/ast_4.jpg",
     "skills": [
-      "KP System",
-      "Promotion",
-      "Job Switch"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "kp",
     "languages": [
@@ -1081,7 +1298,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "38,500+",
     "ratePerMin": 27,
     "isOnline": true,
-    "bio": "Calculated timing for job resignations, counter-offers, and managerial promotions."
+    "bio": "Calculated timing for job resignations, counter-offers, and managerial promotions.",
+    "gender": "male",
+    "persona": "पारंपरिक भृगु व पराशर परंपरा के ज्ञाता। दोष शांति, ग्रह गोचर एवं सरल सात्विक उपायों के विशेषज्ञ।",
+    "isUniversal": true
   },
   {
     "id": "ast_45",
@@ -1091,9 +1311,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "वैदिक एवं न्यूमरोलॉजी गाइड",
     "avatar": "avatars/ast_5.jpg",
     "skills": [
-      "Numerology",
-      "Vedic",
-      "Gemstones"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -1106,7 +1328,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "34,100+",
     "ratePerMin": 22,
     "isOnline": true,
-    "bio": "Selecting accurate lucky gemstones and phone digits to clear professional roadblocks."
+    "bio": "Selecting accurate lucky gemstones and phone digits to clear professional roadblocks.",
+    "gender": "female",
+    "persona": "शास्त्रों में पारंगत एवं मातृत्व भाव से परिपूर्ण। जातक के वैवाहिक, पारिवारिक व आर्थिक प्रश्नों का वात्सल्यपूर्ण समाधान देती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_46",
@@ -1116,9 +1341,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "लाइफ पर्पस एवं दशा नेविगेटर",
     "avatar": "avatars/ast_6.jpg",
     "skills": [
-      "Vedic",
-      "Life Path",
-      "Mahadasha"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "vedic",
     "languages": [
@@ -1131,7 +1358,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "47,900+",
     "ratePerMin": 28,
     "isOnline": true,
-    "bio": "Understanding your soul purpose, Saturn returns, and major astrological milestone cycles."
+    "bio": "Understanding your soul purpose, Saturn returns, and major astrological milestone cycles.",
+    "gender": "male",
+    "persona": "प्रकांड विद्वान, गंभीर एवं तार्किक वैदिक आचार्य। गणितीय शुद्धता और पराशरी सिद्धांतों के आधार पर स्पष्ट समय-सीमा बताते हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_47",
@@ -1141,9 +1371,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "पास्ट लाइफ एवं कर्मा रेजोल्यूशन",
     "avatar": "avatars/ast_7.jpg",
     "skills": [
-      "Tarot",
-      "Past Life",
-      "Karmic Bonds"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "tarot",
     "languages": [
@@ -1156,7 +1388,10 @@ var ASTROLOGERS_DATABASE = [
     "orders": "36,800+",
     "ratePerMin": 23,
     "isOnline": true,
-    "bio": "Decoding past karmic contracts and clearing ancestral blockages with compassionate tarot."
+    "bio": "Decoding past karmic contracts and clearing ancestral blockages with compassionate tarot.",
+    "gender": "female",
+    "persona": "सौम्य, गंभीर और गहरी आध्यात्मिक दृष्टि वाली विदुषी। ग्रहों की सूक्ष्म चाल व नक्षत्रों से सटीक समाधान प्रदान करती हैं।",
+    "isUniversal": true
   },
   {
     "id": "ast_48",
@@ -1166,9 +1401,11 @@ var ASTROLOGERS_DATABASE = [
     "titleHindi": "एग्जीक्यूटिव लीडरशिप एस्ट्रोलॉजर",
     "avatar": "avatars/ast_8.jpg",
     "skills": [
-      "Career",
-      "Executive Coaching",
-      "Wealth"
+      "वैदिक ज्योतिष",
+      "कुंडली",
+      "विवाह",
+      "करियर",
+      "उपाय"
     ],
     "category": "career",
     "languages": [
@@ -1180,13 +1417,9 @@ var ASTROLOGERS_DATABASE = [
     "orders": "62,100+",
     "ratePerMin": 34,
     "isOnline": true,
-    "bio": "Astrological counsel for CEOs, board directors, and leaders navigating high-stakes decisions."
+    "bio": "Astrological counsel for CEOs, board directors, and leaders navigating high-stakes decisions.",
+    "gender": "male",
+    "persona": "सकारात्मक, ऊर्जावान एवं स्पष्टवादी लाइफ कोच। जातक को कर्म और भाग्य के संतुलन का गहरा वैदिक ज्ञान देते हैं।",
+    "isUniversal": true
   }
 ];
-
-if (typeof window !== "undefined") {
-  window.ASTROLOGERS_DATABASE = ASTROLOGERS_DATABASE;
-}
-if (typeof global !== "undefined") {
-  global.ASTROLOGERS_DATABASE = ASTROLOGERS_DATABASE;
-}

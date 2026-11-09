@@ -275,18 +275,13 @@ function renderConsultAstrologers() {
 
   if (!list.length) return;
 
-  // Filter Category
-  if (currentAstroCategory !== "all") {
-    list = list.filter(a => a.category === currentAstroCategory);
-  }
-
-  // Search Filter
+  // Search Filter (All 48 Astrologers are universal consultants)
   if (currentAstroSearch && currentAstroSearch.trim()) {
     const q = currentAstroSearch.toLowerCase().trim();
     list = list.filter(a =>
       (a.name && a.name.toLowerCase().includes(q)) ||
+      (a.nameHindi && a.nameHindi.toLowerCase().includes(q)) ||
       (a.title && a.title.toLowerCase().includes(q)) ||
-      (a.skills && a.skills.some(s => s.toLowerCase().includes(q))) ||
       (a.languages && a.languages.some(l => l.toLowerCase().includes(q)))
     );
   }
@@ -305,7 +300,7 @@ function renderConsultAstrologers() {
       <div class="col-span-full py-12 text-center text-slate-500 bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
         <p class="text-sm font-semibold text-slate-800">कोई ज्योतिषी नहीं मिला।</p>
         <p class="text-xs mt-1 text-slate-500">कृपया दूसरा शब्द खोजें या फ़िल्टर बदलें।</p>
-        <button onclick="filterAstroCategory('all', null)" class="mt-3 px-4 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">सभी 48 ज्योतिषी देखें</button>
+        <button onclick="document.getElementById('astroSearchInput').value=''; currentAstroSearch=''; renderConsultAstrologers();" class="mt-3 px-4 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">सभी 48 ज्योतिषी देखें</button>
       </div>
     `;
     return;

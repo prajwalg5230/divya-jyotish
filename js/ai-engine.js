@@ -28,13 +28,21 @@ var AiAstrologerEngine = (function () {
     "openai"           // GPT reasoning flagship
   ];
 
-  // Dynamic Astrological Action beats
-  const ASTRO_ACTION_BEATS = [
-    "*आपकी जन्म कुंडली के चक्र और गोचर को देखकर मंद मुस्कुराते हैं*",
-    "*हस्तरेखाओं व भृगु पंचांग के सूक्ष्म पृष्ठों का मिलान करते हुए विचार करते हैं*",
+  // Dynamic Astrological Action beats (Distinct for Female & Male)
+  const FEMALE_ACTION_BEATS = [
+    "*आपकी जन्म कुंडली के चक्र और गोचर का ध्यानपूर्वक अवलोकन करते हुए स्नेहपूर्वक मुस्कुराती हैं*",
+    "*ग्रहों की सूक्ष्म चाल का अध्ययन करते हुए शांत व आत्मीय भाव से समझाती हैं*",
+    "*रुद्राक्ष माला फेरते हुए माँ भगवती का स्मरण कर आत्मीयता से कहती हैं*",
+    "*दशम व सप्तम भाव की शुभ दृष्टि देखकर विश्वास के साथ बताती हैं*",
+    "*आपकी जन्म पत्रिका का सूक्ष्म विश्लेषण करते हुए मंद मुस्कान के साथ कहती हैं*"
+  ];
+
+  const MALE_ACTION_BEATS = [
+    "*आपकी जन्म कुंडली के चक्र और गोचर का ध्यानपूर्वक अवलोकन करते हुए विचार करते हैं*",
+    "*पराशरी सिद्धांतों व भृगु पंचांग के पृष्ठों का सूक्ष्म मिलान करते हुए कहते हैं*",
     "*रुद्राक्ष माला को फेरते हुए आपके इष्टदेव का स्मरण कर कहते हैं*",
-    "*दशम व सप्तम भाव की ग्रह दृष्टि का सूक्ष्म आकलन करते हुए कहते हैं*",
-    "*तांबे के पात्र में अक्षत लेकर ग्रहों के शुभाशुभ प्रभाव को तौलते हैं*"
+    "*दशम व सप्तम भाव की ग्रह दृष्टि का सूक्ष्म आकलन करते हुए आत्मविश्वास से कहते हैं*",
+    "*ग्रहों के शुभाशुभ प्रभाव को तौलते हुए गंभीरता से कहते हैं*"
   ];
 
   // Retrieve Natal Chart Memory with dynamic RAG fallback
@@ -161,41 +169,74 @@ var AiAstrologerEngine = (function () {
       if (found) return found;
     }
     return {
-      name: "आचार्य देविका शर्मा",
-      title: "स्वर्ण पदक विजेता वैदिक ज्योतिषी",
+      id: "ast_1",
+      name: "Devika Mehra",
+      nameHindi: "देविका मेहरा",
+      title: "Celebrity Tarot & Soulmate Expert",
+      titleHindi: "वैदिक ज्योतिष एवं लाइफ कोच",
+      gender: "female",
+      persona: "स्नेहमयी, आत्मीय व अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को समझकर धैर्यपूर्वक सटीक मार्गदर्शन देती हैं।",
       avatar: "avatars/ast_1.jpg",
-      skills: ["वैदिक", "कुंडली मिलान", "प्रश्न कुंडली"],
+      experience: "12+ Yrs",
+      skills: ["वैदिक ज्योतिष", "कुंडली", "विवाह", "करियर", "उपाय"],
       category: "vedic"
     };
   }
 
-  // Concise, razor-sharp prompt constructor (User requirement: Chota sa hi jawab, accurate, jo pucha wahi)
+  // Concise, razor-sharp prompt constructor with strict Gender & Unique Persona Voice
   function buildSuperchargedPrompt(botProfile, mem, historyText, userMessage) {
-    return `
-आप ${botProfile.name} हैं (${botProfile.title}) — भारत के प्रतिष्ठित वैदिक ज्योतिषी।
-आप इस समय जातक ${mem.name} को सीधे, सटीक और अत्यंत प्रामाणिक वैदिक मार्गदर्शन दे रहे हैं।
+    const isFemale = botProfile.gender === "female";
+    const nameHindi = botProfile.nameHindi || botProfile.name;
+    const titleHindi = botProfile.titleHindi || botProfile.title;
+    const persona = botProfile.persona || (isFemale 
+      ? "स्नेहमयी, अंतर्ज्ञानी विदुषी आचार्य। जातक के मनोभावों को समझकर धैर्यपूर्वक सटीक मार्गदर्शन देती हैं।"
+      : "प्रकांड विद्वान, गंभीर एवं तार्किक वैदिक आचार्य। गणितीय शुद्धता से स्पष्ट समाधान बताते हैं।");
 
-### जातक की कुंडली के सत्यापित तथ्य (RAG Chart Data):
+    const genderRules = isFemale
+      ? `
+- **लिंग:** महिला (FEMALE / विदुषी ज्योतिषी)
+- **अनिवार्य स्त्रीलिंग व्याकरण (STRICT FEMININE GRAMMAR):**
+  * आप बातचीत में 100% शुद्ध स्त्रीलिंग क्रियाओं का ही प्रयोग करेंगी।
+  * हमेशा ऐसे बोलें: "मैं देख रही हूँ...", "मेरी गणना कह रही है...", "मैं समझ सकती हूँ...", "करूँगी", "दूँगी", "सलाह देती हूँ"।
+  * भूलकर भी पुल्लिंग क्रिया (जैसे 'रहा हूँ', 'करता हूँ', 'बताऊंगा') का प्रयोग न करें!
+- **शुरुआती भाव (Action Beat):** उत्तर के प्रारंभ में 1 छोटा asterisks action लिखें (उदा. *आपकी जन्म कुंडली का ध्यानपूर्वक अवलोकन करते हुए स्नेहपूर्वक मुस्कुराती हैं* या *ग्रहों की स्थिति का चिंतन कर आत्मीय भाव से कहती हैं*)।`
+      : `
+- **लिंग:** पुरुष (MALE / विद्वान ज्योतिषी)
+- **अनिवार्य पुल्लिंग व्याकरण (STRICT MASCULINE GRAMMAR):**
+  * आप बातचीत में 100% शुद्ध पुल्लिंग क्रियाओं का ही प्रयोग करेंगे।
+  * हमेशा ऐसे बोलें: "मैं देख रहा हूँ...", "मेरी गणना कह रही है...", "मैं समझ सकता हूँ...", "करूँगा", "दूँगा", "सलाह देता हूँ"।
+  * भूलकर भी स्त्रीलिंग क्रिया (जैसे 'रही हूँ', 'करती हूँ', 'बताऊंगी') का प्रयोग न करें!
+- **शुरुआती भाव (Action Beat):** उत्तर के प्रारंभ में 1 छोटा asterisks action लिखें (उदा. *आपकी जन्म कुंडली के चक्र का ध्यानपूर्वक अवलोकन करते हुए विचार करते हैं* या *ग्रहों की स्थिति का चिंतन कर आत्मविश्वास से कहते हैं*)।`;
+
+    return `
+आप ${nameHindi} (${botProfile.name}) हैं — ${titleHindi} (अनुभव: ${botProfile.experience || '12+ वर्ष'})।
+आप भारत के प्रतिष्ठित वैदिक ज्योतिषी हैं और इस समय जातक ${mem.name} से 1-on-1 लाइव परामर्श में बात कर रहे/रही हैं।
+
+### आपकी पहचान, लिंग व व्यक्तिगत शैली:
+${genderRules}
+- **आपकी व्यक्तिगत शैली:** ${persona}
+- **सर्वांगीण वैदिक ज्ञान:** आप किसी एक सीमित संकीर्ण विषय में नहीं बंधे हैं, बल्कि संपूर्ण वैदिक ज्योतिष (कुंडली विश्लेषण, विवाह, प्रेम संबंध, करियर, नौकरी, धन, स्वास्थ्य, साढ़े साती व सात्विक उपाय) के पूर्ण ज्ञाता हैं। जातक के हर प्रश्न का अपनी अनूठी शैली में सीधा समाधान दें।
+
+### जातक की कुंडली के सत्यापित तथ्य (Kundli Data):
 - नाम: ${mem.name}
 - लग्न: ${mem.lagna} | चंद्र राशि: ${mem.moonSign} | नक्षत्र: ${mem.nakshatra}
 - वर्तमान दशा: ${mem.currentDasha}
 - दोष स्थिति: ${mem.manglikStatus}, ${mem.sadeSati}, ${mem.kaalSarp}
 
-### वर्तमान 2026 ग्रह गोचर रडar (Live 2026 Transits):
-- गुरु (Jupiter): मिथुन/कर्क गोचर (बुद्धि, भाग्य, विवाह व धन में शुभता)
-- शनि (Saturn): मीन गोचर (अनुशासन, एकाग्रता, कर्म फल)
-- राहु-केतु: कुंभ-सिंह अक्ष पर गोचर
+### वर्तमान 2026 ग्रह गोचर:
+- गुरु: मिथुन/कर्क गोचर (विवाह, करियर व धन में शुभता)
+- शनि: मीन गोचर (कर्म फल व अनुशासन)
+- राहु-केतु: कुंभ-सिंह अक्ष
 
 ${historyText ? `### पूर्व वार्तालाप:\n${historyText}\n` : ''}
 ### कठोर नियम (STRICT CONSTRAINTS):
-1. **लंबाई:** उत्तर केवल 45 से 65 शब्दों में अत्यंत संक्षिप्त, सटीक और सारगर्भित रखें। कोई व्यर्थ भूमिका न बांधें।
-2. **सीधा उत्तर (NO FLUFF):** जो जातक ने पूछा है, केवल और केवल उसी का सीधा समाधान दें।
-   - यदि जातक केवल 'नमस्ते/हाय' कहे: मात्र 15-20 शब्दों में आत्मीय स्वागत करें और पूछें कि आज वे किस विषय पर जानना चाहते हैं।
-   - यदि करियर/नौकरी पूछे: केवल दशम भाव + दशा + सटीक समय (दिन/माह) + 1 सात्विक उपाय बताएं।
-   - यदि विवाह/प्रेम पूछे: केवल सप्तम भाव + अनुकूल समय सीमा + 1 सटीक उपाय बताएं।
-   - यदि धन/व्यापार पूछे: केवल द्वितीय/एकादश भाव + लाभ का समय बताएं।
-3. **स्वाभाविकता:** समान रटे-रटाए वाक्य न दोहराएं, हर बार स्वाभाविक व जीवंत शैली में बात करें।
-4. **शैली:** गरिमामयी, आत्मीय, शुद्ध हिंदी। शुरुआत में 1 छोटा asterisks action लिखें (उदा. *आपकी कुंडली देखकर मंद मुस्कुराते हैं*)।
+1. **लंबाई:** उत्तर केवल 45 से 65 शब्दों में अत्यंत संक्षिप्त, व्यावहारिक और सारगर्भित रखें। कोई व्यर्थ भूमिका न बांधें।
+2. **सीधा उत्तर (NO FLUFF):** जो जातक ने पूछा है, सीधे उसी का समाधान, सटीक समय-सीमा और 1 सात्विक उपाय दें।
+   - यदि केवल नमस्ते/हाय कहे: मात्र 15-20 शब्दों में आत्मीय स्वागत करें और पूछें कि आज किस विषय पर मार्गदर्शन चाहिए।
+   - करियर/नौकरी पूछे: दशम भाव + दशा + सटीक समय (दिन/माह) + 1 सात्विक उपाय बताएं।
+   - विवाह/प्रेम पूछे: सप्तम भाव + अनुकूल समय सीमा + 1 सटीक उपाय बताएं।
+   - धन/व्यापार पूछे: द्वितीय/एकादश भाव + लाभ का समय बताएं।
+3. **जीवंत मानवीय संवाद:** जातक को लगना चाहिए कि एक सच्चा अनुभवी ${isFemale ? 'विदुषी' : 'विद्वान'} ज्योतिषी व्यक्तिगत रूप से उससे बात कर रहा/रही है।
 `.trim();
   }
 
@@ -291,17 +332,23 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
     return null;
   }
 
-  // Guaranteed High-Precision Cognitive Vedic Synthesizer (Instant Fail-Safe with Non-Repetitive Variants)
+  // Guaranteed High-Precision Cognitive Vedic Synthesizer (Instant Fail-Safe with Gender & Persona Matching)
   function synthesizeCognitiveVedicReply(userMessage, botProfile, mem, intent) {
-    const action = ASTRO_ACTION_BEATS[Math.floor(Math.random() * ASTRO_ACTION_BEATS.length)];
+    const isFemale = botProfile.gender === "female";
+    const beats = isFemale ? FEMALE_ACTION_BEATS : MALE_ACTION_BEATS;
+    const action = beats[Math.floor(Math.random() * beats.length)];
     const pickVariant = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
     // 1. Greeting (Warm, short 1-2 lines)
     if (intent.isGreeting) {
-      const greetingVariants = [
-        `प्रणाम ${mem.name} जी! आपकी ${mem.lagna} लग्न कुंडली मेरे सम्मुख खुली है। आज किस विषय—करियर, विवाह या धन लाभ—पर मार्गदर्शन चाहते हैं?`,
-        `हर हर महादेव ${mem.name} जी! आपका स्वागत है। बताइए, आज मन में किस प्रश्न या समस्या को लेकर चिंता है?`,
-        `शुभम भवतु ${mem.name} जी! आपकी ग्रह स्थिति अत्यंत अनुकूल मोड़ पर है। बताइए, आज आप अपनी कुंडली के किस भाव के विषय में जानना चाहते हैं?`
+      const greetingVariants = isFemale ? [
+        `प्रणाम ${mem.name} जी! मैं आपकी ${mem.lagna} लग्न कुंडली देख रही हूँ। आज किस विषय—करियर, विवाह या धन लाभ—पर मार्गदर्शन चाहती/चाहते हैं?`,
+        `हर हर महादेव ${mem.name} जी! आपका स्वागत है। बताइए, आज मन में किस बात को लेकर संकोच या चिंता है? मैं आपकी सहायता करूँगी।`,
+        `शुभम भवतु ${mem.name} जी! आपकी ग्रह स्थिति अनुकूल मोड़ पर है। बताइए, आज अपनी कुंडली के किस भाव के विषय में जानना चाहते हैं?`
+      ] : [
+        `प्रणाम ${mem.name} जी! मैं आपकी ${mem.lagna} लग्न कुंडली का अवलोकन कर रहा हूँ। आज किस विषय—करियर, विवाह या धन लाभ—पर मार्गदर्शन चाहते हैं?`,
+        `हर हर महादेव ${mem.name} जी! आपका स्वागत है। बताइए, आज मन में किस प्रश्न को लेकर दुविधा है? मैं आपका मार्गदर्शन करूँगा।`,
+        `शुभम भवतु ${mem.name} जी! आपकी ग्रह स्थिति अनुकूल मोड़ पर है। बताइए, आज अपनी कुंडली के किस भाव के विषय में जानना चाहते हैं?`
       ];
       return `${action}\n\n${pickVariant(greetingVariants)}`;
     }
@@ -353,7 +400,7 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
     return `${action}\n\n${pickVariant(generalVariants)}`;
   }
 
-  // Master Astrologer Response Pipeline (Client-Side Distributed & Unlimited)
+  // Master Astrologer Response Pipeline (Unified Single Gemini Engine with Distinct Personas)
   async function generateAstrologerReply(userMessage, botId = "ast_1") {
     const mem = getUserMemory();
     const botProfile = getAstrologerProfile(botId);
@@ -375,15 +422,15 @@ ${historyText ? `### पूर्व वार्तालाप:\n${historyText
 
     let finalReply = null;
 
-    // 1. First Priority: Client-Side Distributed Pollinations AI (Unlimited, Zero Key, Dynamic Seed)
-    finalReply = await callPollinationsClientSide(prompt, userMessage);
+    // 1. Primary AI Engine: Google Gemini API (Unified Gemini Rotation with distinct gender & persona voice)
+    finalReply = await callGeminiApi(prompt, userMessage);
 
-    // 2. Second Priority: Google Gemini API (Rotation Pool)
+    // 2. Second Priority Fail-Safe: Distributed Pollinations AI
     if (!finalReply) {
-      finalReply = await callGeminiApi(prompt, userMessage);
+      finalReply = await callPollinationsClientSide(prompt, userMessage);
     }
 
-    // 3. Third Priority: High-Precision Cognitive Vedic Synthesizer (Instant Fail-Safe with 5 variants)
+    // 3. Third Priority Fail-Safe: High-Precision Cognitive Vedic Synthesizer
     if (!finalReply || finalReply.trim().length < 20) {
       finalReply = synthesizeCognitiveVedicReply(userMessage, botProfile, mem, intent);
     }

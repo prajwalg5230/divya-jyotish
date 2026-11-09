@@ -505,7 +505,7 @@
         <div class="flex flex-col sm:flex-row items-center gap-3">
           <div class="relative flex-1 w-full">
             <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-            <input type="text" id="astroSearchInput" oninput="handleAstroSearch()" placeholder="ज्योतिषी का नाम या विशेषता खोजें (उदा: विवाह, केपी, करियर)..." 
+            <input type="text" id="astroSearchInput" oninput="handleAstroSearch()" placeholder="ज्योतिषी का नाम खोजें..." 
               class="w-full bg-slate-50 border border-slate-200 focus:border-amber-500 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-800 outline-none transition-all">
           </div>
           <select id="astroSortSelect" onchange="handleAstroSort()" class="w-full sm:w-auto bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-semibold outline-none">
@@ -514,16 +514,6 @@
             <option value="exp">अधिकतम अनुभव (Years Exp)</option>
             <option value="price_low">कम शुल्क (Price: Low to High)</option>
           </select>
-        </div>
-
-        <!-- Category Filter Pills -->
-        <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-1 text-xs whitespace-nowrap">
-          <button onclick="filterAstroCategory('all', this)" class="astro-cat-pill active px-3.5 py-1.5 rounded-full bg-amber-500 text-white font-bold transition-all shadow-sm">सभी (48)</button>
-          <button onclick="filterAstroCategory('vedic', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">वैदिक ज्योतिषी (14)</button>
-          <button onclick="filterAstroCategory('tarot', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">टैरो व ऑरेकल (6)</button>
-          <button onclick="filterAstroCategory('love', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">प्रेम व विवाह (5)</button>
-          <button onclick="filterAstroCategory('career', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">करियर व धन (4)</button>
-          <button onclick="filterAstroCategory('kp', this)" class="astro-cat-pill px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-all">केपी व नाड़ी (3)</button>
         </div>
 
         <!-- Astrologers Cards Grid -->
