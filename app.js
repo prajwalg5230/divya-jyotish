@@ -539,20 +539,20 @@ function renderProfileSectionUI() {
   } catch (e) { }
 
   if (isAuth && user) {
-    if (nameEl) nameEl.textContent = user.displayName || "वैदिक जातक";
-    if (emailEl) emailEl.textContent = user.email || "सत्यापित गूगल खाता";
+    if (nameEl) nameEl.textContent = user.displayName || "Vedic Seeker";
+    if (emailEl) emailEl.textContent = user.email || "Verified Google Account";
     if (avatarEl && user.photoURL) avatarEl.src = user.photoURL;
     if (authContainer) {
       authContainer.innerHTML = `
         <button onclick="FirebaseAuthEngine.signOut()" class="w-full py-2.5 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-bold text-xs flex items-center justify-center space-x-2 shadow-xs transition-all active:scale-98">
           <i data-lucide="log-out" class="w-4 h-4"></i>
-          <span>लॉगआउट करें (Sign Out)</span>
+          <span>Sign Out</span>
         </button>
       `;
     }
   } else {
-    if (nameEl) nameEl.textContent = (storedProfile && storedProfile.name) ? `नमस्ते, ${storedProfile.name} 🙏` : "नमस्ते, जातक 🙏";
-    if (emailEl) emailEl.textContent = "निजी अतिथि खाता (Guest User)";
+    if (nameEl) nameEl.textContent = (storedProfile && storedProfile.name) ? `Hello, ${storedProfile.name} 🙏` : "Namaste, Seeker 🙏";
+    if (emailEl) emailEl.textContent = "Guest Account (Kundli Saved)";
     if (avatarEl) avatarEl.src = "avatars/ast_1.jpg";
     if (authContainer) {
       authContainer.innerHTML = `
@@ -563,7 +563,7 @@ function renderProfileSectionUI() {
             <path fill="#FBBC05" d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.26C.46 8.17 0 9.99 0 12s.46 3.83 1.26 5.42l4.02-3.13z"/>
             <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.25 2.64 1.26 6.58l4.02 3.13c.95-2.83 3.6-4.96 6.72-4.96z"/>
           </svg>
-          <span>Google से लॉगिन करें</span>
+          <span>Sign in with Google</span>
         </button>
       `;
     }
@@ -2151,6 +2151,238 @@ function openTransitRadarModal() {
 function closeTransitRadarModal() {
   const modal = document.getElementById("transitRadarModal");
   if (modal) modal.classList.add("hidden");
+}
+
+// -------------------------------------------------------------
+// SHANI SADE SATI & MANGLIK DOSHA MODAL CONTROLLERS
+// -------------------------------------------------------------
+function openSadeSatiModal() {
+  const modal = document.getElementById("sadeSatiModal");
+  if (modal) {
+    modal.classList.remove("hidden");
+    autoFillSadeSatiFromSaved();
+    calculateSadeSatiModal();
+  }
+}
+
+function closeSadeSatiModal() {
+  const modal = document.getElementById("sadeSatiModal");
+  if (modal) modal.classList.add("hidden");
+}
+
+function autoFillSadeSatiFromSaved() {
+  try {
+    let moonRashiIdx = 11; // default Meen (Pisces)
+    if (window.currentKundliData && window.currentKundliData.planets) {
+      const moon = window.currentKundliData.planets.find(p => p.id === "Chandra" || p.id === "Moon");
+      if (moon) {
+        moonRashiIdx = Math.floor(moon.degree / 30.0);
+      }
+    }
+    const sel = document.getElementById("sadeSatiRashiSelect");
+    if (sel) sel.value = String(moonRashiIdx);
+  } catch (e) {
+    console.warn("Could not autofill Sade Sati moon rashi", e);
+  }
+}
+
+function calculateSadeSatiModal() {
+  const sel = document.getElementById("sadeSatiRashiSelect");
+  const resBox = document.getElementById("sadeSatiResultBox");
+  if (!sel || !resBox) return;
+
+  const rashiNames = [
+    "Mesh (Aries)", "Vrishabh (Taurus)", "Mithun (Gemini)", "Kark (Cancer)",
+    "Simha (Leo)", "Kanya (Virgo)", "Tula (Libra)", "Vrishchik (Scorpio)",
+    "Dhanu (Sagittarius)", "Makar (Capricorn)", "Kumbh (Aquarius)", "Meen (Pisces)"
+  ];
+
+  const moonRashi = parseInt(sel.value, 10);
+  const rashiName = rashiNames[moonRashi] || "Selected Sign";
+  const saturnRashi = 11; // Saturn in Pisces (Meen)
+
+  const diff = (saturnRashi - moonRashi + 12) % 12;
+
+  let badgeColor = "bg-emerald-50 text-emerald-900 border-emerald-300";
+  let statusTitle = "Sade Sati Free (साढ़े साती मुक्त)";
+  let phaseName = "No Active Sade Sati";
+  let explanation = `Saturn is currently transiting your ${diff === 0 ? "1st" : diff + "th"} house from Moon. You are completely free from the 7.5-year Sade Sati cycle. Saturn in Pisces brings steady grounding, karmic progress, and favorable periods for new investments.`;
+  let remedies = "Recite Hanuman Chalisa on Tuesdays & Saturdays. Offer pure water to the rising Sun every morning.";
+
+  if (diff === 11) {
+    badgeColor = "bg-amber-50 text-amber-950 border-amber-300";
+    statusTitle = "Rising Phase (Charan 1) - Active";
+    phaseName = "12th House Transit (Chadh-ti Sade Sati)";
+    explanation = "Saturn is transiting the 12th house from your Moon sign. This first phase highlights spiritual transformation, expense management, foreign travel or relocation, and restructuring of life priorities. Mindful spending and emotional calm are rewarded.";
+    remedies = "Light a mustard oil lamp under a Peepal tree on Saturday evenings. Recite the Shani Gayatri Mantra 108 times.";
+  } else if (diff === 0) {
+    badgeColor = "bg-rose-50 text-rose-950 border-rose-300";
+    statusTitle = "Peak Phase (Charan 2) - Core Influence";
+    phaseName = "1st House Transit (Madhya Shikhar)";
+    explanation = "Saturn is transiting directly over your natal Moon sign. This is the core period of personal refinement, heightened responsibility, and deep karmic self-realization. Discipline in career and patience in relationships unlock massive long-term success.";
+    remedies = "Chant Dasharatha Shani Stotram on Saturdays. Donate black sesame seeds, iron, or blankets to the needy.";
+  } else if (diff === 1) {
+    badgeColor = "bg-blue-50 text-blue-950 border-blue-300";
+    statusTitle = "Setting Phase (Charan 3) - Easing Off";
+    phaseName = "2nd House Transit (Utarti Sade Sati)";
+    explanation = "Saturn is transiting the 2nd house from your Moon sign. Challenges and heavy duties are steadily clearing up, bringing financial recovery, family harmony, and the fruits of the hard work done in previous years.";
+    remedies = "Recite Hanuman Chalisa daily. Apply a saffron or sandalwood tilak on the forehead every morning.";
+  } else if (diff === 4) {
+    badgeColor = "bg-orange-50 text-orange-950 border-orange-300";
+    statusTitle = "Ardha-Ashtam Shani (4th House Dhaiya)";
+    phaseName = "2.5-Year Dhaiya Phase";
+    explanation = "Saturn is transiting in the 4th house from your natal Moon (Kantak Dhaiya). Focus on maintaining domestic peace, health of elders, and property documentation. Steady focus brings auspicious breakthroughs.";
+    remedies = "Offer milk and water on a Shivling every Monday. Light an oil lamp before Lord Shani on Saturdays.";
+  } else if (diff === 8) {
+    badgeColor = "bg-purple-50 text-purple-950 border-purple-300";
+    statusTitle = "Ashtam Shani (8th House Dhaiya)";
+    phaseName = "2.5-Year Dhaiya Phase";
+    explanation = "Saturn is transiting in the 8th house from your natal Moon. Avoid reckless speculation or hasty financial partnerships. Cultivate meditation and maintain physical wellness.";
+    remedies = "Chant the Maha Mrityunjaya Mantra daily. Avoid taking unnecessary debts during this period.";
+  }
+
+  resBox.innerHTML = `
+    <div class="p-3.5 rounded-2xl border ${badgeColor} space-y-1.5 shadow-2xs">
+      <div class="flex items-center justify-between">
+        <span class="font-black text-xs sm:text-sm">${statusTitle}</span>
+        <span class="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-white border border-current shadow-2xs">${phaseName}</span>
+      </div>
+      <p class="leading-relaxed text-xs">${explanation}</p>
+    </div>
+
+    <div class="p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#ECE6D8] space-y-1 shadow-2xs">
+      <div class="flex items-center space-x-1.5 text-[#A87935] font-bold text-xs">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+        <span>Authentic Vedic Remedies</span>
+      </div>
+      <p class="text-slate-700 leading-relaxed text-[11px]">${remedies}</p>
+    </div>
+
+    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-500 text-[10px] flex items-center justify-between">
+      <span>Moon Sign: <b class="text-slate-800">${rashiName}</b></span>
+      <span>Saturn Transit: <b class="text-slate-800">Pisces (Meen)</b></span>
+      <span>Source: <b class="text-slate-800">Brihat Parashara</b></span>
+    </div>
+  `;
+
+  safeLucide();
+}
+
+function openManglikModal() {
+  const modal = document.getElementById("manglikModal");
+  if (modal) {
+    modal.classList.remove("hidden");
+    autoFillManglikFromSaved();
+    calculateManglikModal();
+  }
+}
+
+function closeManglikModal() {
+  const modal = document.getElementById("manglikModal");
+  if (modal) modal.classList.add("hidden");
+}
+
+function autoFillManglikFromSaved() {
+  try {
+    let kInput = null;
+    const raw = localStorage.getItem("divya_kundli_input");
+    if (raw) kInput = JSON.parse(raw);
+    let prof = null;
+    const rawP = localStorage.getItem("divya_user_profile");
+    if (rawP) prof = JSON.parse(rawP);
+
+    const dobEl = document.getElementById("manglikDob");
+    const tobEl = document.getElementById("manglikTob");
+
+    if (prof && prof.dob) {
+      if (dobEl) dobEl.value = prof.dob;
+      if (tobEl && prof.tob) tobEl.value = prof.tob;
+    } else if (kInput) {
+      const y = kInput.year || 1995;
+      const m = String(kInput.month || 8).padStart(2, '0');
+      const d = String(kInput.day || 15).padStart(2, '0');
+      if (dobEl) dobEl.value = `${y}-${m}-${d}`;
+      const hr = String(kInput.hour || 14).padStart(2, '0');
+      const min = String(kInput.minute || 30).padStart(2, '0');
+      if (tobEl) tobEl.value = `${hr}:${min}`;
+    }
+  } catch (e) {
+    console.warn("Could not autofill Manglik inputs", e);
+  }
+}
+
+function calculateManglikModal() {
+  const dobEl = document.getElementById("manglikDob");
+  const tobEl = document.getElementById("manglikTob");
+  const cityEl = document.getElementById("manglikCity");
+  const resBox = document.getElementById("manglikResultBox");
+  if (!resBox) return;
+
+  const dobVal = (dobEl && dobEl.value) ? dobEl.value : "1995-08-15";
+  const tobVal = (tobEl && tobEl.value) ? tobEl.value : "14:30";
+  const cityParts = (cityEl && cityEl.value) ? cityEl.value.split(",") : [28.6139, 77.2090, "New Delhi", "India"];
+
+  const lat = parseFloat(cityParts[0]) || 28.6139;
+  const lon = parseFloat(cityParts[1]) || 77.2090;
+  const cityName = cityParts[2] || "New Delhi";
+
+  let kundli = null;
+  if (typeof AstroEngine !== "undefined" && typeof AstroEngine.calculateKundli === "function") {
+    kundli = AstroEngine.calculateKundli("User", dobVal, tobVal, lat, lon, cityName);
+  }
+
+  if (!kundli || !kundli.doshas) {
+    resBox.innerHTML = `<div class="p-3 bg-rose-50 text-rose-700 rounded-xl">Unable to calculate Manglik dosha. Please verify inputs.</div>`;
+    return;
+  }
+
+  const mData = kundli.doshas.manglik;
+  const isManglik = mData.status;
+  const severity = mData.severity || "None";
+  const marsHouse = mData.houseLagna || 1;
+
+  let badgeColor = "bg-emerald-50 text-emerald-900 border-emerald-300";
+  let statusBadge = "Non-Manglik (अमांगलिक - Clean)";
+  let analysis = "Mars is favorably placed outside the sensitive 1st, 4th, 7th, 8th, and 12th houses. There is no Manglik Dosha in your birth chart, ensuring natural harmony, ease in marriage negotiations, and balanced domestic life.";
+  let remedies = "Recite Hanuman Chalisa daily to boost confidence and physical vitality.";
+
+  if (severity.includes("Double") || severity.includes("Poorna")) {
+    badgeColor = "bg-rose-50 text-rose-950 border-rose-300";
+    statusBadge = "Poorna Manglik (पूर्ण मांगलिक - High)";
+    analysis = `Mars is placed in House ${marsHouse} from Lagna and heavily influences marital houses. In classical Parashari Jyotish, pairing with another Manglik individual completely neutralizes this dosha, leading to immense lifelong prosperity and mutual understanding.`;
+    remedies = "Chant the Mangal Gayatri Mantra on Tuesdays. Consider Kumbh Vivah or Mars Shanti Puja before marriage.";
+  } else if (isManglik) {
+    badgeColor = "bg-amber-50 text-amber-950 border-amber-300";
+    statusBadge = "Anshik Manglik (आंशिक मांगलिक - Mild)";
+    analysis = `Mars is positioned in House ${marsHouse} from Lagna. This is a mild, partial Bhauma influence. Vedic texts confirm that after age 28, or under benefic Jupiter aspect, this dosha's intensity naturally softens (Bhanga).`;
+    remedies = "Fast on Tuesdays or donate red lentils (Masoor Dal) to the needy. Recite Hanuman Chalisa every Tuesday morning.";
+  }
+
+  resBox.innerHTML = `
+    <div class="p-3.5 rounded-2xl border ${badgeColor} space-y-1.5 shadow-2xs">
+      <div class="flex items-center justify-between">
+        <span class="font-black text-xs sm:text-sm">${statusBadge}</span>
+        <span class="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-white border border-current shadow-2xs">House ${marsHouse} Placement</span>
+      </div>
+      <p class="leading-relaxed text-xs">${analysis}</p>
+    </div>
+
+    <div class="p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#ECE6D8] space-y-1 shadow-2xs">
+      <div class="flex items-center space-x-1.5 text-[#A87935] font-bold text-xs">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+        <span>Vedic Compatibility & Remedies</span>
+      </div>
+      <p class="text-slate-700 leading-relaxed text-[11px]">${remedies}</p>
+    </div>
+
+    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-500 text-[10px] flex items-center justify-between">
+      <span>DOB: <b class="text-slate-800">${dobVal}</b></span>
+      <span>TOB: <b class="text-slate-800">${tobVal}</b></span>
+      <span>Lagna: <b class="text-slate-800">${kundli.lagna.rashi}</b></span>
+    </div>
+  `;
+
+  safeLucide();
 }
 
 // -------------------------------------------------------------

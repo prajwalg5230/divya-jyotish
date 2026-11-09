@@ -82,26 +82,10 @@
     <!-- ========================================== -->
     <section id="section-home" class="tab-content hidden space-y-5">
       
-      <!-- 1. Top Header Bar (IMG-20261109-WA0016.jpg Exact 1:1) -->
-      <div class="flex items-center justify-between pt-1 pb-1">
-        <div class="flex items-center space-x-3 min-w-0">
-          <button onclick="switchTab('profile')" class="w-10 h-10 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-800 shadow-2xs hover:bg-slate-50 transition-all active:scale-95 shrink-0">
-            <svg class="w-5 h-5 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="14" y2="16"/></svg>
-          </button>
-          <div class="min-w-0">
-            <h1 id="homeGreetingTitle" class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-tight truncate">Namaste, Prajwal 👋</h1>
-            <p class="text-xs text-slate-500 font-normal truncate">Personal Jyotish dashboard</p>
-          </div>
-        </div>
-        
-        <div class="flex items-center space-x-1.5 bg-white border border-slate-200/90 rounded-full px-2.5 py-1.5 shadow-2xs shrink-0">
-          <button onclick="switchTab('kundli')" title="Birth Kundli & Details" class="text-slate-700 hover:text-[#A87232] transition-colors p-1">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          </button>
-          <button onclick="switchTab('profile')" title="Settings & Profile" class="text-slate-700 hover:text-[#A87232] transition-colors p-1">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-          </button>
-        </div>
+      <!-- 1. Top Header Bar (Clean Minimalist Title - Menu & Profile Buttons Removed) -->
+      <div class="pt-2 pb-1">
+        <h1 id="homeGreetingTitle" class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-tight">Namaste, Prajwal 👋</h1>
+        <p class="text-xs text-slate-500 font-medium mt-0.5">Your Personal Vedic Astrology Dashboard</p>
       </div>
 
       <!-- 2. Hero Card: "Discover what the stars reveal." (IMG-20261109-WA0016.jpg) -->
@@ -118,31 +102,31 @@
           </h2>
 
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm">
-            Get personalised guidance for your life, career and relationships.
+            Get personalized guidance for your life, career and relationships with Vedic precision.
           </p>
 
           <div class="pt-2">
-            <button onclick="switchTab('consult')" class="w-full py-3.5 px-6 rounded-2xl bg-[#A87232] hover:bg-[#966427] text-white font-bold text-sm sm:text-base flex items-center justify-center space-x-2 shadow-xs transition-all active:scale-98">
+            <button onclick="switchTab('consult')" class="w-full py-3.5 px-6 rounded-2xl bg-[#A87935] hover:bg-[#966427] text-white font-bold text-sm sm:text-base flex items-center justify-center space-x-2 shadow-xs transition-all active:scale-98">
               <span>Talk to an Astrologer →</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 3. Accurate Vedic Calculations & AI Chat (Clean Grid) -->
+      <!-- 3. High-Precision Vedic Calculations & AI Chat -->
       <div class="space-y-3 pt-1">
         <div class="flex items-center justify-between">
           <h3 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
             Vedic Calculations & Services
           </h3>
           <span class="text-[11px] font-semibold text-[#A87935] bg-[#FAF6EE] px-2.5 py-0.5 rounded-full border border-[#ECE6D8]">
-            100% सटीक गणना
+            100% Mathematical Precision
           </span>
         </div>
 
         <div class="grid grid-cols-2 gap-3 sm:gap-3.5">
           
-          <!-- Card 1: Birth Kundli (Takes DOB, TOB, POB) -->
+          <!-- Card 1: Birth Chart (Kundli) -->
           <div onclick="switchTab('kundli')" class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs hover:border-[#A87935] transition-all cursor-pointer group active:scale-98 flex flex-col justify-between">
             <div class="w-8 h-8 rounded-xl bg-[#FAF6EE] flex items-center justify-center text-[#A87935] group-hover:scale-110 transition-transform">
               <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -153,12 +137,12 @@
               </svg>
             </div>
             <div class="mt-3.5">
-              <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Birth Kundli</span>
-              <p class="text-[10px] text-slate-500 mt-1 leading-tight">DOB, समय व स्थान गणना</p>
+              <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Birth Chart (Kundli)</span>
+              <p class="text-[10px] text-slate-500 mt-1 leading-tight">Lagna, Moon & Planet degrees</p>
             </div>
           </div>
 
-          <!-- Card 2: Kundli Matching (Takes Groom & Bride details) -->
+          <!-- Card 2: Kundli Matching (36 Gunas) -->
           <div onclick="switchTab('milan')" class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs hover:border-[#A87935] transition-all cursor-pointer group active:scale-98 flex flex-col justify-between">
             <div class="w-8 h-8 rounded-xl bg-[#FAF6EE] flex items-center justify-center text-[#A87935] group-hover:scale-110 transition-transform">
               <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -167,11 +151,11 @@
             </div>
             <div class="mt-3.5">
               <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Kundli Matching</span>
-              <p class="text-[10px] text-slate-500 mt-1 leading-tight">36 गुण अष्टकूट मिलान</p>
+              <p class="text-[10px] text-slate-500 mt-1 leading-tight">36 Gunas Ashtakoot Milan</p>
             </div>
           </div>
 
-          <!-- Card 3: Dainik Panchang (Ephemeris Muhurat & Choghadiya) -->
+          <!-- Card 3: Daily Panchang & Muhurat -->
           <div onclick="switchTab('panchang')" class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs hover:border-[#A87935] transition-all cursor-pointer group active:scale-98 flex flex-col justify-between">
             <div class="w-8 h-8 rounded-xl bg-[#FAF6EE] flex items-center justify-center text-[#A87935] group-hover:scale-110 transition-transform">
               <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -182,12 +166,12 @@
               </svg>
             </div>
             <div class="mt-3.5">
-              <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Dainik Panchang</span>
-              <p class="text-[10px] text-slate-500 mt-1 leading-tight">तिथि, नक्षत्र व चौघड़िया</p>
+              <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Daily Panchang</span>
+              <p class="text-[10px] text-slate-500 mt-1 leading-tight">Tithi, Nakshatra & Muhurat</p>
             </div>
           </div>
 
-          <!-- Card 4: Vedic Numerology (Takes Name & DOB) -->
+          <!-- Card 4: Vedic Numerology -->
           <div onclick="switchTab('numerology')" class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs hover:border-[#A87935] transition-all cursor-pointer group active:scale-98 flex flex-col justify-between">
             <div class="w-8 h-8 rounded-xl bg-[#FAF6EE] flex items-center justify-center text-[#A87935] group-hover:scale-110 transition-transform">
               <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -199,11 +183,38 @@
             </div>
             <div class="mt-3.5">
               <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Vedic Numerology</span>
-              <p class="text-[10px] text-slate-500 mt-1 leading-tight">मूलांक, भाग्यांक व नामांक</p>
+              <p class="text-[10px] text-slate-500 mt-1 leading-tight">Mulank, Bhagyank & Namank</p>
             </div>
           </div>
 
-          <!-- Card 5: AI Astrologer Chat (24x7 Consultation) -->
+          <!-- Card 5 (NEW Calculation Tool 1): Shani Sade Sati -->
+          <div onclick="openSadeSatiModal()" class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs hover:border-[#A87935] transition-all cursor-pointer group active:scale-98 flex flex-col justify-between">
+            <div class="w-8 h-8 rounded-xl bg-[#FAF6EE] flex items-center justify-center text-[#A87935] group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="7"></circle>
+                <ellipse cx="12" cy="12" rx="11" ry="3.8" transform="rotate(-20 12 12)"></ellipse>
+              </svg>
+            </div>
+            <div class="mt-3.5">
+              <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Shani Sade Sati</span>
+              <p class="text-[10px] text-slate-500 mt-1 leading-tight">7.5-Year Saturn transit phase</p>
+            </div>
+          </div>
+
+          <!-- Card 6 (NEW Calculation Tool 2): Manglik Dosha -->
+          <div onclick="openManglikModal()" class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs hover:border-[#A87935] transition-all cursor-pointer group active:scale-98 flex flex-col justify-between">
+            <div class="w-8 h-8 rounded-xl bg-[#FAF6EE] flex items-center justify-center text-[#A87935] group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="mt-3.5">
+              <span class="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">Manglik Dosha</span>
+              <p class="text-[10px] text-slate-500 mt-1 leading-tight">Mars placement & severity</p>
+            </div>
+          </div>
+
+          <!-- Card 7: Live Astrologer Consultation (AI) -->
           <div onclick="switchTab('consult')" class="col-span-2 bg-[#FAF6EE] rounded-2xl border border-[#ECE6D8] p-4 sm:p-5 shadow-2xs hover:border-[#A87935] transition-all cursor-pointer group active:scale-98 flex items-center justify-between">
             <div class="flex items-center space-x-3.5">
               <div class="w-10 h-10 rounded-xl bg-white border border-[#ECE6D8] flex items-center justify-center text-[#A87935] group-hover:scale-110 transition-transform shadow-2xs shrink-0">
@@ -214,13 +225,16 @@
               <div>
                 <div class="flex items-center space-x-2">
                   <span class="font-bold text-xs sm:text-sm text-slate-900 leading-tight">Chat with Astrologer</span>
-                  <span class="text-[9px] bg-emerald-100 text-[#2E7D32] font-black px-2 py-0.5 rounded-full">24x7 Live</span>
+                  <span class="text-[9px] bg-emerald-100 text-[#2E7D32] font-black px-2 py-0.5 rounded-full">24x7 Live AI</span>
                 </div>
-                <p class="text-[10.5px] text-slate-600 mt-0.5 leading-tight">48 शीर्ष वैदिक आचार्यों से AI परामर्श लें</p>
+                <p class="text-[10.5px] text-slate-600 mt-0.5 leading-tight">Consult with 48 specialized Vedic scholars</p>
               </div>
             </div>
             <span class="text-[#A87935] text-lg font-bold">→</span>
           </div>
+
+        </div>
+      </div>
 
         </div>
       </div>
@@ -233,10 +247,10 @@
     <section id="section-horoscope" class="tab-content hidden space-y-6">
       <div class="glass-panel-glow rounded-3xl p-6 text-center space-y-2 border border-amber-300">
         <span class="text-xs uppercase tracking-widest text-amber-700 font-semibold px-3 py-1 rounded-full bg-amber-100 border border-amber-300 inline-block">
-          ✨ दैनिक गोचर व ग्रह स्थिति
+          ✨ Daily Planetary Transits
         </span>
-        <h2 class="text-2xl font-bold font-mystic gold-gradient-text">आज का संपूर्ण राशिफल</h2>
-        <p class="text-xs text-slate-600">अपनी राशि चुनें और जानें आज के ग्रह-नक्षत्र, प्रेम, करियर, स्वास्थ्य व शुभ अंक।</p>
+        <h2 class="text-2xl font-bold font-mystic gold-gradient-text">Daily Horoscope & Cosmic Forecast</h2>
+        <p class="text-xs text-slate-600">Select your zodiac sign for daily career, love, health and lucky insights.</p>
       </div>
 
       <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5" id="rashiGrid"></div>
@@ -251,62 +265,62 @@
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
           <button onclick="switchTab('home')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all active:scale-95">
             <span>←</span>
-            <span>होम (Home)</span>
+            <span>Home</span>
           </button>
           <button onclick="fillSampleKundli()" class="px-3 py-1.5 text-xs bg-[#FAF6EE] hover:bg-[#F5EEDB] text-[#A87935] rounded-xl border border-[#ECE6D8] font-bold transition-all">
-            ✨ उदाहरण डेटा भरें
+            ✨ Load Sample Chart
           </button>
         </div>
 
         <div>
           <h2 class="text-xl sm:text-2xl font-bold font-mystic gold-gradient-text flex items-center space-x-2">
             <i data-lucide="compass" class="w-6 h-6 text-[#A87935]"></i>
-            <span>वैदिक जन्म कुंडली स्टूडियो (Birth Chart)</span>
+            <span>Vedic Birth Chart (Kundli) Studio</span>
           </h2>
-          <p class="text-xs text-slate-500 mt-1">सटीक लाहिरी अयनांश, लग्न कुंडली, नवमांश (D9), 27 नक्षत्र एवं विंशोत्तरी महादशा।</p>
+          <p class="text-xs text-slate-500 mt-1">High-precision Lahiri Ayanamsha, Lagna Chart, Navamsha (D9) & Vimshottari Dasha.</p>
         </div>
 
         <form id="kundliForm" onsubmit="event.preventDefault(); generateKundli();" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3.5">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">पूरा नाम (Full Name)</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Full Name</label>
             <input type="text" id="kName" required value="Prajwal" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">लिंग (Gender)</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Gender</label>
             <select id="kGender" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
-              <option value="Male">पुरुष (Male)</option>
-              <option value="Female">स्त्री (Female)</option>
-              <option value="Other">अन्य (Other)</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">जन्म तिथि (Date of Birth)</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Date of Birth</label>
             <input type="date" id="kDob" required value="1998-07-21" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">जन्म समय (Time of Birth)</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Time of Birth</label>
             <input type="time" id="kTob" required value="10:30" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">जन्म स्थान (Place)</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Birth City</label>
             <select id="kCity" onchange="saveKundliInputToStorage()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
-              <option value="28.6139,77.2090,New Delhi">New Delhi (दिल्ली)</option>
-              <option value="19.0760,72.8777,Mumbai">Mumbai (मुंबई)</option>
-              <option value="12.9716,77.5946,Bengaluru">Bengaluru (बेंगलुरु)</option>
-              <option value="18.5204,73.8567,Pune">Pune (पुणे)</option>
-              <option value="25.3176,82.9739,Varanasi">Varanasi (वाराणसी)</option>
-              <option value="26.9124,75.7873,Jaipur">Jaipur (जयपुर)</option>
-              <option value="22.5726,88.3639,Kolkata">Kolkata (कोलकाता)</option>
-              <option value="13.0827,80.2707,Chennai">Chennai (चेन्नई)</option>
-              <option value="17.3850,78.4867,Hyderabad">Hyderabad (हैदराबाद)</option>
-              <option value="23.0225,72.5714,Ahmedabad">Ahmedabad (अहमदाबाद)</option>
-              <option value="26.8467,80.9462,Lucknow">Lucknow (लखनऊ)</option>
+              <option value="28.6139,77.2090,New Delhi">New Delhi</option>
+              <option value="19.0760,72.8777,Mumbai">Mumbai</option>
+              <option value="12.9716,77.5946,Bengaluru">Bengaluru</option>
+              <option value="18.5204,73.8567,Pune">Pune</option>
+              <option value="25.3176,82.9739,Varanasi">Varanasi</option>
+              <option value="26.9124,75.7873,Jaipur">Jaipur</option>
+              <option value="22.5726,88.3639,Kolkata">Kolkata</option>
+              <option value="13.0827,80.2707,Chennai">Chennai</option>
+              <option value="17.3850,78.4867,Hyderabad">Hyderabad</option>
+              <option value="23.0225,72.5714,Ahmedabad">Ahmedabad</option>
+              <option value="26.8467,80.9462,Lucknow">Lucknow</option>
             </select>
           </div>
           <div class="sm:col-span-2 md:col-span-5 flex justify-end pt-2">
             <button type="submit" class="w-full sm:w-auto px-8 py-3 rounded-2xl bg-[#A87935] hover:bg-[#966427] text-white font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center space-x-2">
               <i data-lucide="compass" class="w-4 h-4"></i>
-              <span>कुंडली बनाएं (Generate Kundli)</span>
+              <span>Generate Vedic Kundli</span>
             </button>
           </div>
         </form>
@@ -323,10 +337,10 @@
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
           <button onclick="switchTab('home')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all active:scale-95">
             <span>←</span>
-            <span>होम (Home)</span>
+            <span>Home</span>
           </button>
           <span class="text-[11px] font-semibold text-[#A87935] bg-[#FAF6EE] px-2.5 py-0.5 rounded-full border border-[#ECE6D8]">
-            अष्टकूट मिलान
+            Ashtakoot Milan
           </span>
         </div>
 
@@ -334,13 +348,13 @@
           <span class="text-xs uppercase tracking-widest text-amber-800 font-semibold px-3 py-1 rounded-full bg-amber-100 border border-amber-300 inline-block">
             ✨ Ashtakoot Vivah Milan
           </span>
-          <h2 class="text-2xl font-bold font-mystic gold-gradient-text">36 गुण मिलान एवं विवाह अनुकूलता</h2>
-          <p class="text-xs text-slate-600">अष्टकूट गुण मिलान, नाड़ी दोष एवं मांगलिक सामंजस्य।</p>
+          <h2 class="text-2xl font-bold font-mystic gold-gradient-text">36 Gunas Kundli Matching</h2>
+          <p class="text-xs text-slate-600">8-fold Vedic compatibility score, Nadi dosha analysis, and Manglik harmony.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="bg-white rounded-2xl p-5 border border-slate-200/90 space-y-3 shadow-sm">
-            <span class="text-xs font-bold text-slate-800 flex items-center space-x-1"><i data-lucide="user" class="w-4 h-4 text-amber-600"></i><span>वर (Groom)</span></span>
+            <span class="text-xs font-bold text-slate-800 flex items-center space-x-1"><i data-lucide="user" class="w-4 h-4 text-amber-600"></i><span>Groom Details</span></span>
             <input type="text" id="mGroomName" value="Rahul Sharma" onchange="saveMilanInputToStorage()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
             <div class="grid grid-cols-2 gap-2">
               <select id="mGroomRashi" onchange="saveMilanInputToStorage()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none"></select>
@@ -348,12 +362,12 @@
             </div>
             <label class="flex items-center space-x-2 text-xs text-slate-700 pt-1 cursor-pointer select-none">
               <input type="checkbox" id="mGroomManglik" onchange="saveMilanInputToStorage()" class="rounded text-amber-600 focus:ring-0">
-              <span>मांगलिक हैं? (Manglik)</span>
+              <span>Is Groom Manglik?</span>
             </label>
           </div>
 
           <div class="bg-white rounded-2xl p-5 border border-amber-200/90 bg-amber-50/20 space-y-3 shadow-sm">
-            <span class="text-xs font-bold text-amber-900 flex items-center space-x-1"><i data-lucide="heart" class="w-4 h-4 text-amber-600"></i><span>वधू (Bride)</span></span>
+            <span class="text-xs font-bold text-amber-900 flex items-center space-x-1"><i data-lucide="heart" class="w-4 h-4 text-amber-600"></i><span>Bride Details</span></span>
             <input type="text" id="mBrideName" value="Pooja Verma" onchange="saveMilanInputToStorage()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none">
             <div class="grid grid-cols-2 gap-2">
               <select id="mBrideRashi" onchange="saveMilanInputToStorage()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 focus:border-amber-500 outline-none"></select>
@@ -361,7 +375,7 @@
             </div>
             <label class="flex items-center space-x-2 text-xs text-slate-700 pt-1 cursor-pointer select-none">
               <input type="checkbox" id="mBrideManglik" onchange="saveMilanInputToStorage()" class="rounded text-amber-600 focus:ring-0">
-              <span>मांगलिक हैं? (Manglik)</span>
+              <span>Is Bride Manglik?</span>
             </label>
           </div>
         </div>
@@ -369,7 +383,7 @@
         <div class="flex justify-center">
           <button onclick="calculateGunMilan()" class="px-8 py-3 rounded-2xl bg-[#A87935] hover:bg-[#966427] text-white font-bold text-sm shadow-md transition-all active:scale-95 flex items-center space-x-2">
             <i data-lucide="heart-handshake" class="w-4 h-4"></i>
-            <span>गुण मिलान करें (Match Kundli)</span>
+            <span>Calculate Compatibility (36 Gunas)</span>
           </button>
         </div>
 
@@ -385,10 +399,10 @@
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
           <button onclick="switchTab('home')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all active:scale-95">
             <span>←</span>
-            <span>होम (Home)</span>
+            <span>Home</span>
           </button>
           <span class="text-[11px] font-semibold text-[#A87935] bg-[#FAF6EE] px-2.5 py-0.5 rounded-full border border-[#ECE6D8]">
-            दैनिक वैदिक पंचांग
+            Daily Vedic Panchang
           </span>
         </div>
 
@@ -396,9 +410,9 @@
           <div>
             <h2 class="text-xl sm:text-2xl font-bold font-mystic gold-gradient-text flex items-center space-x-2">
               <i data-lucide="sun" class="w-6 h-6 text-amber-600"></i>
-              <span>दैनिक वैदिक पंचांग एवं चौघड़िया</span>
+              <span>Daily Panchang & Choghadiya Muhurat</span>
             </h2>
-            <p class="text-xs text-slate-500">तिथि, नक्षत्र, योग, करण, राहु काल, अभिजीत मुहूर्त एवं शुभ-अशुभ काल।</p>
+            <p class="text-xs text-slate-500">Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Abhijit Muhurat & Auspicious timings.</p>
           </div>
           <div class="flex items-center space-x-2">
             <input type="date" id="panchangDatePicker" onchange="onPanchangDateChange()" 
@@ -426,12 +440,12 @@
     <!-- ========================================== -->
     <section id="section-tarot" class="tab-content hidden space-y-6">
       <div class="glass-panel rounded-3xl p-6 md:p-8 border border-amber-300/70 text-center space-y-6">
-        <h2 class="text-2xl font-bold font-mystic gold-gradient-text">रहस्यमयी 3-कार्ड टैरो रीडिंग</h2>
-        <p class="text-xs text-slate-600">कार्ड पर टैप करके 3D फ्लिप देखें।</p>
+        <h2 class="text-2xl font-bold font-mystic gold-gradient-text">Mystic 3-Card Tarot Oracle</h2>
+        <p class="text-xs text-slate-600">Tap each card to reveal 3D cosmic guidance for past, present, and future.</p>
         <div>
           <button onclick="drawTarotSpread()" class="px-8 py-3 rounded-2xl bg-[#A87935] hover:bg-[#966427] text-white font-bold text-sm shadow-md transition-all active:scale-95 flex items-center space-x-2 mx-auto">
             <i data-lucide="sparkles" class="w-4 h-4"></i>
-            <span>नया स्प्रेड निकालें (Draw 3 Cards)</span>
+            <span>Draw 3 Oracle Cards</span>
           </button>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4" id="tarotCardsContainer"></div>
@@ -446,24 +460,24 @@
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
           <button onclick="switchTab('home')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all active:scale-95">
             <span>←</span>
-            <span>होम (Home)</span>
+            <span>Home</span>
           </button>
           <span class="text-[11px] font-semibold text-[#A87935] bg-[#FAF6EE] px-2.5 py-0.5 rounded-full border border-[#ECE6D8]">
-            अंकशास्त्र कैल्क्युलेटर
+            Vedic Numerology
           </span>
         </div>
 
         <div>
           <h2 class="text-2xl font-bold font-mystic gold-gradient-text flex items-center space-x-2">
             <i data-lucide="hash" class="w-6 h-6 text-amber-600"></i>
-            <span>मूलांक, भाग्यांक एवं नामांक कैल्क्युलेटर</span>
+            <span>Mulank, Bhagyank & Namank Calculator</span>
           </h2>
-          <p class="text-xs text-slate-500 mt-1">कीरो व कैल्डियन अंकज्योतिष अनुसार आपका स्वभाव, भाग्य, मित्र अंक व 2026 भविष्यफल।</p>
+          <p class="text-xs text-slate-500 mt-1">Cheiro & Pythagorean Vedic numerology for personality, destiny, lucky numbers & predictions.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">अंग्रेजी में पूरा नाम (Full Name)</label>
-            <input type="text" id="numName" value="Prajwal" placeholder="नाम (Name)" onchange="saveNumerologyInputToStorage()" 
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+            <input type="text" id="numName" value="Prajwal" placeholder="Enter full name" onchange="saveNumerologyInputToStorage()" 
               class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:border-amber-500 outline-none">
           </div>
           <div>
@@ -561,12 +575,12 @@
     <!-- ========================================== -->
     <section id="section-mala" class="tab-content hidden space-y-6">
       <div class="glass-panel-glow rounded-3xl p-6 md:p-8 border border-amber-300/70 text-center space-y-6 max-w-2xl mx-auto">
-        <h2 class="text-2xl font-bold font-mystic gold-gradient-text">डिजिटल 108 जाप माला</h2>
+        <h2 class="text-2xl font-bold font-mystic gold-gradient-text">Digital 108 Jaap Mala</h2>
         <select id="malaMantraSelect" onchange="updateMantraDisplay()" class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2 text-xs text-slate-900 text-center font-semibold">
-          <option value="om_namah_shivaya">ॐ नमः शिवाय</option>
-          <option value="gayatri">ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥</option>
-          <option value="mahamrityunjaya">ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥</option>
-          <option value="ganesh">ॐ गं गणपतये नमः</option>
+          <option value="om_namah_shivaya">ॐ नमः शिवाय (Om Namah Shivaya)</option>
+          <option value="gayatri">ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥ (Gayatri Mantra)</option>
+          <option value="mahamrityunjaya">ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥ (Maha Mrityunjaya)</option>
+          <option value="ganesh">ॐ गं गणपतये नमः (Ganesh Mantra)</option>
         </select>
         <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200">
           <p id="activeMantraText" class="text-base font-sanskrit text-amber-900 font-bold">ॐ नमः शिवाय</p>
@@ -578,16 +592,16 @@
           </svg>
           <button onclick="incrementBead()" class="absolute w-44 h-44 rounded-full bg-white border-4 border-[#A87935] hover:border-[#966427] flex flex-col items-center justify-center active:scale-95 shadow-lg transition-all">
             <span class="text-3xl font-bold text-[#A87935] font-mystic" id="beadCount">0</span>
-            <span class="text-[11px] uppercase tracking-wider text-[#A87935] font-semibold">/ 108 मनके</span>
-            <span class="text-[10px] text-slate-500 mt-1">टैप करें (Tap)</span>
+            <span class="text-[11px] uppercase tracking-wider text-[#A87935] font-semibold">/ 108 Beads</span>
+            <span class="text-[10px] text-slate-500 mt-1">Tap to Count</span>
           </button>
         </div>
         <div class="flex items-center justify-center space-x-6 text-xs">
           <div class="bg-white px-4 py-2 rounded-xl border border-slate-200">
-            <span class="text-slate-600">पूर्ण मालाएं: </span>
+            <span class="text-slate-600">Completed Malas: </span>
             <span id="malaRounds" class="font-bold text-amber-800 text-sm">0</span>
           </div>
-          <button onclick="resetMala()" class="text-rose-600 font-semibold hover:underline">रीसेट करें</button>
+          <button onclick="resetMala()" class="text-rose-600 font-semibold hover:underline">Reset Counter</button>
         </div>
       </div>
     </section>
@@ -597,7 +611,7 @@
     <!-- ========================================== -->
     <section id="section-remedies" class="tab-content hidden space-y-6">
       <div class="glass-panel rounded-3xl p-6 md:p-8 border border-amber-300/70 space-y-6">
-        <h2 class="text-2xl font-bold font-mystic gold-gradient-text text-center">राशि रत्न एवं वैदिक उपाय</h2>
+        <h2 class="text-2xl font-bold font-mystic gold-gradient-text text-center">Vedic Gemstones & Remedial Store</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="gemstonesGrid"></div>
       </div>
     </section>
@@ -616,14 +630,14 @@
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center space-x-1.5">
-              <h3 id="profileUserName" class="text-sm sm:text-base font-extrabold text-slate-900 truncate">नमस्ते, जातक 🙏</h3>
-              <span class="text-[9px] bg-emerald-100 text-emerald-800 font-extrabold px-2 py-0.5 rounded-full shrink-0">सत्यापित</span>
+              <h3 id="profileUserName" class="text-sm sm:text-base font-extrabold text-slate-900 truncate">Namaste, Seeker 🙏</h3>
+              <span class="text-[9px] bg-emerald-100 text-emerald-800 font-extrabold px-2 py-0.5 rounded-full shrink-0">Verified</span>
             </div>
-            <p id="profileUserEmail" class="text-[11px] sm:text-xs text-slate-600 truncate mt-0.5">अतिथि खाता (Guest User)</p>
+            <p id="profileUserEmail" class="text-[11px] sm:text-xs text-slate-600 truncate mt-0.5">Guest Account (Kundli Saved)</p>
             <div class="flex items-center space-x-2 mt-2">
               <button onclick="FirebaseAuthEngine.openOnboardingModal()" class="px-2.5 py-1 rounded-xl bg-[#A87935] hover:bg-[#966427] text-white text-[10px] sm:text-[11px] font-bold shadow-2xs flex items-center space-x-1 transition-all active:scale-95">
                 <i data-lucide="edit-3" class="w-3 h-3"></i>
-                <span>जन्म विवरण बदलें</span>
+                <span>Edit Birth Details</span>
               </button>
             </div>
           </div>
@@ -637,13 +651,13 @@
             🪙
           </div>
           <div>
-            <p class="text-[9px] sm:text-[10px] text-slate-500 font-semibold uppercase tracking-wider">वॉलेट बैलेंस (Balance)</p>
+            <p class="text-[9px] sm:text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Wallet Balance</p>
             <h4 class="text-base sm:text-lg font-black text-slate-900" id="profileWalletDisplay">₹ 150</h4>
           </div>
         </div>
         <button onclick="openWalletModal()" class="px-3.5 py-1.5 sm:py-2 rounded-xl bg-[#A87935] hover:bg-[#966427] text-white font-extrabold text-xs shadow-xs flex items-center space-x-1.5 transition-all active:scale-95">
           <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
-          <span>रिचार्ज करें</span>
+          <span>Add Cash</span>
         </button>
       </div>
 
@@ -652,90 +666,23 @@
         <div class="flex items-center justify-between border-b border-slate-100 pb-2">
           <h4 class="text-xs font-bold text-slate-900 flex items-center space-x-1.5">
             <i data-lucide="calendar" class="w-4 h-4 text-amber-600"></i>
-            <span>सहेजा गया जन्म विवरण (Saved Kundli)</span>
+            <span>Saved Birth Details</span>
           </h4>
-          <button onclick="switchTab('kundli')" class="text-[11px] text-amber-700 font-bold hover:underline">कुंडली देखें →</button>
+          <button onclick="switchTab('kundli')" class="text-[11px] text-amber-700 font-bold hover:underline">View Kundli →</button>
         </div>
         <div class="grid grid-cols-2 gap-2 text-xs">
           <div class="bg-slate-50 p-2 sm:p-2.5 rounded-xl border border-slate-100">
-            <p class="text-[9px] sm:text-[10px] text-slate-500">जन्म तिथि (DOB)</p>
+            <p class="text-[9px] sm:text-[10px] text-slate-500">Date of Birth</p>
             <p id="profileSavedDob" class="font-bold text-slate-800 text-[11px] sm:text-xs mt-0.5">15 Aug 1995</p>
           </div>
           <div class="bg-slate-50 p-2 sm:p-2.5 rounded-xl border border-slate-100">
-            <p class="text-[9px] sm:text-[10px] text-slate-500">जन्म समय (Time)</p>
+            <p class="text-[9px] sm:text-[10px] text-slate-500">Time of Birth</p>
             <p id="profileSavedTime" class="font-bold text-slate-800 text-[11px] sm:text-xs mt-0.5">14:30 IST</p>
           </div>
           <div class="col-span-2 bg-slate-50 p-2 sm:p-2.5 rounded-xl border border-slate-100">
-            <p class="text-[9px] sm:text-[10px] text-slate-500">जन्म स्थान (Place)</p>
+            <p class="text-[9px] sm:text-[10px] text-slate-500">Place of Birth</p>
             <p id="profileSavedPlace" class="font-bold text-slate-800 text-[11px] sm:text-xs mt-0.5">New Delhi, India</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Quick Shortcuts Menu -->
-      <div class="glass-panel rounded-2xl border border-slate-200 bg-white divide-y divide-slate-100 shadow-2xs overflow-hidden text-xs">
-        <div onclick="switchTab('kundli')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
-          <div class="flex items-center space-x-2.5">
-            <span class="text-base">📜</span>
-            <span class="font-bold text-slate-800 text-xs">मेरी जन्म कुंडली (Lagna & D9)</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-        </div>
-        <div onclick="switchTab('milan')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
-          <div class="flex items-center space-x-2.5">
-            <span class="text-base">❤️</span>
-            <span class="font-bold text-slate-800 text-xs">36 गुण मिलान (Kundli Milan)</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-        </div>
-        <div onclick="switchTab('panchang')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
-          <div class="flex items-center space-x-2.5">
-            <span class="text-base">📅</span>
-            <span class="font-bold text-slate-800 text-xs">आज का पंचांग व चौघड़िया</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-        </div>
-        <div onclick="switchTab('horoscope')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
-          <div class="flex items-center space-x-2.5">
-            <span class="text-base">♈</span>
-            <span class="font-bold text-slate-800 text-xs">दैनिक राशिफल (12 राशियां)</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-        </div>
-        <div onclick="switchTab('mala')" class="p-3 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition-colors">
-          <div class="flex items-center space-x-2.5">
-            <span class="text-base">📿</span>
-            <span class="font-bold text-slate-800 text-xs">डिजिटल 108 जाप माला</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-        </div>
-      </div>
-
-      <!-- Settings & Audio Drone -->
-      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-slate-200 bg-white space-y-2.5 shadow-2xs">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2.5">
-            <i data-lucide="volume-2" class="w-4 h-4 text-amber-600"></i>
-            <div>
-              <p class="text-xs font-bold text-slate-800">432Hz Cosmic Om Drone</p>
-              <p class="text-[10px] text-slate-500">मेडिटेशन व शांति के लिए वैदिक नाद</p>
-            </div>
-          </div>
-          <button onclick="toggleDrone()" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 text-xs font-bold transition-all">
-            ऑन / ऑफ
-          </button>
-        </div>
-        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-          <div class="flex items-center space-x-2.5">
-            <i data-lucide="settings" class="w-4 h-4 text-amber-600"></i>
-            <div>
-              <p class="text-xs font-bold text-slate-800">वैदिक गणना व इंजन सेटिंग्स</p>
-              <p class="text-[10px] text-slate-500">शुद्ध पराशरी सिद्धांत व API कुंजी</p>
-            </div>
-          </div>
-          <button onclick="openSettingsModal()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 text-xs font-bold transition-all">
-            खोलें
-          </button>
         </div>
       </div>
 
@@ -748,8 +695,15 @@
             <path fill="#FBBC05" d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.26C.46 8.17 0 9.99 0 12s.46 3.83 1.26 5.42l4.02-3.13z"/>
             <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.25 2.64 1.26 6.58l4.02 3.13c.95-2.83 3.6-4.96 6.72-4.96z"/>
           </svg>
-          <span id="profileAuthBtnText">Google से लॉगिन करें</span>
+          <span id="profileAuthBtnText">Sign in with Google</span>
         </button>
+      </div>
+
+      <div class="text-center pt-2">
+        <p class="text-[10px] text-slate-400 font-medium flex items-center justify-center space-x-1">
+          <svg class="w-3 h-3 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>100% Private & Confidential Vedic Calculations</span>
+        </p>
       </div>
 
     </section>
@@ -1258,7 +1212,155 @@
       </div>
 
       <button onclick="closeTransitRadarModal()" class="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs shadow-sm">
-        समझ गया (Close)
+        Close
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: SHANI SADE SATI CALCULATOR -->
+  <!-- ========================================== -->
+  <div id="sadeSatiModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white border border-[#ECE6D8] rounded-t-3xl sm:rounded-3xl w-full max-w-md p-5 sm:p-6 space-y-4 shadow-2xl relative bottom-sheet-anim max-h-[90vh] overflow-y-auto no-scrollbar">
+      
+      <div class="sheet-drag-handle sm:hidden"></div>
+
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-[#FAF6EE] border border-[#ECE6D8] flex items-center justify-center text-[#A87935]">
+            <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="7"></circle>
+              <ellipse cx="12" cy="12" rx="11" ry="3.8" transform="rotate(-20 12 12)"></ellipse>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 tracking-tight">Shani Sade Sati Calculator</h3>
+            <p class="text-[11px] text-slate-500">7.5-Year Saturn Transit Phase & Remedies</p>
+          </div>
+        </div>
+        <button onclick="closeSadeSatiModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Input Section -->
+      <div class="space-y-3 bg-[#FAF8F5] p-3.5 rounded-2xl border border-[#ECE6D8]">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-xs font-bold text-slate-800">Select Moon Sign (Chandra Rashi)</label>
+            <button onclick="autoFillSadeSatiFromSaved()" class="text-[10px] font-bold text-[#A87935] hover:underline">
+              Use Saved Kundli ⚡
+            </button>
+          </div>
+          <select id="sadeSatiRashiSelect" onchange="calculateSadeSatiModal()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#A87935]">
+            <option value="0">Mesh (Aries) - Rising Phase (Charan 1)</option>
+            <option value="1">Vrishabh (Taurus)</option>
+            <option value="2">Mithun (Gemini)</option>
+            <option value="3">Kark (Cancer) - Kantak Shani (Dhaiya)</option>
+            <option value="4">Simha (Leo)</option>
+            <option value="5">Kanya (Virgo)</option>
+            <option value="6">Tula (Libra)</option>
+            <option value="7">Vrishchik (Scorpio) - Ashtam Shani (Dhaiya)</option>
+            <option value="8">Dhanu (Sagittarius)</option>
+            <option value="9">Makar (Capricorn)</option>
+            <option value="10">Kumbh (Aquarius) - Setting Phase (Charan 3)</option>
+            <option value="11" selected>Meen (Pisces) - Peak Phase (Charan 2)</option>
+          </select>
+        </div>
+
+        <button onclick="calculateSadeSatiModal()" class="w-full py-2.5 rounded-xl bg-[#A87935] hover:bg-[#966427] text-white font-bold text-xs shadow-xs transition-all active:scale-98 flex items-center justify-center space-x-1.5">
+          <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+          <span>Check Sade Sati Status</span>
+        </button>
+      </div>
+
+      <!-- Calculation Result Container -->
+      <div id="sadeSatiResultBox" class="space-y-3 text-xs">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <button onclick="closeSadeSatiModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors">
+        Close
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: MANGLIK DOSHA CALCULATOR -->
+  <!-- ========================================== -->
+  <div id="manglikModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white border border-[#ECE6D8] rounded-t-3xl sm:rounded-3xl w-full max-w-md p-5 sm:p-6 space-y-4 shadow-2xl relative bottom-sheet-anim max-h-[90vh] overflow-y-auto no-scrollbar">
+      
+      <div class="sheet-drag-handle sm:hidden"></div>
+
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-[#FAF6EE] border border-[#ECE6D8] flex items-center justify-center text-[#A87935]">
+            <svg class="w-5 h-5 stroke-[#A87935]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 tracking-tight">Manglik Dosha Calculator</h3>
+            <p class="text-[11px] text-slate-500">Mars Placement & Neutralization Check</p>
+          </div>
+        </div>
+        <button onclick="closeManglikModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Input Section -->
+      <div class="space-y-2.5 bg-[#FAF8F5] p-3.5 rounded-2xl border border-[#ECE6D8]">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-slate-800">Birth Chart Inputs</label>
+          <button onclick="autoFillManglikFromSaved()" class="text-[10.5px] font-bold text-[#A87935] hover:underline">
+            Use Saved Chart Details ⚡
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div>
+            <label class="block text-[10px] text-slate-500 font-semibold mb-0.5">Date of Birth</label>
+            <input type="date" id="manglikDob" value="1995-08-15" class="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-[#A87935]">
+          </div>
+          <div>
+            <label class="block text-[10px] text-slate-500 font-semibold mb-0.5">Time of Birth</label>
+            <input type="time" id="manglikTob" value="14:30" class="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-[#A87935]">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] text-slate-500 font-semibold mb-0.5">Birth City</label>
+          <select id="manglikCity" class="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-[#A87935]">
+            <option value="28.6139,77.2090,New Delhi, India" selected>New Delhi, India</option>
+            <option value="19.0760,72.8777,Mumbai, India">Mumbai, India</option>
+            <option value="12.9716,77.5946,Bengaluru, India">Bengaluru, India</option>
+            <option value="22.5726,88.3639,Kolkata, India">Kolkata, India</option>
+            <option value="25.3176,82.9739,Varanasi, India">Varanasi, India</option>
+            <option value="26.8467,80.9462,Lucknow, India">Lucknow, India</option>
+            <option value="17.3850,78.4867,Hyderabad, India">Hyderabad, India</option>
+            <option value="13.0827,80.2707,Chennai, India">Chennai, India</option>
+            <option value="23.0225,72.5714,Ahmedabad, India">Ahmedabad, India</option>
+            <option value="26.9124,75.7873,Jaipur, India">Jaipur, India</option>
+          </select>
+        </div>
+
+        <button onclick="calculateManglikModal()" class="w-full py-2.5 rounded-xl bg-[#A87935] hover:bg-[#966427] text-white font-bold text-xs shadow-xs transition-all active:scale-98 flex items-center justify-center space-x-1.5 mt-1">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span>Calculate Manglik Dosha</span>
+        </button>
+      </div>
+
+      <!-- Calculation Result Container -->
+      <div id="manglikResultBox" class="space-y-3 text-xs">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <button onclick="closeManglikModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors">
+        Close
       </button>
 
     </div>
